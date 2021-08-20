@@ -1,8 +1,7 @@
 {
   "name": "polyger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
-  "private": true,
   "scripts": {
     "build": "tsc",
     "dev": "tsc && node dist/src/index.js",
@@ -30,7 +29,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "prettier": "^2.3.1",
-    "typesafe-i18n": "^2.36.0",
     "typescript": "^4.3.5"
   },
   "husky": {
@@ -42,6 +40,7 @@
     "chalkercli": "^1.6.4",
     "inquirer": "^8.1.2",
     "inquirer-search-list": "^1.2.6",
-    "system-locale": "^0.1.0"
+    "system-locale": "^0.1.0",
+    "typesafe-i18n": "^2.36.0"
   }
 }
