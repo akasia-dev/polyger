@@ -17,7 +17,9 @@ New incoming polyrepo list: {list:string}`,
     'Please select the project command you want to use.\nIf you select a command, it will be executed.\n',
   runningCommand: 'Running... "{title:string}"',
 
-  shallWeClone: 'Do you want to clone the project?'
+  shallWeClone: 'Do you want to clone the project?',
+  commandPull: 'Update the entire local repos from the GitHub (pull)',
+  downloadingPolyrepos: '"{packageName:string}" Downloading polyrepos...'
 }
 
 export default en

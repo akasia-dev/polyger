@@ -1,7 +1,9 @@
 import type { ICommand } from '../interface'
 import pull from './pull'
 
-const localCommands: ICommand[] = []
-pull(localCommands)
+export const getLocalCommands = async () => {
+  const localCommands: ICommand[] = []
+  await pull(localCommands)
 
-export { localCommands }
+  return localCommands
+}

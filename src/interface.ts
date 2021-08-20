@@ -5,7 +5,7 @@ export interface ICommand {
 }
 
 /**
- * .env.json 인터페이스
+ * .env.json Interface
  */
 export interface IEnv {
   [key: string]: unknown

@@ -1,12 +1,12 @@
 {
   "name": "polyger",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
     "build": "tsc",
     "dev": "tsc && node dist/src/index.js",
     "clean": "rm -rf ./dist/*.*",
-    "lint": "prettier --write ./src/**/*.{ts,js}",
+    "lint": "prettier --write ./src/**/*.ts",
     "i18n": "typesafe-i18n"
   },
   "main": "./dist/src/index.js",
@@ -36,6 +36,7 @@
       "pre-commit": "lint-staged"
     }
   },
+  "license": "MIT",
   "dependencies": {
     "chalkercli": "^1.6.4",
     "inquirer": "^8.1.2",

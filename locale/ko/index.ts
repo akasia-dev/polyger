@@ -17,7 +17,9 @@ https://git.io/JsPkj`,
     '사용하실 프로젝트 명령어를 선택해주세요.\n명령어를 선택하시면 해당 명령어가 실행됩니다.\n',
   runningCommand: '"{title}" 실행 중...',
 
-  shallWeClone: '프로젝트 레포를 받아올까요?'
+  shallWeClone: '프로젝트 레포를 받아올까요?',
+  commandPull: '프로젝트 전체 깃허브 갱신 (pull)',
+  downloadingPolyrepos: '"{packageName}" 폴리레포 받아오는 중...'
 }
 
 export default ko

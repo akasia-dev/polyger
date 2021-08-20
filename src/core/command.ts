@@ -1,16 +1,14 @@
 import { inquirer } from './inquire'
-// import { commands as plainCommands } from '../../../command'
-import { localCommands } from '../local'
+import { getLocalCommands } from '../local'
 import type { ICommand } from '../interface'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import getLocale from 'locale'
 
-const commands = [...localCommands] // , ...plainCommands
-
 export const getCommand = () => {
   return new Promise<ICommand>(async (resolve) => {
     const locale = await getLocale()
+    const commands = await getLocalCommands()
     inquirer
       .prompt([
         {

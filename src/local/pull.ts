@@ -1,18 +1,23 @@
 import type { ICommand } from '../interface'
 import * as github from '../core/github'
 import { getPackages } from '../core/polyrepo'
+import getLocale from 'locale'
 
-export default (commands: ICommand[]) => {
+export default async (commands: ICommand[]) => {
+  const locale = await getLocale()
   commands.push({
-    title: '프로젝트 전체 깃허브 갱신(pull)',
+    title: locale.commandPull(),
     localFunction
   })
 }
 
 const localFunction = async () => {
   const packages = await getPackages()
+  const locale = await getLocale()
   for (const packageItem of packages) {
-    console.log(`${packageItem.packageName} 프로젝트 받아오는 중...`)
+    console.log(
+      locale.downloadingPolyrepos({ packageName: packageItem.packageName })
+    )
     await github.pull({
       cwd: packageItem.packagePath,
       onError: (error) => console.error(error),

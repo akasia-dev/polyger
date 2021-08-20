@@ -49,6 +49,15 @@ If you select a command, it will be executed.
 	 * Do you want to clone the project?
 	 */
 	'shallWeClone': string
+	/**
+	 * Update the entire local repos from the GitHub (pull)
+	 */
+	'commandPull': string
+	/**
+	 * "{packageName}" Downloading polyrepos...
+	 * @param {string} packageName
+	 */
+	'downloadingPolyrepos': RequiredParams1<'packageName'>
 }
 
 export type TranslationFunctions = {
@@ -88,6 +97,14 @@ If you select a command, it will be executed.
 	 * Do you want to clone the project?
 	 */
 	'shallWeClone': () => LocalizedString
+	/**
+	 * Update the entire local repos from the GitHub (pull)
+	 */
+	'commandPull': () => LocalizedString
+	/**
+	 * "{packageName}" Downloading polyrepos...
+	 */
+	'downloadingPolyrepos': (arg: { packageName: string }) => LocalizedString
 }
 
 export type Formatters = {}
