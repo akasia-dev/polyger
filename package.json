@@ -3,8 +3,8 @@
   "version": "0.0.6",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc && node dist/src/index.js",
+    "build": "rm -rf dist && tsc",
+    "dev": "npm run build && node dist/src/index.js",
     "clean": "rm -rf ./dist/*.*",
     "lint": "prettier --write ./src/**/*.ts",
     "i18n": "typesafe-i18n",
