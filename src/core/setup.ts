@@ -16,6 +16,7 @@ export const getconfigData = async () => {
     projectPath,
     '.polyger.secret.json'
   )
+  const polygerPackageJonPath = path.resolve(projectPath, 'package.json')
 
   const configData: IConfigData = {
     ...(await loadJSONFile(polygerConfigJsonPath))
@@ -26,6 +27,24 @@ export const getconfigData = async () => {
 
   const locale = await getLocale()
   let isNewestUpdateExist = false
+
+  // * package.json
+  if (!fs.existsSync(polygerPackageJonPath)) {
+    fs.writeFileSync(
+      polygerPackageJonPath,
+      JSON.stringify(
+        {
+          name: 'polyrepo',
+          version: '1.0.0',
+          scripts: {
+            start: 'npx polyger'
+          }
+        },
+        null,
+        2
+      )
+    )
+  }
 
   // * Sub Folders
   if (!configData.subFolders || configData.subFolders.length === 0) {
