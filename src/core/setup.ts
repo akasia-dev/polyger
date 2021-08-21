@@ -16,20 +16,29 @@ export const getSetupData = async () => {
 
   const locale = await getLocale()
 
-  // * subFolders
+  // * Sub Folders
   if (!setupData.subFolders || setupData.subFolders.length === 0) {
     const { subFolders } = await inquirer.prompt({
       type: 'input',
       name: 'subFolders',
-      message: locale.pleaseEnterUsername()
+      message: locale.messageOfSubFolders()
     })
     setupData.subFolders = (subFolders as string).split(' ').join('').split(',')
   }
 
-  // TODO Initiate Sub Folders
+  // * Initiate Sub Folders
   for (const subFolder of setupData.subFolders) {
     const subFolderPath = path.resolve(projectPath, subFolder)
-    if (!fs.existsSync(subFolderPath)) fs.mkdirSync(subFolderPath)
+    const subFolderIndexFilePath = path.resolve(subFolderPath, 'list.json')
+    const subFolderPackageFolderPath = path.resolve(subFolderPath, 'package')
+    if (!fs.existsSync(subFolderIndexFilePath)) {
+      fs.mkdirSync(subFolderPath, { recursive: true })
+      fs.mkdirSync(subFolderPackageFolderPath, { recursive: true })
+      fs.writeFileSync(
+        subFolderIndexFilePath,
+        JSON.stringify({ package: {} }, null, 2)
+      )
+    }
   }
 
   // * githubToken

@@ -1,15 +1,14 @@
 {
   "name": "polyger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
+    "start": "npm run build && node ./bin/polyger",
     "build": "rm -rf dist && tsc",
-    "dev": "npm run build && node dist/src/index.js",
     "clean": "rm -rf ./dist/*.*",
     "lint": "prettier --write ./src/**/*.ts",
     "i18n": "typesafe-i18n",
-    "release": "npm run build && version-select && npm publish",
-    "start": "npm run build && node ./bin/polyger"
+    "release": "npm run build && version-select && npm publish"
   },
   "main": "./dist/src/index.js",
   "bin": {
