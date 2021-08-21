@@ -14,12 +14,6 @@
   "bin": {
     "polyger": "bin/polyger.js"
   },
-  "hooks": {
-    "before:init": [
-      "npm run lint"
-    ],
-    "after:bump": "npm run build"
-  },
   "devDependencies": {
     "@types/inquirer": "^7.3.3",
     "@types/node": "^16.7.1",
@@ -41,6 +35,14 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
+    }
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "npm run lint"
+      ],
+      "after:bump": "npm run build"
     }
   },
   "license": "MIT",
