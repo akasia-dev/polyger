@@ -49,7 +49,7 @@ export const getSetupData = async () => {
       type: 'password',
       mask: '*',
       name: 'githubToken',
-      message: locale.messageOfSubFolders()
+      message: locale.messageOfNeedToken()
     })
     setupData.githubToken = githubToken
   }
