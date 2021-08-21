@@ -5,6 +5,8 @@ import { inquirer } from './inquire'
 import { animateText, loadJSONFile } from './utils'
 import type { IConfigData, ISecretData } from '../interface'
 import getLocale from '../../locale'
+import { promisify } from 'util'
+import { exec } from 'child_process'
 
 export const getconfigData = async () => {
   const projectPath = path.resolve(process.cwd())
@@ -37,13 +39,17 @@ export const getconfigData = async () => {
           name: 'polyrepo',
           version: '1.0.0',
           scripts: {
-            start: 'npx polyger'
+            start: 'polyger'
           }
         },
         null,
         2
       )
     )
+
+    await promisify(exec)('npm i -D polyger', {
+      cwd: process.cwd()
+    })
   }
 
   // * Sub Folders
