@@ -4,7 +4,7 @@ import { animateText } from './utils'
 import { inquirer } from './inquire'
 import getSetupData from './setup'
 import * as github from './github'
-import getLocale from 'locale'
+import getLocale from '../../locale'
 
 const projectPath = path.resolve(process.cwd())
 const targetProjectPaths = ['frontend', 'backend', 'release'].map((name) =>

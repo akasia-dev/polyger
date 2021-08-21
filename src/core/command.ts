@@ -3,7 +3,7 @@ import { getLocalCommands } from '../local'
 import type { ICommand } from '../interface'
 import { exec } from 'child_process'
 import { promisify } from 'util'
-import getLocale from 'locale'
+import getLocale from '../../locale'
 
 export const getCommand = () => {
   return new Promise<ICommand>(async (resolve) => {
