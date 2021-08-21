@@ -24,7 +24,7 @@ export const getCommand = () => {
       ])
       .then((command) => {
         console.log(
-          `"${locale.runningCommand({
+          `${locale.runningCommand({
             title: commands[command.selected].title
           })}\n`
         )

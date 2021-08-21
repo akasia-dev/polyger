@@ -16,7 +16,7 @@ export const getRepos = async (projectPath: string) => {
     const listJSON: {
       package: Record<string, any>
     } = JSON.parse(
-      String(await fs.readFile(path.join(projectPath, 'list.json')))
+      String(await fs.readFile(path.join(projectPath, '.polyger.list.json')))
     )
     const packageList = Object.keys(listJSON.package)
 

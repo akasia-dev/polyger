@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import chalkAnimation from 'chalkercli'
+import { inquirer } from './inquire'
 
 export const loadJSONFile = async (filePath: string) => {
   try {
@@ -7,6 +8,27 @@ export const loadJSONFile = async (filePath: string) => {
   } catch (e) {
     return null
   }
+}
+
+export const choice = (props: { message: string; items: string[] }) => {
+  return new Promise<string>(async (resolve) => {
+    inquirer
+      .prompt([
+        {
+          type: 'search-list',
+          message: props.message,
+          name: 'selected',
+          choices: props.items.map((command, index) => ({
+            name: command,
+            value: index
+          })),
+          validate: (_answer) => true
+        }
+      ])
+      .then((command) => {
+        resolve(props.items[command.selected])
+      })
+  })
 }
 
 export const delay = (ms: number) =>

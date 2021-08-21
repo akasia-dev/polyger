@@ -1,7 +1,7 @@
 import path from 'path'
-import { inquirer } from './inquire'
 import fs from 'fs'
 
+import { inquirer } from './inquire'
 import { animateText, loadJSONFile } from './utils'
 import type { IConfigData, ISecretData } from '../interface'
 import getLocale from '../../locale'
@@ -45,7 +45,10 @@ export const getconfigData = async () => {
   // * Initiate Sub Folders
   for (const subFolder of configData.subFolders) {
     const subFolderPath = path.resolve(projectPath, subFolder)
-    const subFolderIndexFilePath = path.resolve(subFolderPath, 'list.json')
+    const subFolderIndexFilePath = path.resolve(
+      subFolderPath,
+      '.polyger.list.json'
+    )
     const subFolderPackageFolderPath = path.resolve(subFolderPath, 'package')
     if (!fs.existsSync(subFolderIndexFilePath)) {
       fs.mkdirSync(subFolderPath, { recursive: true })

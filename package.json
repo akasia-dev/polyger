@@ -1,48 +1,51 @@
 {
-    "name": "polyger",
-    "version": "0.0.11",
-    "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
-    "scripts": {
-        "start": "npm run build && node ./bin/polyger",
-        "build": "rm -rf dist && tsc",
-        "clean": "rm -rf ./dist/*.*",
-        "lint": "prettier --write ./src/**/*.ts",
-        "i18n": "typesafe-i18n",
-        "release": "npm run build && version-select && npm publish"
-    },
-    "main": "./dist/src/index.js",
-    "bin": {
-        "polyger": "bin/polyger.js"
-    },
-    "devDependencies": {
-        "@types/inquirer": "^7.3.3",
-        "@types/node": "^16.7.1",
-        "@typescript-eslint/eslint-plugin": "^4.29.2",
-        "@typescript-eslint/parser": "^4.29.2",
-        "eslint": "^7.32.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-config-react-app": "^6.0.0",
-        "eslint-loader": "^4.0.2",
-        "eslint-plugin-import": "^2.24.1",
-        "eslint-plugin-prettier": "^3.4.1",
-        "eslint-plugin-react": "^7.24.0",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "husky": "^7.0.1",
-        "prettier": "^2.3.2",
-        "typescript": "^4.3.5",
-        "version-select": "^1.0.13"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "license": "MIT",
-    "dependencies": {
-        "chalkercli": "^1.6.4",
-        "inquirer": "^8.1.2",
-        "inquirer-search-list": "^1.2.6",
-        "system-locale": "^0.1.0",
-        "typesafe-i18n": "^2.36.1"
+  "name": "polyger",
+  "version": "0.0.11",
+  "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
+  "scripts": {
+    "start": "npm run build && node ./bin/polyger",
+    "build": "rm -rf dist && tsc",
+    "clean": "rm -rf ./dist/*.*",
+    "lint": "prettier --write ./src/**/*.ts",
+    "i18n": "typesafe-i18n",
+    "release-test": "npm run build && npm version minor && npm publish",
+    "release": "release-it",
+    "version-update": "npm run build && node ./dist/src/local/versionUpdate.js"
+  },
+  "main": "./dist/src/index.js",
+  "bin": {
+    "polyger": "bin/polyger.js"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.3",
+    "@types/node": "^16.7.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
+    "prettier": "^2.3.2",
+    "release-it": "^14.11.5",
+    "typescript": "^4.3.5",
+    "version-select": "^1.0.13"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalkercli": "^1.6.4",
+    "inquirer": "^8.1.2",
+    "inquirer-search-list": "^1.2.6",
+    "system-locale": "^0.1.0",
+    "typesafe-i18n": "^2.36.1"
+  }
 }
