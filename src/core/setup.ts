@@ -16,7 +16,7 @@ export const getconfigData = async () => {
     projectPath,
     '.polyger.secret.json'
   )
-  const polygerPackageJonPath = path.resolve(projectPath, 'package.json')
+  const polygerPackageJsonPath = path.resolve(projectPath, 'package.json')
 
   const configData: IConfigData = {
     ...(await loadJSONFile(polygerConfigJsonPath))
@@ -29,9 +29,9 @@ export const getconfigData = async () => {
   let isNewestUpdateExist = false
 
   // * package.json
-  if (!fs.existsSync(polygerPackageJonPath)) {
+  if (!fs.existsSync(polygerPackageJsonPath)) {
     fs.writeFileSync(
-      polygerPackageJonPath,
+      polygerPackageJsonPath,
       JSON.stringify(
         {
           name: 'polyrepo',
