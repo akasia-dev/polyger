@@ -1,7 +1,7 @@
 import type { ICommand } from '../interface'
 import * as github from '../core/github'
 import { getPackages } from '../core/polyrepo'
-import getLocale from 'locale'
+import getLocale from '../../locale'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
