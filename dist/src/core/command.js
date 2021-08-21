@@ -35,31 +35,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCommand = void 0;
 var inquire_1 = require("./inquire");
-// import { commands as plainCommands } from '../../../command'
 var local_1 = require("../local");
 var child_process_1 = require("child_process");
 var util_1 = require("util");
 var locale_1 = __importDefault(require("locale"));
-var commands = __spreadArray([], local_1.localCommands); // , ...plainCommands
 var getCommand = function () {
     return new Promise(function (resolve) { return __awaiter(void 0, void 0, void 0, function () {
-        var locale;
+        var locale, commands;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, locale_1.default()];
                 case 1:
                     locale = _a.sent();
+                    return [4 /*yield*/, local_1.getLocalCommands()];
+                case 2:
+                    commands = _a.sent();
                     inquire_1.inquirer
                         .prompt([
                         {

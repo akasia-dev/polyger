@@ -11,6 +11,15 @@ https://git.io/JsPkj`,
 
 새로 받아오는 폴리레포 목록: {list}`,
 
+  messageOfSubFolders: `폴리레포 카테고리를 한 개 이상 입력해주세요.
+입력 예시: frontend, backend, release
+
+각 카테고리 폴더가 최상단에 생성되며, 하위에 폴리레포가 추가할 수 있습니다.
+입력 시엔 , 로 구분지으면 여러 폴더를 입력할 수 있습니다.
+
+폴리레포 분류:
+`,
+
   pleaseEnterGithubCLIToken: 'GitHub CLI 토큰을 입력해주세요.',
   pleaseEnterUsername: 'GitHub 유저명을 입력해주세요. (이메일이 아닌 아이디)',
   selectCommandWantToExecute:

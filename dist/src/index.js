@@ -40,15 +40,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var setup_1 = __importDefault(require("./core/setup"));
+var polyrepo_1 = __importDefault(require("./core/polyrepo"));
+var command_1 = __importDefault(require("./core/command"));
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, setup_1.default()
-                // await polyrepo() // 프로젝트 폴더를 확인 후 프로젝트 폴더를 깃허브에서 받아옵니다.
-                // await commannd() // 명령어를 선택받은 후 명령어를 실행합니다.
-            ]; // 설정 파일을 확인하고 설정 파일이 없으면 설정 파일을 만듭니다.
+            case 0: return [4 /*yield*/, setup_1.default()]; // Check the setup file and create a setup file if it does not exist.
             case 1:
-                _a.sent(); // 설정 파일을 확인하고 설정 파일이 없으면 설정 파일을 만듭니다.
+                _a.sent(); // Check the setup file and create a setup file if it does not exist.
+                return [4 /*yield*/, polyrepo_1.default()]; // Check the project folder and download the project folder.
+            case 2:
+                _a.sent(); // Check the project folder and download the project folder.
+                return [4 /*yield*/, command_1.default()]; // After the command is selected by the user, execute the command.
+            case 3:
+                _a.sent(); // After the command is selected by the user, execute the command.
                 return [2 /*return*/];
         }
     });

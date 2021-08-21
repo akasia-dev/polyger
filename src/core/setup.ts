@@ -1,13 +1,13 @@
 import path from 'path'
 import { inquirer } from './inquire'
-import fs from 'fs/promises'
+import fs from 'fs'
 
 import { animateText, loadJSONFile } from './utils'
 import type { IEnv } from '../interface'
 import getLocale from '../../locale'
 
 export const getSetupData = async () => {
-  const projectPath = path.resolve(__dirname, '../../../../../../../')
+  const projectPath = path.resolve(process.cwd())
   const projectDotEnvPath = path.resolve(projectPath, '.env.json')
 
   let setupData: IEnv = {
@@ -15,6 +15,24 @@ export const getSetupData = async () => {
   }
 
   const locale = await getLocale()
+
+  // * subFolders
+  if (!setupData.subFolders || setupData.subFolders.length === 0) {
+    const { subFolders } = await inquirer.prompt({
+      type: 'input',
+      name: 'subFolders',
+      message: locale.pleaseEnterUsername()
+    })
+    setupData.subFolders = (subFolders as string).split(' ').join('').split(',')
+  }
+
+  // TODO Initiate Sub Folders
+  for (const subFolder of setupData.subFolders) {
+    const subFolderPath = path.resolve(projectPath, subFolder)
+    if (!fs.existsSync(subFolderPath)) fs.mkdirSync(subFolderPath)
+  }
+
+  // * githubToken
   if (!setupData.githubToken || setupData.githubToken.length === 0) {
     await animateText(locale.messageOfNeedToken())
 
@@ -22,11 +40,12 @@ export const getSetupData = async () => {
       type: 'password',
       mask: '*',
       name: 'githubToken',
-      message: locale.pleaseEnterGithubCLIToken()
+      message: locale.messageOfSubFolders()
     })
     setupData.githubToken = githubToken
   }
 
+  // * githubUserName
   if (!setupData.githubUserName || setupData.githubUserName.length === 0) {
     const { username } = await inquirer.prompt({
       type: 'input',
@@ -36,7 +55,7 @@ export const getSetupData = async () => {
     setupData.githubUserName = username
   }
 
-  await fs.writeFile(projectDotEnvPath, JSON.stringify(setupData, null, 2))
+  fs.writeFileSync(projectDotEnvPath, JSON.stringify(setupData, null, 2))
   return setupData
 }
 

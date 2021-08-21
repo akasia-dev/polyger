@@ -53,51 +53,70 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSetupData = void 0;
 var path_1 = __importDefault(require("path"));
 var inquire_1 = require("./inquire");
-var promises_1 = __importDefault(require("fs/promises"));
+var fs_1 = __importDefault(require("fs"));
 var utils_1 = require("./utils");
 var locale_1 = __importDefault(require("../../locale"));
 var getSetupData = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var projectPath, projectDotEnvPath, setupData, _a, locale, githubToken, username;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var projectPath, projectDotEnvPath, setupData, _a, locale, subFolders, _i, _b, subFolder, subFolderPath, githubToken, username;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
             case 0:
-                projectPath = path_1.default.resolve(__dirname, '../../../../../../../');
+                projectPath = path_1.default.resolve(process.cwd());
                 projectDotEnvPath = path_1.default.resolve(projectPath, '.env.json');
                 _a = [{}];
                 return [4 /*yield*/, utils_1.loadJSONFile(projectDotEnvPath)];
             case 1:
-                setupData = __assign.apply(void 0, _a.concat([(_b.sent())]));
-                return [4 /*yield*/, locale_1.default()];
+                setupData = __assign.apply(void 0, _a.concat([(_c.sent())]));
+                return [4 /*yield*/, locale_1.default()
+                    // * subFolders
+                ];
             case 2:
-                locale = _b.sent();
-                if (!(!setupData.githubToken || setupData.githubToken.length === 0)) return [3 /*break*/, 5];
-                return [4 /*yield*/, utils_1.animateText(locale.messageOfNeedToken())];
+                locale = _c.sent();
+                if (!(!setupData.subFolders || setupData.subFolders.length === 0)) return [3 /*break*/, 4];
+                return [4 /*yield*/, inquire_1.inquirer.prompt({
+                        type: 'input',
+                        name: 'subFolders',
+                        message: locale.pleaseEnterUsername()
+                    })];
             case 3:
-                _b.sent();
+                subFolders = (_c.sent()).subFolders;
+                setupData.subFolders = subFolders.split(' ').join('').split(',');
+                _c.label = 4;
+            case 4:
+                // TODO Initiate Sub Folders
+                for (_i = 0, _b = setupData.subFolders; _i < _b.length; _i++) {
+                    subFolder = _b[_i];
+                    subFolderPath = path_1.default.resolve(projectPath, subFolder);
+                    if (!fs_1.default.existsSync(subFolderPath))
+                        fs_1.default.mkdirSync(subFolderPath);
+                }
+                if (!(!setupData.githubToken || setupData.githubToken.length === 0)) return [3 /*break*/, 7];
+                return [4 /*yield*/, utils_1.animateText(locale.messageOfNeedToken())];
+            case 5:
+                _c.sent();
                 return [4 /*yield*/, inquire_1.inquirer.prompt({
                         type: 'password',
                         mask: '*',
                         name: 'githubToken',
-                        message: locale.pleaseEnterGithubCLIToken()
+                        message: locale.messageOfSubFolders()
                     })];
-            case 4:
-                githubToken = (_b.sent()).githubToken;
+            case 6:
+                githubToken = (_c.sent()).githubToken;
                 setupData.githubToken = githubToken;
-                _b.label = 5;
-            case 5:
-                if (!(!setupData.githubUserName || setupData.githubUserName.length === 0)) return [3 /*break*/, 7];
+                _c.label = 7;
+            case 7:
+                if (!(!setupData.githubUserName || setupData.githubUserName.length === 0)) return [3 /*break*/, 9];
                 return [4 /*yield*/, inquire_1.inquirer.prompt({
                         type: 'input',
                         name: 'username',
                         message: locale.pleaseEnterUsername()
                     })];
-            case 6:
-                username = (_b.sent()).username;
-                setupData.githubUserName = username;
-                _b.label = 7;
-            case 7: return [4 /*yield*/, promises_1.default.writeFile(projectDotEnvPath, JSON.stringify(setupData, null, 2))];
             case 8:
-                _b.sent();
+                username = (_c.sent()).username;
+                setupData.githubUserName = username;
+                _c.label = 9;
+            case 9:
+                fs_1.default.writeFileSync(projectDotEnvPath, JSON.stringify(setupData, null, 2));
                 return [2 /*return*/, setupData];
         }
     });

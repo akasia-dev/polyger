@@ -1,3 +1,3 @@
 import type { ICommand } from '../interface';
-declare const _default: (commands: ICommand[]) => void;
+declare const _default: (commands: ICommand[]) => Promise<void>;
 export default _default;

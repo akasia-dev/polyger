@@ -19,6 +19,19 @@ New incoming polyrepo list: {list}
      */
     'messageOfClone': RequiredParams2<'count', 'list'>;
     /**
+     * Please enter at least one polyrepo category.
+e.g.: frontend, backend, release
+
+Each category folder is created at the top,
+and you can add a polyrepo to the sub-path.
+
+You can type multiple folders by separating them with ","
+
+Polyrepo category:
+
+     */
+    'messageOfSubFolders': string;
+    /**
      * Please enter the GitHub CLI token.
      */
     'pleaseEnterGithubCLIToken': string;
@@ -41,6 +54,15 @@ If you select a command, it will be executed.
      * Do you want to clone the project?
      */
     'shallWeClone': string;
+    /**
+     * Update the entire local repos from the GitHub (pull)
+     */
+    'commandPull': string;
+    /**
+     * "{packageName}" Downloading polyrepos...
+     * @param {string} packageName
+     */
+    'downloadingPolyrepos': RequiredParams1<'packageName'>;
 };
 export declare type TranslationFunctions = {
     /**
@@ -60,6 +82,19 @@ New incoming polyrepo list: {list}
         count: number;
         list: string;
     }) => LocalizedString;
+    /**
+     * Please enter at least one polyrepo category.
+e.g.: frontend, backend, release
+
+Each category folder is created at the top,
+and you can add a polyrepo to the sub-path.
+
+You can type multiple folders by separating them with ","
+
+Polyrepo category:
+
+     */
+    'messageOfSubFolders': () => LocalizedString;
     /**
      * Please enter the GitHub CLI token.
      */
@@ -84,6 +119,16 @@ If you select a command, it will be executed.
      * Do you want to clone the project?
      */
     'shallWeClone': () => LocalizedString;
+    /**
+     * Update the entire local repos from the GitHub (pull)
+     */
+    'commandPull': () => LocalizedString;
+    /**
+     * "{packageName}" Downloading polyrepos...
+     */
+    'downloadingPolyrepos': (arg: {
+        packageName: string;
+    }) => LocalizedString;
 };
 export declare type Formatters = {};
 declare type Param<P extends string> = `{${P}}`;

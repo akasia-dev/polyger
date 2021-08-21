@@ -11,6 +11,17 @@ The total number of polyrepos to clone is {count:number}.
 
 New incoming polyrepo list: {list:string}`,
 
+  messageOfSubFolders: `Please enter at least one polyrepo category.
+e.g.: frontend, backend, release
+
+Each category folder is created at the top,
+and you can add a polyrepo to the sub-path.
+
+You can type multiple folders by separating them with ","
+
+Polyrepo category:
+`,
+
   pleaseEnterGithubCLIToken: 'Please enter the GitHub CLI token.',
   pleaseEnterUsername: 'Please enter GitHub user name. (NOT EMAIL)',
   selectCommandWantToExecute:

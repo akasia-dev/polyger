@@ -27,6 +27,19 @@ New incoming polyrepo list: {list}
 	 */
 	'messageOfClone': RequiredParams2<'count', 'list'>
 	/**
+	 * Please enter at least one polyrepo category.
+e.g.: frontend, backend, release
+
+Each category folder is created at the top,
+and you can add a polyrepo to the sub-path.
+
+You can type multiple folders by separating them with ","
+
+Polyrepo category:
+
+	 */
+	'messageOfSubFolders': string
+	/**
 	 * Please enter the GitHub CLI token.
 	 */
 	'pleaseEnterGithubCLIToken': string
@@ -75,6 +88,19 @@ The total number of polyrepos to clone is {count}.
 New incoming polyrepo list: {list}
 	 */
 	'messageOfClone': (arg: { count: number, list: string }) => LocalizedString
+	/**
+	 * Please enter at least one polyrepo category.
+e.g.: frontend, backend, release
+
+Each category folder is created at the top,
+and you can add a polyrepo to the sub-path.
+
+You can type multiple folders by separating them with ","
+
+Polyrepo category:
+
+	 */
+	'messageOfSubFolders': () => LocalizedString
 	/**
 	 * Please enter the GitHub CLI token.
 	 */

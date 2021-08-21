@@ -11,4 +11,5 @@ export interface IEnv {
   [key: string]: unknown
   githubToken?: string
   githubUserName?: string
+  subFolders?: string[]
 }

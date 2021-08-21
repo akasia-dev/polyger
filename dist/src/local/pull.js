@@ -54,41 +54,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var github = __importStar(require("../core/github"));
 var polyrepo_1 = require("../core/polyrepo");
-exports.default = (function (commands) {
-    commands.push({
-        title: '프로젝트 전체 깃허브 갱신(pull)',
-        localFunction: localFunction
+var locale_1 = __importDefault(require("locale"));
+exports.default = (function (commands) { return __awaiter(void 0, void 0, void 0, function () {
+    var locale;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, locale_1.default()];
+            case 1:
+                locale = _a.sent();
+                commands.push({
+                    title: locale.commandPull(),
+                    localFunction: localFunction
+                });
+                return [2 /*return*/];
+        }
     });
-});
+}); });
 var localFunction = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var packages, _i, packages_1, packageItem;
+    var packages, locale, _i, packages_1, packageItem;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, polyrepo_1.getPackages()];
             case 1:
                 packages = _a.sent();
-                _i = 0, packages_1 = packages;
-                _a.label = 2;
+                return [4 /*yield*/, locale_1.default()];
             case 2:
-                if (!(_i < packages_1.length)) return [3 /*break*/, 5];
+                locale = _a.sent();
+                _i = 0, packages_1 = packages;
+                _a.label = 3;
+            case 3:
+                if (!(_i < packages_1.length)) return [3 /*break*/, 6];
                 packageItem = packages_1[_i];
-                console.log(packageItem.packageName + " \uD504\uB85C\uC81D\uD2B8 \uBC1B\uC544\uC624\uB294 \uC911...");
+                console.log(locale.downloadingPolyrepos({ packageName: packageItem.packageName }));
                 return [4 /*yield*/, github.pull({
                         cwd: packageItem.packagePath,
                         onError: function (error) { return console.error(error); },
                         onErrorMessage: function (error) { return console.error(error); },
                         onMessage: function (message) { return console.log(message); }
                     })];
-            case 3:
-                _a.sent();
-                _a.label = 4;
             case 4:
+                _a.sent();
+                _a.label = 5;
+            case 5:
                 _i++;
-                return [3 /*break*/, 2];
-            case 5: return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 6: return [2 /*return*/];
         }
     });
 }); };
