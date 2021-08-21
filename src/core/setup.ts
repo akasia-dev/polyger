@@ -3,31 +3,47 @@ import { inquirer } from './inquire'
 import fs from 'fs'
 
 import { animateText, loadJSONFile } from './utils'
-import type { IEnv } from '../interface'
+import type { IConfigData, ISecretData } from '../interface'
 import getLocale from '../../locale'
 
-export const getSetupData = async () => {
+export const getconfigData = async () => {
   const projectPath = path.resolve(process.cwd())
-  const projectDotEnvPath = path.resolve(projectPath, '.env.json')
+  const polygerConfigJsonPath = path.resolve(
+    projectPath,
+    '.polyger.config.json'
+  )
+  const polygerSecretJsonPath = path.resolve(
+    projectPath,
+    '.polyger.secret.json'
+  )
 
-  let setupData: IEnv = {
-    ...(await loadJSONFile(projectDotEnvPath))
+  const configData: IConfigData = {
+    ...(await loadJSONFile(polygerConfigJsonPath))
+  }
+  const secretData: ISecretData = {
+    ...(await loadJSONFile(polygerSecretJsonPath))
   }
 
   const locale = await getLocale()
+  let isNewestUpdateExist = false
 
   // * Sub Folders
-  if (!setupData.subFolders || setupData.subFolders.length === 0) {
+  if (!configData.subFolders || configData.subFolders.length === 0) {
     const { subFolders } = await inquirer.prompt({
       type: 'input',
       name: 'subFolders',
       message: locale.messageOfSubFolders()
     })
-    setupData.subFolders = (subFolders as string).split(' ').join('').split(',')
+    configData.subFolders = (subFolders as string)
+      .split(' ')
+      .join('')
+      .split(',')
+
+    isNewestUpdateExist = true
   }
 
   // * Initiate Sub Folders
-  for (const subFolder of setupData.subFolders) {
+  for (const subFolder of configData.subFolders) {
     const subFolderPath = path.resolve(projectPath, subFolder)
     const subFolderIndexFilePath = path.resolve(subFolderPath, 'list.json')
     const subFolderPackageFolderPath = path.resolve(subFolderPath, 'package')
@@ -42,30 +58,39 @@ export const getSetupData = async () => {
   }
 
   // * githubToken
-  if (!setupData.githubToken || setupData.githubToken.length === 0) {
+  if (!secretData.githubToken || secretData.githubToken.length === 0) {
     await animateText(locale.messageOfNeedToken())
 
     const { githubToken } = await inquirer.prompt({
       type: 'password',
       mask: '*',
       name: 'githubToken',
-      message: locale.messageOfNeedToken()
+      message: locale.pleaseEnterGithubCLIToken()
     })
-    setupData.githubToken = githubToken
+    secretData.githubToken = githubToken
+    isNewestUpdateExist = true
   }
 
   // * githubUserName
-  if (!setupData.githubUserName || setupData.githubUserName.length === 0) {
+  if (!secretData.githubUserName || secretData.githubUserName.length === 0) {
     const { username } = await inquirer.prompt({
       type: 'input',
       name: 'username',
       message: locale.pleaseEnterUsername()
     })
-    setupData.githubUserName = username
+    secretData.githubUserName = username
+    isNewestUpdateExist = true
   }
 
-  fs.writeFileSync(projectDotEnvPath, JSON.stringify(setupData, null, 2))
-  return setupData
+  if (isNewestUpdateExist) {
+    fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
+    fs.writeFileSync(polygerSecretJsonPath, JSON.stringify(secretData, null, 2))
+  }
+
+  return {
+    ...configData,
+    ...secretData
+  }
 }
 
-export default getSetupData
+export default getconfigData

@@ -7,9 +7,12 @@ export interface ICommand {
 /**
  * .env.json Interface
  */
-export interface IEnv {
+export interface IConfigData {
   [key: string]: unknown
+  subFolders?: string[]
+}
+
+export interface ISecretData {
   githubToken?: string
   githubUserName?: string
-  subFolders?: string[]
 }
