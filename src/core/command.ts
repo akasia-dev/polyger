@@ -6,6 +6,10 @@ import { promisify } from 'util'
 import getLocale from '../../locale'
 
 export const getCommand = () => {
+  //
+}
+
+export const selectCommand = () => {
   return new Promise<ICommand>(async (resolve) => {
     const locale = await getLocale()
     const commands = await getLocalCommands()
@@ -34,7 +38,7 @@ export const getCommand = () => {
 }
 
 export default async () => {
-  const commandObject = await getCommand()
+  const commandObject = await selectCommand()
   if (typeof commandObject?.localFunction === 'function')
     commandObject.localFunction()
 

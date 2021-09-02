@@ -1,6 +1,8 @@
 import fs from 'fs/promises'
 import chalkAnimation from 'chalkercli'
 import { inquirer } from './inquire'
+import isInteractive from 'is-interactive'
+import supportColor from 'supports-color'
 
 export const loadJSONFile = async (filePath: string) => {
   try {
@@ -35,7 +37,11 @@ export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
 
 export const animateText = async (text: string, delayMs = 1000) => {
-  const effect = chalkAnimation.pulse(text)
-  await delay(delayMs)
-  effect.stop()
+  if (isInteractive() && supportColor.stdout) {
+    const effect = chalkAnimation.pulse(text)
+    await delay(delayMs)
+    effect.stop()
+  } else {
+    console.log(text)
+  }
 }

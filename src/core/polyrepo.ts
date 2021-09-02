@@ -7,9 +7,6 @@ import * as github from './github'
 import getLocale from '../../locale'
 
 const projectPath = path.resolve(process.cwd())
-const targetProjectPaths = ['frontend', 'backend', 'release'].map((name) =>
-  path.resolve(projectPath, name)
-)
 
 export const getRepos = async (projectPath: string) => {
   try {
@@ -40,6 +37,12 @@ export const getRepos = async (projectPath: string) => {
   return null
 }
 
+export const getTargetProjectPaths = async () => {
+  const { subFolders } = await getSetupData()
+  if (!subFolders) return [] as string[]
+  return subFolders.map((name) => path.resolve(projectPath, name))
+}
+
 export const getPackages = async () => {
   const packages: {
     packageName: string
@@ -47,6 +50,7 @@ export const getPackages = async () => {
     url: string
   }[] = []
 
+  const targetProjectPaths = await getTargetProjectPaths()
   for (const targetProjectPath of targetProjectPaths) {
     const repos = await getRepos(targetProjectPath)
     if (!repos) continue
@@ -75,6 +79,7 @@ export const init = async () => {
     branch: string
   }[] = []
 
+  const targetProjectPaths = await getTargetProjectPaths()
   for (const targetProjectPath of targetProjectPaths) {
     const repos = await getRepos(targetProjectPath)
     if (!repos) continue
