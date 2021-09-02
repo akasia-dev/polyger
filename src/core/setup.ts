@@ -8,7 +8,7 @@ import getLocale from '../../locale'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
-export const getconfigData = async () => {
+export const getConfigData = async () => {
   const projectPath = path.resolve(process.cwd())
   const polygerConfigJsonPath = path.resolve(
     projectPath,
@@ -47,9 +47,15 @@ export const getconfigData = async () => {
       )
     )
 
-    await promisify(exec)('npm i -D polyger', {
-      cwd: process.cwd()
-    })
+    if (!process.argv.includes('--dev')) {
+      await promisify(exec)('npm i -D polyger', {
+        cwd: process.cwd()
+      })
+    } else {
+      await promisify(exec)('npm i -D ../', {
+        cwd: process.cwd()
+      })
+    }
   }
 
   // * Sub Folders
@@ -121,4 +127,4 @@ export const getconfigData = async () => {
   }
 }
 
-export default getconfigData
+export default getConfigData

@@ -28,7 +28,15 @@ https://git.io/JsPkj`,
 
   shallWeClone: '프로젝트 레포를 받아올까요?',
   commandPull: '프로젝트 전체 깃허브 갱신 (pull)',
-  downloadingPolyrepos: '"{packageName}" 폴리레포 받아오는 중...'
+  downloadingPolyrepos: '"{packageName}" 폴리레포 받아오는 중...',
+
+  detectedNonInteractiveTerminal: `해당 터미널이 상호작용을 지원하지 않는 것으로 보입니다.
+원활한 실행을 위해선 상호작용이 가능한 터미널이 필요합니다.
+
+윈도우의 경우 권장되는 설치 방법은 다음과 같습니다.
+1. git-bash 설치: https://git.io/JENSe
+2. hyper 설치: https://git.io/JEN7V
+3. hyper 설정: https://bit.ly/hyper-setup`
 }
 
 export default ko

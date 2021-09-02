@@ -30,7 +30,15 @@ Polyrepo category:
 
   shallWeClone: 'Do you want to clone the project?',
   commandPull: 'Update the entire local repos from the GitHub (pull)',
-  downloadingPolyrepos: '"{packageName:string}" Downloading polyrepos...'
+  downloadingPolyrepos: '"{packageName:string}" Downloading polyrepos...',
+
+  detectedNonInteractiveTerminal: `The terminal does not appear to support interaction.
+Interactive terminals are needed for smooth execution.
+
+For Windows, the recommended installation methods are as follows:
+1. git-bash install: https://git.io/JENSe
+2. hyper install: https://git.io/JEN7V
+3. hyper setup: https://bit.ly/hyper-setup`
 }
 
 export default en

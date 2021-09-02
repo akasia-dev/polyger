@@ -3,7 +3,7 @@
   "version": "0.0.16",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
-    "start": "npm run build && node ./bin/polyger",
+    "start": "npm run build && rm -rf test-e2e && mkdir test-e2e && cd test-e2e && node ../bin/polyger --dev",
     "build": "rm -rf dist && tsc",
     "clean": "rm -rf dist",
     "lint": "prettier --write ./src/**/*.ts",
@@ -19,6 +19,7 @@
     "@types/node": "^16.7.1",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
+    "chokidar": "^3.5.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^6.0.0",
@@ -53,6 +54,6 @@
     "is-interactive": "^1.0.0",
     "supports-color": "^5.5.0",
     "system-locale": "^0.1.0",
-    "typesafe-i18n": "^2.36.1"
+    "typesafe-i18n": "^2.37.4"
   }
 }

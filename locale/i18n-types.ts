@@ -71,6 +71,16 @@ If you select a command, it will be executed.
 	 * @param {string} packageName
 	 */
 	'downloadingPolyrepos': RequiredParams1<'packageName'>
+	/**
+	 * The terminal does not appear to support interaction.
+Interactive terminals are needed for smooth execution.
+
+For Windows, the recommended installation methods are as follows:
+1. git-bash install: https://git.io/JENSe
+2. hyper install: https://git.io/JEN7V
+3. hyper setup: https://bit.ly/hyper-setup
+	 */
+	'detectedNonInteractiveTerminal': string
 }
 
 export type TranslationFunctions = {
@@ -131,6 +141,16 @@ If you select a command, it will be executed.
 	 * "{packageName}" Downloading polyrepos...
 	 */
 	'downloadingPolyrepos': (arg: { packageName: string }) => LocalizedString
+	/**
+	 * The terminal does not appear to support interaction.
+Interactive terminals are needed for smooth execution.
+
+For Windows, the recommended installation methods are as follows:
+1. git-bash install: https://git.io/JENSe
+2. hyper install: https://git.io/JEN7V
+3. hyper setup: https://bit.ly/hyper-setup
+	 */
+	'detectedNonInteractiveTerminal': () => LocalizedString
 }
 
 export type Formatters = {}

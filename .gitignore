@@ -59,4 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# Project files
 dist
+test-e2e

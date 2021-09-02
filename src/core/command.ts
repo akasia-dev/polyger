@@ -4,6 +4,7 @@ import type { ICommand } from '../interface'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import getLocale from '../../locale'
+import isInteractive from 'is-interactive'
 
 export const getCommand = () => {
   //
@@ -38,6 +39,12 @@ export const selectCommand = () => {
 }
 
 export default async () => {
+  const locale = await getLocale()
+  if (!isInteractive()) {
+    console.log(locale.detectedNonInteractiveTerminal())
+    return false
+  }
+
   const commandObject = await selectCommand()
   if (typeof commandObject?.localFunction === 'function')
     commandObject.localFunction()
@@ -50,8 +57,11 @@ export default async () => {
       const { stdout, stderr } = await promisify(exec)(commandObject.command)
       console.log(stdout)
       console.log(stderr)
+      return true
     } catch (error) {
       console.log(error)
     }
   }
+
+  return false
 }
