@@ -8,7 +8,7 @@ import getLocale from '../../locale'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
-export const getConfigData = async () => {
+export const getConfigPath = () => {
   const projectPath = path.resolve(process.cwd())
   const polygerConfigJsonPath = path.resolve(
     projectPath,
@@ -19,6 +19,21 @@ export const getConfigData = async () => {
     '.polyger.secret.json'
   )
   const polygerPackageJsonPath = path.resolve(projectPath, 'package.json')
+  return {
+    projectPath,
+    polygerConfigJsonPath,
+    polygerSecretJsonPath,
+    polygerPackageJsonPath
+  }
+}
+
+export const getConfigData = async () => {
+  const {
+    polygerConfigJsonPath,
+    polygerPackageJsonPath,
+    projectPath,
+    polygerSecretJsonPath
+  } = getConfigPath()
 
   const configData: IConfigData = {
     ...(await loadJSONFile(polygerConfigJsonPath))
@@ -30,8 +45,12 @@ export const getConfigData = async () => {
   const locale = await getLocale()
   let isNewestUpdateExist = false
 
+  let isFirstRunning = false
+
   // * package.json
   if (!fs.existsSync(polygerPackageJsonPath)) {
+    isFirstRunning = true
+
     fs.writeFileSync(
       polygerPackageJsonPath,
       JSON.stringify(
@@ -91,6 +110,24 @@ export const getConfigData = async () => {
     }
   }
 
+  // * shellScriptFolderName
+  if (
+    !configData.shellScriptFolderName ||
+    configData.shellScriptFolderName.length === 0
+  ) {
+    const { shellScriptFolderName } = await inquirer.prompt({
+      type: 'input',
+      name: 'shellScriptFolderName',
+      message: locale.pleaseSelectShellScriptFolderName()
+    })
+    if (shellScriptFolderName.length === 0) {
+      configData.shellScriptFolderName = 'sh'
+    } else {
+      configData.shellScriptFolderName = shellScriptFolderName
+    }
+    isNewestUpdateExist = true
+  }
+
   // * githubToken
   if (!secretData.githubToken || secretData.githubToken.length === 0) {
     await animateText(locale.messageOfNeedToken())
@@ -123,7 +160,8 @@ export const getConfigData = async () => {
 
   return {
     ...configData,
-    ...secretData
+    ...secretData,
+    isFirstRunning
   }
 }
 

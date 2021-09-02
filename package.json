@@ -3,9 +3,9 @@
   "version": "0.0.16",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
-    "start": "npm run build && rm -rf test-e2e && mkdir test-e2e && cd test-e2e && node ../bin/polyger --dev",
+    "start": "npm run build && mkdir -p test-e2e && cd test-e2e && node ../bin/polyger --dev",
     "build": "rm -rf dist && tsc",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist && rm -rf test-e2e",
     "lint": "prettier --write ./src/**/*.ts",
     "i18n": "typesafe-i18n",
     "release": "release-it"
@@ -49,6 +49,7 @@
   "license": "MIT",
   "dependencies": {
     "chalkercli": "^1.6.4",
+    "fast-glob": "^3.2.7",
     "inquirer": "^8.1.2",
     "inquirer-search-list": "^1.2.6",
     "is-interactive": "^1.0.0",

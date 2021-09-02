@@ -45,3 +45,6 @@ export const animateText = async (text: string, delayMs = 1000) => {
     console.log(text)
   }
 }
+
+export const polygerShellFileTitleRegex = /# polyger title:\s?(.*)$/m
+export const polygerShellFileEntryRegex = /# polyger entrypoint:\s?(.*)$/m

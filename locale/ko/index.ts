@@ -36,7 +36,10 @@ https://git.io/JsPkj`,
 윈도우의 경우 권장되는 설치 방법은 다음과 같습니다.
 1. git-bash 설치: https://git.io/JENSe
 2. hyper 설치: https://git.io/JEN7V
-3. hyper 설정: https://bit.ly/hyper-setup`
+3. hyper 설정: https://bit.ly/hyper-setup`,
+
+  pleaseSelectShellScriptFolderName:
+    '프로젝트용 스크립트 파일들이 담길 폴더명을 입력해주세요 (기본: sh)'
 }
 
 export default ko

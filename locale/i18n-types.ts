@@ -81,6 +81,11 @@ For Windows, the recommended installation methods are as follows:
 3. hyper setup: https://bit.ly/hyper-setup
 	 */
 	'detectedNonInteractiveTerminal': string
+	/**
+	 * Enter the name of the folder where the shellscript files
+for the project will be contained (default: sh)
+	 */
+	'pleaseSelectShellScriptFolderName': string
 }
 
 export type TranslationFunctions = {
@@ -151,6 +156,11 @@ For Windows, the recommended installation methods are as follows:
 3. hyper setup: https://bit.ly/hyper-setup
 	 */
 	'detectedNonInteractiveTerminal': () => LocalizedString
+	/**
+	 * Enter the name of the folder where the shellscript files
+for the project will be contained (default: sh)
+	 */
+	'pleaseSelectShellScriptFolderName': () => LocalizedString
 }
 
 export type Formatters = {}

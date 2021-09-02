@@ -38,7 +38,10 @@ Interactive terminals are needed for smooth execution.
 For Windows, the recommended installation methods are as follows:
 1. git-bash install: https://git.io/JENSe
 2. hyper install: https://git.io/JEN7V
-3. hyper setup: https://bit.ly/hyper-setup`
+3. hyper setup: https://bit.ly/hyper-setup`,
+
+  pleaseSelectShellScriptFolderName: `Enter the name of the folder where the shellscript files
+for the project will be contained (default: sh)`
 }
 
 export default en

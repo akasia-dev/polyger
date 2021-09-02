@@ -1,19 +1,42 @@
-import { inquirer } from './inquire'
-import { getLocalCommands } from '../local'
-import type { ICommand } from '../interface'
-import { exec } from 'child_process'
+import fs from 'fs'
+import path from 'path'
+import glob from 'fast-glob'
 import { promisify } from 'util'
-import getLocale from '../../locale'
+import { exec } from 'child_process'
 import isInteractive from 'is-interactive'
 
+import { inquirer } from './inquire'
+import getLocale from '../../locale'
+import { getLocalCommands } from '../local'
+import { polygerShellFileTitleRegex } from './utils'
+import type { ICommand } from '../interface'
+
 export const getCommand = () => {
-  //
+  const commandFolderPath = path.join(process.cwd(), 'sh')
+  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
+  const projectCommands: ICommand[] = []
+
+  for (const shellScriptPath of shellScriptPaths) {
+    const shellScriptText = String(fs.readFileSync(shellScriptPath))
+
+    polygerShellFileTitleRegex.lastIndex = 0
+    const [, polygerShellFileTitle] =
+      polygerShellFileTitleRegex.exec(shellScriptText)!
+
+    projectCommands.push({
+      title: polygerShellFileTitle,
+      command: `sh ${shellScriptPath}`
+    })
+  }
+
+  return projectCommands
 }
 
 export const selectCommand = () => {
   return new Promise<ICommand>(async (resolve) => {
     const locale = await getLocale()
-    const commands = await getLocalCommands()
+    const commands = [...(await getCommand()), ...(await getLocalCommands())]
+
     inquirer
       .prompt([
         {
