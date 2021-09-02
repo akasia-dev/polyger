@@ -7,12 +7,17 @@ import isInteractive from 'is-interactive'
 
 import { inquirer } from './inquire'
 import getLocale from '../../locale'
+import getSetupData from './setup'
 import { getLocalCommands } from '../local'
 import { polygerShellFileTitleRegex } from './utils'
 import type { ICommand } from '../interface'
 
-export const getCommand = () => {
-  const commandFolderPath = path.join(process.cwd(), 'sh')
+export const getCommand = async () => {
+  const setupData = await getSetupData()
+  const commandFolderPath = path.join(
+    process.cwd(),
+    setupData.shellScriptFolderName ?? 'sh'
+  )
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []
 

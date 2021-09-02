@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import updateNotifier from 'update-notifier'
 
-export const getUpdateNotifier = () => {
+export default async () => {
   const moduleJsonPath = path.resolve(__dirname, '../../../package.json')
   const packageJson = JSON.parse(String(fs.readFileSync(moduleJsonPath)))
 
@@ -13,11 +13,9 @@ export const getUpdateNotifier = () => {
     shouldNotifyInNpmScript: true
   })
 
-  notifier.notify()
-  return notifier
-}
-//
-
-export default async () => {
-  getUpdateNotifier()
+  notifier.notify({
+    message: `Update available {currentVersion} → {latestVersion}\nYou can update by entering the command.\n\nnpm i {packageName}${
+      notifier.update ? `@${notifier.update.latest}` : ''
+    }`
+  })
 }
