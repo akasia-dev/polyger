@@ -12,7 +12,10 @@ import getLocale from '../../locale'
 export const getEntrypoint = async () => {
   const setupData = await getSetupData()
 
-  const commandFolderPath = path.join(process.cwd(), 'sh')
+  const commandFolderPath = path.join(
+    process.cwd(),
+    setupData.shellScriptFolderName ?? 'sh'
+  )
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []
 

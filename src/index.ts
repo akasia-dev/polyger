@@ -2,8 +2,12 @@ import setup from './core/setup'
 import polyrepo from './core/polyrepo'
 import commannd from './core/command'
 import entrypoint from './core/entrypoint'
+import notify from './core/notifier'
 
 const main = async () => {
+  // Notifies if updates are available.
+  await notify()
+
   // Check the setup file and create a setup file if it does not exist.
   const { isFirstRunning } = await setup()
 
