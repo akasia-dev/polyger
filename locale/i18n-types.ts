@@ -116,6 +116,26 @@ Script file path: {scriptPath}
 	 * @param {string} title
 	 */
 	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
+	/**
+	 * Add a polyrepo (add-polyrepo)
+	 */
+	'commandAddPolyRepo': string
+	/**
+	 * Please select a sub-folder to save the polyrepo.
+	 */
+	'pleaseSelectSubFolder': string
+	/**
+	 * Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)
+	 */
+	'pleaseEnterRepoUrl': string
+	/**
+	 * Please enter the branch name of the polyrepo that you want to clone. (e.g. main)
+	 */
+	'pleaseEnterRepoBranch': string
+	/**
+	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
+	 */
+	'pleaseEnterRepoFolderName': string
 }
 
 export type TranslationFunctions = {
@@ -219,6 +239,26 @@ Open the script file to configure the command.
 Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
+	/**
+	 * Add a polyrepo (add-polyrepo)
+	 */
+	'commandAddPolyRepo': () => LocalizedString
+	/**
+	 * Please select a sub-folder to save the polyrepo.
+	 */
+	'pleaseSelectSubFolder': () => LocalizedString
+	/**
+	 * Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)
+	 */
+	'pleaseEnterRepoUrl': () => LocalizedString
+	/**
+	 * Please enter the branch name of the polyrepo that you want to clone. (e.g. main)
+	 */
+	'pleaseEnterRepoBranch': () => LocalizedString
+	/**
+	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
+	 */
+	'pleaseEnterRepoFolderName': () => LocalizedString
 }
 
 export type Formatters = {}

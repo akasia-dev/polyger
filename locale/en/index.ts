@@ -56,7 +56,13 @@ for the project will be contained (default: sh)`,
     'Do you want this command to be executed automatically on initial project installation?',
   scriptFileCreated: `"{title:string}" Command added successfully.
 Open the script file to configure the command.
-Script file path: {scriptPath:string}`
+Script file path: {scriptPath:string}`,
+
+  commandAddPolyRepo: `Add a polyrepo (add-polyrepo)`,
+  pleaseSelectSubFolder: 'Please select a sub-folder to save the polyrepo.',
+  pleaseEnterRepoUrl: `Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)`,
+  pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo that you want to clone. (e.g. main)`,
+  pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`
 }
 
 export default en

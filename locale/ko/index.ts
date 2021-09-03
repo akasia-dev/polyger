@@ -54,7 +54,13 @@ npm start 를 입력해서 프로젝트 매니저를 실행시켜주세요.`,
   isItEntryScript: '이 명령어를 최초 프로젝트 설치 시 자동으로 실행시킬까요?',
   scriptFileCreated: `"{title}" 명령어가 추가되었습니다.
 스크립트 파일을 열어서 해당 명령어를 구성해주세요.
-스크립트 파일 경로: {scriptPath}`
+스크립트 파일 경로: {scriptPath}`,
+
+  commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
+  pleaseSelectSubFolder: '폴리레포를 저장할 서브폴더를 선택해주세요.',
+  pleaseEnterRepoUrl: `복제해올 폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
+  pleaseEnterRepoBranch: `복제해올 폴리레포의 브랜치를 입력해주세요. (예: main)`,
+  pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main))`
 }
 
 export default ko

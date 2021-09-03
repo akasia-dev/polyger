@@ -2,8 +2,6 @@ import path from 'path'
 import { existsSync, writeFileSync } from 'fs'
 
 import type { ICommand } from '../interface'
-import * as github from '../core/github'
-import { getPackages } from '../core/polyrepo'
 import { getConfigPath, getConfigData } from '../core/setup'
 import { inquirer } from '../core/inquire'
 import getLocale from '../../locale'
