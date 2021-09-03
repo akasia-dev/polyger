@@ -22,6 +22,11 @@ https://git.io/JsPkj`,
 
   pleaseEnterGithubCLIToken: 'GitHub CLI 토큰을 입력해주세요.',
   pleaseEnterUsername: 'GitHub 유저명을 입력해주세요. (이메일이 아닌 아이디)',
+
+  afterFirstInitWelcome: `폴리레포 최초 설정 및 구조 생성이 완료되었습니다.
+폴리레포 추가 및 프로젝트 명령어 추가 또는 실행이 가능합니다.
+npm start 를 입력해서 프로젝트 매니저를 실행시켜주세요.`,
+
   selectCommandWantToExecute:
     '사용하실 프로젝트 명령어를 선택해주세요.\n명령어를 선택하시면 해당 명령어가 실행됩니다.\n',
   runningCommand: '"{title}" 실행 중...',
@@ -47,8 +52,9 @@ https://git.io/JsPkj`,
   pleaseEnterScriptTitle:
     '표시될 스크립트 명령어 이름을 입력해주세요. (예:  🍉 빌드 스크립트 작동)',
   isItEntryScript: '이 명령어를 최초 프로젝트 설치 시 자동으로 실행시킬까요?',
-  scriptFileCreated:
-    '"{title}" 명령어가 추가되었습니다.\n스크립트 파일을 열어서 해당 명령어를 구성해주세요.\n스크립트 파일 경로: {scriptPath}'
+  scriptFileCreated: `"{title}" 명령어가 추가되었습니다.
+스크립트 파일을 열어서 해당 명령어를 구성해주세요.
+스크립트 파일 경로: {scriptPath}`
 }
 
 export default ko

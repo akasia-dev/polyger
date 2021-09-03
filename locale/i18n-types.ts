@@ -48,6 +48,12 @@ Polyrepo category:
 	 */
 	'pleaseEnterUsername': string
 	/**
+	 * Polyrepo initial setup and structure creation are complete.
+You can add polyrepo and add or excute project commands.
+Please enter "npm start" to run the project manager.
+	 */
+	'afterFirstInitWelcome': string
+	/**
 	 * Please select the project command you want to use.
 If you select a command, it will be executed.
 
@@ -148,6 +154,12 @@ Polyrepo category:
 	 * Please enter GitHub user name. (NOT EMAIL)
 	 */
 	'pleaseEnterUsername': () => LocalizedString
+	/**
+	 * Polyrepo initial setup and structure creation are complete.
+You can add polyrepo and add or excute project commands.
+Please enter "npm start" to run the project manager.
+	 */
+	'afterFirstInitWelcome': () => LocalizedString
 	/**
 	 * Please select the project command you want to use.
 If you select a command, it will be executed.

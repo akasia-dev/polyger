@@ -24,6 +24,11 @@ Polyrepo category:
 
   pleaseEnterGithubCLIToken: 'Please enter the GitHub CLI token.',
   pleaseEnterUsername: 'Please enter GitHub user name. (NOT EMAIL)',
+
+  afterFirstInitWelcome: `Polyrepo initial setup and structure creation are complete.
+You can add polyrepo and add or excute project commands.
+Please enter "npm start" to run the project manager.`,
+
   selectCommandWantToExecute:
     'Please select the project command you want to use.\nIf you select a command, it will be executed.\n',
   runningCommand: 'Running... "{title:string}"',
@@ -49,8 +54,9 @@ for the project will be contained (default: sh)`,
     'Please enter the name of the script command to be displayed. (e.g., 🍉 Run build script)',
   isItEntryScript:
     'Do you want this command to be executed automatically on initial project installation?',
-  scriptFileCreated:
-    '"{title:string}" Command added successfully.\nOpen the script file to configure the command.\nScript file path: {scriptPath:string}'
+  scriptFileCreated: `"{title:string}" Command added successfully.
+Open the script file to configure the command.
+Script file path: {scriptPath:string}`
 }
 
 export default en

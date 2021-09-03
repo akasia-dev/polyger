@@ -163,7 +163,13 @@ export const getConfigData = async () => {
   }
 
   if (isNewestUpdateExist) {
-    fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
+    const configDataForSave = { ...configData }
+    if (typeof configDataForSave.isFirstRunning !== 'undefined')
+      delete configDataForSave.isFirstRunning
+    fs.writeFileSync(
+      polygerConfigJsonPath,
+      JSON.stringify(configDataForSave, null, 2)
+    )
     fs.writeFileSync(polygerSecretJsonPath, JSON.stringify(secretData, null, 2))
   }
 
@@ -183,6 +189,9 @@ export const getConfigData = async () => {
       fs.writeFileSync(gitIgnoreFilePath, gitIgnoreFullText)
     }
   }
+
+  // * welcome
+  if (isFirstRunning) console.log('\n\n' + locale.afterFirstInitWelcome())
 
   return {
     ...configData,
