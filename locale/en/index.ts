@@ -40,8 +40,17 @@ For Windows, the recommended installation methods are as follows:
 2. hyper install: https://git.io/JEN7V
 3. hyper setup: https://bit.ly/hyper-setup`,
 
+  commandAddScript: 'Add Project Command (add-script)',
   pleaseSelectShellScriptFolderName: `Enter the name of the folder where the shellscript files
-for the project will be contained (default: sh)`
+for the project will be contained (default: sh)`,
+  pleaseEnterScriptFileName:
+    'Please enter the name of the script file you want to create. (e.g. my-script-file)',
+  pleaseEnterScriptTitle:
+    'Please enter the name of the script command to be displayed. (e.g., 🍉 Run build script)',
+  isItEntryScript:
+    'Do you want this command to be executed automatically on initial project installation?',
+  scriptFileCreated:
+    '"{title:string}" Command added successfully.\nOpen the script file to configure the command.\nScript file path: {scriptPath:string}'
 }
 
 export default en

@@ -30,7 +30,7 @@ export const getCommand = async () => {
 
     projectCommands.push({
       title: polygerShellFileTitle,
-      command: `sh ${shellScriptPath}`
+      command: `sh "${shellScriptPath}"`
     })
   }
 

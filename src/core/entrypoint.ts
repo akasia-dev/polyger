@@ -36,7 +36,7 @@ export const getEntrypoint = async () => {
       if (beforePatchedVersion !== polygerShellEntryVersion) {
         projectCommands.push({
           title: polygerShellFileTitle,
-          command: `sh ${shellScriptPath}`
+          command: `sh "${shellScriptPath}"`
         })
 
         entryPatchedLogs[polygerShellFileTitle] = polygerShellEntryVersion

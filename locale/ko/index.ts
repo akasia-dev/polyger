@@ -38,8 +38,17 @@ https://git.io/JsPkj`,
 2. hyper 설치: https://git.io/JEN7V
 3. hyper 설정: https://bit.ly/hyper-setup`,
 
+  commandAddScript: '프로젝트 명령어 추가 (add-script)',
+
   pleaseSelectShellScriptFolderName:
-    '프로젝트용 스크립트 파일들이 담길 폴더명을 입력해주세요 (기본: sh)'
+    '프로젝트용 스크립트 파일들이 담길 폴더명을 입력해주세요 (기본: sh)',
+  pleaseEnterScriptFileName:
+    '생성하려는 스크립트 파일명을 입력해주세요. (예: my-script-file)',
+  pleaseEnterScriptTitle:
+    '표시될 스크립트 명령어 이름을 입력해주세요. (예:  🍉 빌드 스크립트 작동)',
+  isItEntryScript: '이 명령어를 최초 프로젝트 설치 시 자동으로 실행시킬까요?',
+  scriptFileCreated:
+    '"{title}" 명령어가 추가되었습니다.\n스크립트 파일을 열어서 해당 명령어를 구성해주세요.\n스크립트 파일 경로: {scriptPath}'
 }
 
 export default ko

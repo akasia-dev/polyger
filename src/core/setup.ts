@@ -125,8 +125,17 @@ export const getConfigData = async () => {
     } else {
       configData.shellScriptFolderName = shellScriptFolderName
     }
+
     isNewestUpdateExist = true
   }
+
+  const shellScriptFolderPath = path.resolve(
+    projectPath,
+    configData.shellScriptFolderName || 'sh'
+  )
+
+  if (!fs.existsSync(shellScriptFolderPath))
+    fs.mkdirSync(shellScriptFolderPath, { recursive: true })
 
   // * githubToken
   if (!secretData.githubToken || secretData.githubToken.length === 0) {
@@ -156,6 +165,23 @@ export const getConfigData = async () => {
   if (isNewestUpdateExist) {
     fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
     fs.writeFileSync(polygerSecretJsonPath, JSON.stringify(secretData, null, 2))
+  }
+
+  // * .gitignore
+  if (isFirstRunning) {
+    const gitIgnoreFilePath = path.resolve(projectPath, '.gitignore')
+    let gitIgnoreFullText = `# Polyger Files\n` + '.polyger.secret.json\n'
+    for (const subFolder of configData.subFolders) {
+      gitIgnoreFullText += `${subFolder}/package/*\n`
+      gitIgnoreFullText += `!${subFolder}/package/README.md\n`
+    }
+
+    if (fs.existsSync(gitIgnoreFilePath)) {
+      const beforeText = String(fs.readFileSync(gitIgnoreFilePath))
+      fs.writeFileSync(gitIgnoreFilePath, beforeText + `\n` + gitIgnoreFullText)
+    } else {
+      fs.writeFileSync(gitIgnoreFilePath, gitIgnoreFullText)
+    }
   }
 
   return {

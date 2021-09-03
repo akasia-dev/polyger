@@ -82,10 +82,34 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': string
 	/**
+	 * Add Project Command (add-script)
+	 */
+	'commandAddScript': string
+	/**
 	 * Enter the name of the folder where the shellscript files
 for the project will be contained (default: sh)
 	 */
 	'pleaseSelectShellScriptFolderName': string
+	/**
+	 * Please enter the name of the script file you want to create. (e.g. my-script-file)
+	 */
+	'pleaseEnterScriptFileName': string
+	/**
+	 * Please enter the name of the script command to be displayed. (e.g., 🍉 Run build script)
+	 */
+	'pleaseEnterScriptTitle': string
+	/**
+	 * Do you want this command to be executed automatically on initial project installation?
+	 */
+	'isItEntryScript': string
+	/**
+	 * "{title}" Command added successfully.
+Open the script file to configure the command.
+Script file path: {scriptPath}
+	 * @param {string} scriptPath
+	 * @param {string} title
+	 */
+	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
 }
 
 export type TranslationFunctions = {
@@ -157,10 +181,32 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': () => LocalizedString
 	/**
+	 * Add Project Command (add-script)
+	 */
+	'commandAddScript': () => LocalizedString
+	/**
 	 * Enter the name of the folder where the shellscript files
 for the project will be contained (default: sh)
 	 */
 	'pleaseSelectShellScriptFolderName': () => LocalizedString
+	/**
+	 * Please enter the name of the script file you want to create. (e.g. my-script-file)
+	 */
+	'pleaseEnterScriptFileName': () => LocalizedString
+	/**
+	 * Please enter the name of the script command to be displayed. (e.g., 🍉 Run build script)
+	 */
+	'pleaseEnterScriptTitle': () => LocalizedString
+	/**
+	 * Do you want this command to be executed automatically on initial project installation?
+	 */
+	'isItEntryScript': () => LocalizedString
+	/**
+	 * "{title}" Command added successfully.
+Open the script file to configure the command.
+Script file path: {scriptPath}
+	 */
+	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
 }
 
 export type Formatters = {}
