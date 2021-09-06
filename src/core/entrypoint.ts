@@ -25,21 +25,35 @@ export const getEntrypoint = async () => {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
 
     polygerShellFileTitleRegex.lastIndex = 0
-    const [, polygerShellFileTitle] =
-      polygerShellFileTitleRegex.exec(shellScriptText)!
+    const polygerShellFileTitleParse =
+      polygerShellFileTitleRegex.exec(shellScriptText)
 
-    polygerShellFileEntryRegex.lastIndex = 0
-    const [, polygerShellEntryVersion] =
-      polygerShellFileEntryRegex.exec(shellScriptText)!
-    if (polygerShellEntryVersion && polygerShellEntryVersion.length > 0) {
-      const beforePatchedVersion = entryPatchedLogs[polygerShellFileTitle]
-      if (beforePatchedVersion !== polygerShellEntryVersion) {
-        projectCommands.push({
-          title: polygerShellFileTitle,
-          command: `sh "${shellScriptPath}"`
-        })
+    if (
+      polygerShellFileTitleParse &&
+      typeof polygerShellFileTitleParse[1] !== 'undefined'
+    ) {
+      const [, polygerShellFileTitle] = polygerShellFileTitleParse
 
-        entryPatchedLogs[polygerShellFileTitle] = polygerShellEntryVersion
+      polygerShellFileEntryRegex.lastIndex = 0
+      const polygerShellFileEntryParse =
+        polygerShellFileEntryRegex.exec(shellScriptText)!
+
+      if (
+        polygerShellFileEntryParse &&
+        typeof polygerShellFileEntryParse[1] !== 'undefined'
+      ) {
+        const [, polygerShellEntryVersion] = polygerShellFileEntryParse
+        if (polygerShellEntryVersion && polygerShellEntryVersion.length > 0) {
+          const beforePatchedVersion = entryPatchedLogs[polygerShellFileTitle]
+          if (beforePatchedVersion !== polygerShellEntryVersion) {
+            projectCommands.push({
+              title: polygerShellFileTitle,
+              command: `sh "${shellScriptPath}"`
+            })
+
+            entryPatchedLogs[polygerShellFileTitle] = polygerShellEntryVersion
+          }
+        }
       }
     }
   }

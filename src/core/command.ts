@@ -25,13 +25,21 @@ export const getCommand = async () => {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
 
     polygerShellFileTitleRegex.lastIndex = 0
-    const [, polygerShellFileTitle] =
+
+    const polygerShellFileTitleParse =
       polygerShellFileTitleRegex.exec(shellScriptText)!
 
-    projectCommands.push({
-      title: polygerShellFileTitle,
-      command: `sh "${shellScriptPath}"`
-    })
+    if (
+      polygerShellFileTitleParse &&
+      typeof polygerShellFileTitleParse[1] !== 'undefined'
+    ) {
+      const [, polygerShellFileTitle] = polygerShellFileTitleParse
+
+      projectCommands.push({
+        title: polygerShellFileTitle,
+        command: `sh "${shellScriptPath}"`
+      })
+    }
   }
 
   return projectCommands
