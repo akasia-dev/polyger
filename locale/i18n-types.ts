@@ -50,7 +50,7 @@ Polyrepo category:
 	/**
 	 * Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
-Please enter "npm start" to run the project manager.
+Please enter "npm start" to run the polyrepo manager.
 	 */
 	'afterFirstInitWelcome': string
 	/**
@@ -177,7 +177,7 @@ Polyrepo category:
 	/**
 	 * Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
-Please enter "npm start" to run the project manager.
+Please enter "npm start" to run the polyrepo manager.
 	 */
 	'afterFirstInitWelcome': () => LocalizedString
 	/**

@@ -27,7 +27,7 @@ Polyrepo category:
 
   afterFirstInitWelcome: `Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
-Please enter "npm start" to run the project manager.`,
+Please enter "npm start" to run the polyrepo manager.`,
 
   selectCommandWantToExecute:
     'Please select the project command you want to use.\nIf you select a command, it will be executed.\n',

@@ -25,7 +25,7 @@ https://git.io/JsPkj`,
 
   afterFirstInitWelcome: `폴리레포 최초 설정 및 구조 생성이 완료되었습니다.
 폴리레포 추가 및 프로젝트 명령어 추가 또는 실행이 가능합니다.
-npm start 를 입력해서 프로젝트 매니저를 실행시켜주세요.`,
+npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 
   selectCommandWantToExecute:
     '사용하실 프로젝트 명령어를 선택해주세요.\n명령어를 선택하시면 해당 명령어가 실행됩니다.\n',
