@@ -60,7 +60,7 @@ npm start 를 입력해서 프로젝트 매니저를 실행시켜주세요.`,
   pleaseSelectSubFolder: '폴리레포를 저장할 서브폴더를 선택해주세요.',
   pleaseEnterRepoUrl: `복제해올 폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `복제해올 폴리레포의 브랜치를 입력해주세요. (예: main)`,
-  pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main))`
+  pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`
 }
 
 export default ko
