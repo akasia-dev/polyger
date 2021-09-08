@@ -5,12 +5,12 @@ import { promisify } from 'util'
 import { exec } from 'child_process'
 import isInteractive from 'is-interactive'
 
-import { inquirer } from './inquire'
-import getLocale from '../../locale'
-import getSetupData from './setup'
-import { getLocalCommands } from '../local'
-import { polygerShellFileTitleRegex } from './utils'
-import type { ICommand } from '../interface'
+import { inquirer } from './inquire.js'
+import getLocale from '../../locale/index.js'
+import getSetupData from './setup.js'
+import { getLocalCommands } from '../local/index.js'
+import { polygerShellFileTitleRegex } from './utils.js'
+import type { ICommand } from '../interface.js'
 
 export const getCommand = async () => {
   const setupData = await getSetupData()

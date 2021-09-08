@@ -1,8 +1,8 @@
-import setup from './core/setup'
-import polyrepo from './core/polyrepo'
-import commannd from './core/command'
-import entrypoint from './core/entrypoint'
-import notify from './core/notifier'
+import setup from './core/setup.js'
+import polyrepo from './core/polyrepo.js'
+import commannd from './core/command.js'
+import entrypoint from './core/entrypoint.js'
+import notify from './core/notifier.js'
 
 const main = async () => {
   // Notifies if updates are available.

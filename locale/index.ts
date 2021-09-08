@@ -1,11 +1,11 @@
 import type { Locales } from './i18n-types'
-import systemLocale from 'system-locale'
-import { i18nObject } from './i18n-util'
+import { osLocale } from 'os-locale'
+import { i18nObject } from './i18n-util.js'
 
 export const getLocaleCode = async (defaultLocaleCode: Locales) => {
   let localeCode = defaultLocaleCode
   try {
-    return (await systemLocale()).replace(/_\S+/g, '') as Locales
+    return (await osLocale()).replace(/-\S+/g, '') as Locales
   } catch (e) {}
 
   return localeCode as Locales

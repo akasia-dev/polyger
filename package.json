@@ -1,6 +1,7 @@
 {
   "name": "polyger",
   "version": "0.1.2",
+  "type": "module",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
     "start": "npm run build && mkdir -p test-e2e && cd test-e2e && node ../bin/polyger --dev",
@@ -10,7 +11,10 @@
     "i18n": "typesafe-i18n",
     "release": "release-it"
   },
-  "main": "./dist/src/index.js",
+  "exports": "./dist/src/index.js",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "bin": {
     "polyger": "bin/polyger.js"
   },
@@ -54,8 +58,8 @@
     "inquirer": "^8.1.2",
     "inquirer-search-list": "^1.2.6",
     "is-interactive": "^1.0.0",
+    "os-locale": "^6.0.0",
     "supports-color": "^5.5.0",
-    "system-locale": "^0.1.0",
     "typesafe-i18n": "^2.37.4",
     "update-notifier": "^5.1.0"
   }

@@ -4,10 +4,13 @@ import glob from 'fast-glob'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
-import { polygerShellFileEntryRegex, polygerShellFileTitleRegex } from './utils'
-import type { ICommand } from '../interface'
-import getSetupData, { getConfigPath } from './setup'
-import getLocale from '../../locale'
+import {
+  polygerShellFileEntryRegex,
+  polygerShellFileTitleRegex
+} from './utils.js'
+import type { ICommand } from '../interface.js'
+import getSetupData, { getConfigPath } from './setup.js'
+import getLocale from '../../locale/index.js'
 
 export const getEntrypoint = async () => {
   const setupData = await getSetupData()

@@ -1,15 +1,18 @@
 import path from 'path'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 
-import getLocale from '../../locale'
-import getSetupData from '../core/setup'
-import * as github from '../core/github'
+import getLocale from '../../locale/index.js'
+import getSetupData from '../core/setup.js'
+import * as github from '../core/github.js'
 
-import { choice } from '../core/utils'
-import { inquirer } from '../core/inquire'
-import { getConfigPath, getConfigData } from '../core/setup'
+import { choice } from '../core/utils.js'
+import { inquirer } from '../core/inquire.js'
+import { getConfigPath, getConfigData } from '../core/setup.js'
 
-import type { ICommand } from '../interface'
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+
+import type { ICommand } from '../interface.js'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

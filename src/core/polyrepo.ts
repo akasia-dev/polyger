@@ -1,10 +1,10 @@
 import path from 'path'
 import fs from 'fs/promises'
-import { animateText } from './utils'
-import { inquirer } from './inquire'
-import getSetupData from './setup'
-import * as github from './github'
-import getLocale from '../../locale'
+import { animateText } from './utils.js'
+import { inquirer } from './inquire.js'
+import getSetupData from './setup.js'
+import * as github from './github.js'
+import getLocale from '../../locale/index.js'
 
 const projectPath = path.resolve(process.cwd())
 

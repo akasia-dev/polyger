@@ -1,7 +1,7 @@
 import type { ICommand } from '../interface'
-import pull from './pull'
-import script from './script'
-import polyrepo from './polyrepo'
+import pull from './pull.js'
+import script from './script.js'
+import polyrepo from './polyrepo.js'
 
 export const getLocalCommands = async () => {
   const localCommands: ICommand[] = []

@@ -1,4 +1,4 @@
-import { Translation } from '../i18n-types'
+import { Translation } from '../i18n-types.js'
 
 const ko: Translation = {
   messageOfNeedToken: `GitHub 레포 클론을 위한 엑세스 토큰이 필요합니다.

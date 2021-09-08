@@ -3,10 +3,10 @@
 
 import type { LocaleTranslations } from 'typesafe-i18n'
 import { i18nString as initI18nString, i18nObjectLoader, i18n as initI18n } from 'typesafe-i18n'
-import type { Translation, TranslationFunctions, Formatters, Locales } from './i18n-types'
+import type { Translation, TranslationFunctions, Formatters, Locales } from './i18n-types.js'
 import type { LocaleDetector } from 'typesafe-i18n/detectors'
 import { detectLocale as detectLocaleFn } from 'typesafe-i18n/detectors'
-import { initFormatters } from './formatters'
+import { initFormatters } from './formatters.js'
 
 export const baseLocale: Locales = 'en'
 
@@ -15,8 +15,8 @@ export const locales: Locales[] = [
 	'ko'
 ]
 
-import en from './en'
-import ko from './ko'
+import en from './en/index.js'
+import ko from './ko/index.js'
 
 const localeTranslations: LocaleTranslations<Locales, Translation> = {
 	en: en as Translation,

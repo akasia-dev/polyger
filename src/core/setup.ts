@@ -1,10 +1,10 @@
 import path from 'path'
 import fs from 'fs'
 
-import { inquirer } from './inquire'
-import { animateText, loadJSONFile } from './utils'
-import type { IConfigData, ISecretData } from '../interface'
-import getLocale from '../../locale'
+import { inquirer } from './inquire.js'
+import { animateText, loadJSONFile } from './utils.js'
+import type { IConfigData, ISecretData } from '../interface.js'
+import getLocale from '../../locale/index.js'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
