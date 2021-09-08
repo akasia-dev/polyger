@@ -3,9 +3,8 @@ import * as github from '../core/github.js'
 import { getPackages } from '../core/polyrepo.js'
 import getLocale from '../../locale/index.js'
 
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

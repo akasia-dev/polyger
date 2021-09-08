@@ -9,8 +9,8 @@ import { choice } from '../core/utils.js'
 import { inquirer } from '../core/inquire.js'
 import { getConfigPath, getConfigData } from '../core/setup.js'
 
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
 
 import type { ICommand } from '../interface.js'
 

@@ -6,8 +6,8 @@ import { getConfigPath, getConfigData } from '../core/setup.js'
 import { inquirer } from '../core/inquire.js'
 import getLocale from '../../locale/index.js'
 
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
