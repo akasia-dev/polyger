@@ -1,6 +1,6 @@
 import setup from './core/setup.js'
 import polyrepo from './core/polyrepo.js'
-import commannd from './core/command.js'
+import command from './core/command.js'
 import entrypoint from './core/entrypoint.js'
 import notify from './core/notifier.js'
 
@@ -18,7 +18,7 @@ const main = async () => {
   await entrypoint()
 
   // After the command is selected by the user, execute the command.
-  if (!isFirstRunning) await commannd()
+  if (!isFirstRunning) await command()
 }
 
 main()
