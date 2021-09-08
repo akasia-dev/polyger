@@ -136,6 +136,18 @@ Script file path: {scriptPath}
 	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
 	 */
 	'pleaseEnterRepoFolderName': string
+	/**
+	 * Create a polyrepo in the GitHub (create-polyrepo)
+	 */
+	'commandCreatePolyRepo': string
+	/**
+	 * Please choose the location in the GitHub where you want to create the repo.
+	 */
+	'pleaseSelectOrganization': string
+	/**
+	 * Please enter the name of the reformer you want to create.
+	 */
+	'pleaseInputRepoName': string
 }
 
 export type TranslationFunctions = {
@@ -259,6 +271,18 @@ Script file path: {scriptPath}
 	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
 	 */
 	'pleaseEnterRepoFolderName': () => LocalizedString
+	/**
+	 * Create a polyrepo in the GitHub (create-polyrepo)
+	 */
+	'commandCreatePolyRepo': () => LocalizedString
+	/**
+	 * Please choose the location in the GitHub where you want to create the repo.
+	 */
+	'pleaseSelectOrganization': () => LocalizedString
+	/**
+	 * Please enter the name of the reformer you want to create.
+	 */
+	'pleaseInputRepoName': () => LocalizedString
 }
 
 export type Formatters = {}

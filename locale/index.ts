@@ -1,6 +1,6 @@
 import type { Locales } from './i18n-types'
-import { osLocale } from 'os-locale'
-import { i18nObject } from './i18n-util.js'
+import osLocale from 'os-locale'
+import { i18nObject } from './i18n-util'
 
 export const getLocaleCode = async (defaultLocaleCode: Locales) => {
   let localeCode = defaultLocaleCode

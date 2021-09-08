@@ -1,10 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import updateNotifier from 'update-notifier'
-import { fileURLToPath } from 'url'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 export default async () => {
   const moduleJsonPath = path.resolve(__dirname, '../../../package.json')

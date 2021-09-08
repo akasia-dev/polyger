@@ -1,10 +1,7 @@
-import type { ICommand } from '../interface.js'
-import * as github from '../core/github.js'
-import { getPackages } from '../core/polyrepo.js'
-import getLocale from '../../locale/index.js'
-
-import { fileURLToPath } from 'url'
-const __filename = fileURLToPath(import.meta.url)
+import type { ICommand } from '../interface'
+import * as github from '../core/github'
+import { getPackages } from '../core/polyrepo'
+import getLocale from '../../locale/index'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

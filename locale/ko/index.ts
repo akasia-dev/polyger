@@ -1,4 +1,4 @@
-import { Translation } from '../i18n-types.js'
+import { Translation } from '../i18n-types'
 
 const ko: Translation = {
   messageOfNeedToken: `GitHub 레포 클론을 위한 엑세스 토큰이 필요합니다.
@@ -60,7 +60,11 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   pleaseSelectSubFolder: '폴리레포를 저장할 서브폴더를 선택해주세요.',
   pleaseEnterRepoUrl: `복제해올 폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `복제해올 폴리레포의 브랜치를 입력해주세요. (예: main)`,
-  pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`
+  pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
+
+  commandCreatePolyRepo: `폴리레포 깃허브에 생성하기 (create-polyrepo)`,
+  pleaseSelectOrganization: `레포를 생성할 깃허브 내 위치를 선택해주세요.`,
+  pleaseInputRepoName: `생성할 레포명을 입력해주세요.`
 }
 
 export default ko

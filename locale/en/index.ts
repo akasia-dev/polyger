@@ -62,7 +62,11 @@ Script file path: {scriptPath:string}`,
   pleaseSelectSubFolder: 'Please select a sub-folder to save the polyrepo.',
   pleaseEnterRepoUrl: `Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo that you want to clone. (e.g. main)`,
-  pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`
+  pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
+
+  commandCreatePolyRepo: `Create a polyrepo in the GitHub (create-polyrepo)`,
+  pleaseSelectOrganization: `Please choose the location in the GitHub where you want to create the repo.`,
+  pleaseInputRepoName: `Please enter the name of the reformer you want to create.`
 }
 
 export default en

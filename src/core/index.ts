@@ -1,1 +1,1 @@
-export * from './inquire.js'
+export * from './inquire'
