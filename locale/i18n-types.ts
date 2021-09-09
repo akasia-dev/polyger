@@ -148,6 +148,18 @@ Script file path: {scriptPath}
 	 * Please enter the name of the reformer you want to create.
 	 */
 	'pleaseInputRepoName': string
+	/**
+	 * Do you want to create as a private repo?
+	 */
+	'isItPrivateRepo': string
+	/**
+	 * A problem occurred during the GitHub API call. Please check the token permission and network status.
+	 */
+	'failedGithubApiFetch': string
+	/**
+	 * It's a repo that already exists. shall we clone it?(Y) or should stop?(N)
+	 */
+	'itAlreadyExistRepositoryCouldYouCloneIt': string
 }
 
 export type TranslationFunctions = {
@@ -283,6 +295,18 @@ Script file path: {scriptPath}
 	 * Please enter the name of the reformer you want to create.
 	 */
 	'pleaseInputRepoName': () => LocalizedString
+	/**
+	 * Do you want to create as a private repo?
+	 */
+	'isItPrivateRepo': () => LocalizedString
+	/**
+	 * A problem occurred during the GitHub API call. Please check the token permission and network status.
+	 */
+	'failedGithubApiFetch': () => LocalizedString
+	/**
+	 * It's a repo that already exists. shall we clone it?(Y) or should stop?(N)
+	 */
+	'itAlreadyExistRepositoryCouldYouCloneIt': () => LocalizedString
 }
 
 export type Formatters = {}

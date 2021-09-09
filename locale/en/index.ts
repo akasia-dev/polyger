@@ -66,7 +66,10 @@ Script file path: {scriptPath:string}`,
 
   commandCreatePolyRepo: `Create a polyrepo in the GitHub (create-polyrepo)`,
   pleaseSelectOrganization: `Please choose the location in the GitHub where you want to create the repo.`,
-  pleaseInputRepoName: `Please enter the name of the reformer you want to create.`
+  pleaseInputRepoName: `Please enter the name of the reformer you want to create.`,
+  isItPrivateRepo: `Do you want to create as a private repo?`,
+  failedGithubApiFetch: `A problem occurred during the GitHub API call. Please check the token permission and network status.`,
+  itAlreadyExistRepositoryCouldYouCloneIt: `It's a repo that already exists. shall we clone it?(Y) or should stop?(N)`
 }
 
 export default en
