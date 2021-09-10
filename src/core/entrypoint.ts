@@ -60,8 +60,8 @@ export const getEntrypoint = async () => {
 
   if (projectCommands.length > 0) {
     secretData.entryPatchedLogs = entryPatchedLogs
-    const { polygerConfigJsonPath } = getConfigPath()
-    fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
+    const { polygerSecretJsonPath } = getConfigPath()
+    fs.writeFileSync(polygerSecretJsonPath, JSON.stringify(secretData, null, 2))
   }
 
   return projectCommands
