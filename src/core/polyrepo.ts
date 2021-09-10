@@ -60,7 +60,7 @@ export const getPackages = async () => {
       if (repos.packageFolders.includes(packageName)) {
         packages.push({
           packageName,
-          packagePath: targetProjectPath,
+          packagePath: path.resolve(targetProjectPath, 'package', packageName),
           url: repos.package[packageName].url
         })
       }
