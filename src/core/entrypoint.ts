@@ -10,7 +10,7 @@ import getSetupData, { getConfigPath } from './setup'
 import getLocale from '../../locale/index'
 
 export const getEntrypoint = async () => {
-  const { configData } = await getSetupData()
+  const { configData, secretData } = await getSetupData()
 
   const commandFolderPath = path.join(
     process.cwd(),
@@ -19,7 +19,7 @@ export const getEntrypoint = async () => {
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []
 
-  const entryPatchedLogs = configData.entryPatchedLogs ?? {}
+  const entryPatchedLogs = secretData.entryPatchedLogs ?? {}
 
   for (const shellScriptPath of shellScriptPaths) {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
@@ -59,7 +59,7 @@ export const getEntrypoint = async () => {
   }
 
   if (projectCommands.length > 0) {
-    configData.entryPatchedLogs = entryPatchedLogs
+    secretData.entryPatchedLogs = entryPatchedLogs
     const { polygerConfigJsonPath } = getConfigPath()
     fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
   }
