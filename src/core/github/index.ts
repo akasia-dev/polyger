@@ -104,3 +104,69 @@ export const fetchUserRepos = async ({
   if (!data) throw new Error('No response data')
   return data
 }
+
+export const fetchCreateOrganizationRepo = async ({
+  githubToken,
+  organizationName,
+  repoName,
+  isPrivateRepo,
+  description
+}: {
+  githubToken: string
+  organizationName: string
+  repoName: string
+  isPrivateRepo: boolean
+  description: string
+}) => {
+  const { data } = await axios.post<IRepo[]>(
+    `https://api.github.com/orgs/${organizationName}/repos`,
+    {
+      name: repoName,
+      private: isPrivateRepo,
+      description,
+      auto_init: true
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+
+  if (!data) throw new Error('No response data')
+  return data
+}
+
+export const fetchCreateUserRepo = async ({
+  githubToken,
+  repoName,
+  isPrivateRepo,
+  description
+}: {
+  githubToken: string
+  repoName: string
+  isPrivateRepo: boolean
+  description: string
+}) => {
+  const { data } = await axios.post<IRepo[]>(
+    `https://api.github.com/user/repos`,
+    {
+      name: repoName,
+      private: isPrivateRepo,
+      description,
+      auto_init: true
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+
+  if (!data) throw new Error('No response data')
+  return data
+}

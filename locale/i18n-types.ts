@@ -160,6 +160,14 @@ Script file path: {scriptPath}
 	 * It's a repo that already exists. shall we clone it?(Y) or should stop?(N)
 	 */
 	'itAlreadyExistRepositoryCouldYouCloneIt': string
+	/**
+	 * Please fill out the description of the repo. (will be uploaded on Github)
+	 */
+	'pleaseTypeRepoDescription': string
+	/**
+	 * Successfully created the repository in github.
+	 */
+	'successfullyCreatedRepository': string
 }
 
 export type TranslationFunctions = {
@@ -307,6 +315,14 @@ Script file path: {scriptPath}
 	 * It's a repo that already exists. shall we clone it?(Y) or should stop?(N)
 	 */
 	'itAlreadyExistRepositoryCouldYouCloneIt': () => LocalizedString
+	/**
+	 * Please fill out the description of the repo. (will be uploaded on Github)
+	 */
+	'pleaseTypeRepoDescription': () => LocalizedString
+	/**
+	 * Successfully created the repository in github.
+	 */
+	'successfullyCreatedRepository': () => LocalizedString
 }
 
 export type Formatters = {}

@@ -69,7 +69,9 @@ Script file path: {scriptPath:string}`,
   pleaseInputRepoName: `Please enter the name of the reformer you want to create.`,
   isItPrivateRepo: `Do you want to create as a private repo?`,
   failedGithubApiFetch: `A problem occurred during the GitHub API call. Please check the token permission and network status.`,
-  itAlreadyExistRepositoryCouldYouCloneIt: `It's a repo that already exists. shall we clone it?(Y) or should stop?(N)`
+  itAlreadyExistRepositoryCouldYouCloneIt: `It's a repo that already exists. shall we clone it?(Y) or should stop?(N)`,
+  pleaseTypeRepoDescription: `Please fill out the description of the repo. (will be uploaded on Github)`,
+  successfullyCreatedRepository: `Successfully created the repository in github.`
 }
 
 export default en

@@ -95,6 +95,63 @@ export const getRepoList = async ({
   }
 }
 
+export const createOrganizationRepo = async ({
+  githubToken,
+  organizationName,
+  repoName,
+  isPrivateRepo,
+  description,
+  locale
+}: {
+  githubToken: string
+  organizationName: string
+  repoName: string
+  isPrivateRepo: boolean
+  description: string
+  locale: TranslationFunctions
+}) => {
+  try {
+    await github.fetchCreateOrganizationRepo({
+      githubToken,
+      organizationName,
+      repoName,
+      isPrivateRepo,
+      description
+    })
+  } catch (e) {
+    console.log(e.data ? e.data : e)
+    console.log('\n' + locale.failedGithubApiFetch())
+    throw new Error()
+  }
+}
+
+export const createUserRepo = async ({
+  githubToken,
+  repoName,
+  isPrivateRepo,
+  description,
+  locale
+}: {
+  githubToken: string
+  repoName: string
+  isPrivateRepo: boolean
+  description: string
+  locale: TranslationFunctions
+}) => {
+  try {
+    await github.fetchCreateUserRepo({
+      githubToken,
+      repoName,
+      isPrivateRepo,
+      description
+    })
+  } catch (e) {
+    console.log(e.data ? e.data : e)
+    console.log('\n' + locale.failedGithubApiFetch())
+    throw new Error()
+  }
+}
+
 const localFunction = async () => {
   const locale = await getLocale()
   const configData = await getConfigData()
@@ -127,12 +184,16 @@ const localFunction = async () => {
 
     const { isPrivateRepo } = await inquirer.prompt({
       type: 'confirm',
-      name: '_shouldClontIt',
+      name: 'isPrivateRepo',
       message: locale.isItPrivateRepo(),
       validate: (inputText: string) => inputText && inputText.length > 0
     })
 
     let shouldClontIt = true
+    const repoUrl = `github.com/${
+      isOrganization ? selectedOrganization : githubUserName
+    }/${repoName}.git`
+
     if (repoList.includes(repoName)) {
       const { _shouldClontIt } = await inquirer.prompt({
         type: 'confirm',
@@ -143,16 +204,39 @@ const localFunction = async () => {
 
       shouldClontIt = _shouldClontIt
     } else {
-      // TODO 생성
+      const { description } = await inquirer.prompt({
+        type: 'input',
+        name: 'description',
+        message: locale.pleaseTypeRepoDescription(),
+        validate: (inputText: string) => inputText && inputText.length > 0
+      })
+
       if (isOrganization) {
-        // TODO https://docs.github.com/en/rest/reference/repos#create-an-organization-repository
+        await createOrganizationRepo({
+          githubToken: githubToken!,
+          organizationName: selectedOrganization,
+          repoName,
+          isPrivateRepo,
+          description,
+          locale
+        })
       } else {
-        // TODO https://docs.github.com/en/rest/reference/repos#create-a-repository-for-the-authenticated-user
+        await createUserRepo({
+          githubToken: githubToken!,
+          repoName,
+          isPrivateRepo,
+          description,
+          locale
+        })
       }
+
+      console.log(
+        locale.successfullyCreatedRepository() + `\nURL: ${repoUrl}\n`
+      )
     }
 
     // TODO 삭제 예정
-    console.log({
+    console.log('Done?', {
       isOrganization,
       selectedOrganization,
       repoName,
@@ -162,6 +246,68 @@ const localFunction = async () => {
     })
 
     // TODO 클론
+    const selectedSubFolder = await choice({
+      items: configData.subFolders!,
+      message: locale.pleaseSelectSubFolder()
+    })
+    const { repoFolderName } = await inquirer.prompt({
+      type: 'input',
+      name: 'repoFolderName',
+      message: locale.pleaseEnterRepoFolderName(),
+      validate: (inputText: string) => {
+        return inputText && inputText.length > 0
+      }
+    })
+    const { repoBranch } = await inquirer.prompt({
+      type: 'input',
+      name: 'repoBranch',
+      message: locale.pleaseEnterRepoBranch(),
+      validate: (inputText: string) => {
+        return inputText && inputText.length > 0
+      }
+    })
+    const targetPolygerPackagePath = path.resolve(
+      configPath.projectPath,
+      selectedSubFolder,
+      'package'
+    )
+    const targetPolygerListPath = path.resolve(
+      configPath.projectPath,
+      selectedSubFolder,
+      '.polyger.list.json'
+    )
+    if (!existsSync(targetPolygerListPath)) {
+      writeFileSync(
+        targetPolygerListPath,
+        JSON.stringify({ package: {} }, null, 2)
+      )
+    }
+
+    const targetPolygerList = JSON.parse(
+      String(readFileSync(targetPolygerListPath))
+    ) ?? { package: {} }
+
+    targetPolygerList.package[repoFolderName] = {
+      url: repoUrl,
+      branch: repoBranch
+    }
+
+    writeFileSync(
+      targetPolygerListPath,
+      JSON.stringify(targetPolygerList, null, 2)
+    )
+
+    await github.clone({
+      cwd: targetPolygerPackagePath,
+      githubToken: githubToken!,
+      githubUserName: githubUserName!,
+      name: repoFolderName,
+      branch: repoBranch,
+      url: repoUrl,
+      onMessage: (message) => console.log(message),
+      onError: (message) => console.log(message),
+      onErrorMessage: (message) => console.log(message)
+    })
   } catch (e) {}
 }
 
