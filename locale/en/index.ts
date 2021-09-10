@@ -71,7 +71,11 @@ Script file path: {scriptPath:string}`,
   failedGithubApiFetch: `A problem occurred during the GitHub API call. Please check the token permission and network status.`,
   itAlreadyExistRepositoryCouldYouCloneIt: `It's a repo that already exists. shall we clone it?(Y) or should stop?(N)`,
   pleaseTypeRepoDescription: `Please fill out the description of the repo. (will be uploaded on Github)`,
-  successfullyCreatedRepository: `Successfully created the repository in github.`
+  successfullyCreatedRepository: `Successfully created the repository in github.`,
+
+  isThisRelatedOfMe: `Is it a repo that I have access to on my account? (My personal repo and in-group repo are Y)`,
+  pleaseEnterRepoAccountName: `Please enter the GitHub ID or organization ID to download the repo.`,
+  isThisOrganization: `Is it a GitHub organization? (Y) or a personal repo? (N)`
 }
 
 export default en

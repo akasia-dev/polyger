@@ -168,6 +168,18 @@ Script file path: {scriptPath}
 	 * Successfully created the repository in github.
 	 */
 	'successfullyCreatedRepository': string
+	/**
+	 * Is it a repo that I have access to on my account? (My personal repo and in-group repo are Y)
+	 */
+	'isThisRelatedOfMe': string
+	/**
+	 * Please enter the GitHub ID or organization ID to download the repo.
+	 */
+	'pleaseEnterRepoAccountName': string
+	/**
+	 * Is it a GitHub organization? (Y) or a personal repo? (N)
+	 */
+	'isThisOrganization': string
 }
 
 export type TranslationFunctions = {
@@ -323,6 +335,18 @@ Script file path: {scriptPath}
 	 * Successfully created the repository in github.
 	 */
 	'successfullyCreatedRepository': () => LocalizedString
+	/**
+	 * Is it a repo that I have access to on my account? (My personal repo and in-group repo are Y)
+	 */
+	'isThisRelatedOfMe': () => LocalizedString
+	/**
+	 * Please enter the GitHub ID or organization ID to download the repo.
+	 */
+	'pleaseEnterRepoAccountName': () => LocalizedString
+	/**
+	 * Is it a GitHub organization? (Y) or a personal repo? (N)
+	 */
+	'isThisOrganization': () => LocalizedString
 }
 
 export type Formatters = {}

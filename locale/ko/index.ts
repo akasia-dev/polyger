@@ -69,8 +69,11 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   itAlreadyExistRepositoryCouldYouCloneIt: `이미 존재하는 레포입니다. 해당 레포를 그대로 클론해올까요? 아니면 중단할까요?`,
   isItPrivateRepo: `비공개(private) 저장소로 생성하시겠습니까?`,
   pleaseTypeRepoDescription: `레포에 대한 설명을 작성해주세요. (Github 에 업로드 됩니다.)`,
-  successfullyCreatedRepository: `레포가 깃허브에 성공적으로 생성되었습니다.`
+  successfullyCreatedRepository: `레포가 깃허브에 성공적으로 생성되었습니다.`,
 
+  isThisRelatedOfMe: `내 계정에서 접근 권한이 있는 레포인가요? (내 개인레포 및 소속된 그룹 내 레포는 Y)`,
+  pleaseEnterRepoAccountName: `레포를 받아올 단체 아이디 또는 깃허브 아이디를 입력해주세요.`,
+  isThisOrganization: `단체 아이디이면 (Y) 를, 개인 아이디면 (N) 를 입력해주세요.`
 }
 
 export default ko
