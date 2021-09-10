@@ -163,13 +163,7 @@ export const getConfigData = async () => {
   }
 
   if (isNewestUpdateExist) {
-    const configDataForSave = { ...configData }
-    if (typeof configDataForSave.isFirstRunning !== 'undefined')
-      delete configDataForSave.isFirstRunning
-    fs.writeFileSync(
-      polygerConfigJsonPath,
-      JSON.stringify(configDataForSave, null, 2)
-    )
+    fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(configData, null, 2))
     fs.writeFileSync(polygerSecretJsonPath, JSON.stringify(secretData, null, 2))
   }
 
