@@ -170,7 +170,8 @@ export const getConfigData = async () => {
   // * .gitignore
   if (isFirstRunning) {
     const gitIgnoreFilePath = path.resolve(projectPath, '.gitignore')
-    let gitIgnoreFullText = `# Polyger Files\n` + '.polyger.secret.json\n'
+    let gitIgnoreFullText =
+      `# Polyger Files\n` + '.polyger.secret.json\nnode_modules\n'
     for (const subFolder of configData.subFolders) {
       gitIgnoreFullText += `${subFolder}/package/*\n`
       gitIgnoreFullText += `!${subFolder}/package/README.md\n`
