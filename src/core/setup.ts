@@ -194,8 +194,8 @@ export const getConfigData = async () => {
   if (isFirstRunning) console.log('\n\n' + locale.afterFirstInitWelcome())
 
   return {
-    ...configData,
-    ...secretData,
+    configData,
+    secretData,
     isFirstRunning
   }
 }

@@ -13,10 +13,10 @@ import { polygerShellFileTitleRegex } from './utils'
 import type { ICommand } from '../interface'
 
 export const getCommand = async () => {
-  const setupData = await getSetupData()
+  const { configData } = await getSetupData()
   const commandFolderPath = path.join(
     process.cwd(),
-    setupData.shellScriptFolderName ?? 'sh'
+    configData.shellScriptFolderName ?? 'sh'
   )
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []

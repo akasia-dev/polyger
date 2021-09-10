@@ -14,12 +14,12 @@ export const getEntrypoint = async () => {
 
   const commandFolderPath = path.join(
     process.cwd(),
-    setupData.shellScriptFolderName ?? 'sh'
+    setupData.configData.shellScriptFolderName ?? 'sh'
   )
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []
 
-  const entryPatchedLogs = setupData.entryPatchedLogs ?? {}
+  const entryPatchedLogs = setupData.configData.entryPatchedLogs ?? {}
 
   for (const shellScriptPath of shellScriptPaths) {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
@@ -59,7 +59,7 @@ export const getEntrypoint = async () => {
   }
 
   if (projectCommands.length > 0) {
-    setupData.entryPatchedLogs = entryPatchedLogs
+    setupData.configData.entryPatchedLogs = entryPatchedLogs
     const { polygerConfigJsonPath } = getConfigPath()
     fs.writeFileSync(polygerConfigJsonPath, JSON.stringify(setupData, null, 2))
   }

@@ -154,8 +154,8 @@ export const createUserRepo = async ({
 
 const localFunction = async () => {
   const locale = await getLocale()
-  const configData = await getConfigData()
-  const { githubToken, githubUserName } = await getSetupData()
+  const { configData, secretData } = await getConfigData()
+  const { githubToken, githubUserName } = secretData
 
   const configPath = getConfigPath()
 

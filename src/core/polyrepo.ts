@@ -38,7 +38,8 @@ export const getRepos = async (projectPath: string) => {
 }
 
 export const getTargetProjectPaths = async () => {
-  const { subFolders } = await getSetupData()
+  const { configData } = await getSetupData()
+  const { subFolders } = configData
   if (!subFolders) return [] as string[]
   return subFolders.map((name) => path.resolve(projectPath, name))
 }
@@ -112,7 +113,9 @@ export const init = async () => {
 
   if (!isProceed) return
 
-  const { githubToken, githubUserName } = await getSetupData()
+  const { secretData } = await getSetupData()
+  const { githubToken, githubUserName } = secretData
+
   for (const { packageName, packagePath, url, branch } of needToInitProjects) {
     await github.clone({
       cwd: packagePath,
