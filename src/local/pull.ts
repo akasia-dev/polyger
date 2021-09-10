@@ -18,7 +18,6 @@ const localFunction = async () => {
     console.log(
       locale.downloadingPolyrepos({ packageName: packageItem.packageName })
     )
-    console.log('test', packageItem.packagePath)
     await github.pull({
       cwd: packageItem.packagePath,
       onError: (error) => console.error(error),
