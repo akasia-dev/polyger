@@ -8,16 +8,16 @@ import getLocale from '../../locale/index'
 
 const projectPath = path.resolve(process.cwd())
 
-export const getRepos = async (projectPath: string) => {
+export const getRepos = async (categoryPath: string) => {
   try {
     const listJSON: {
       package: Record<string, any>
     } = JSON.parse(
-      String(await fs.readFile(path.join(projectPath, '.polyger.list.json')))
+      String(await fs.readFile(path.join(categoryPath, '.polyger.list.json')))
     )
     const packageList = Object.keys(listJSON.package)
 
-    const packagePath = path.join(projectPath, 'package')
+    const packagePath = path.join(categoryPath, 'package')
     const packageFolders = (
       await fs.readdir(packagePath, {
         withFileTypes: true

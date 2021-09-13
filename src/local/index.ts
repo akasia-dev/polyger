@@ -3,6 +3,7 @@ import pull from './pull'
 import script from './script'
 import polyrepo from './polyrepo'
 import createRepo from './createRepo'
+import submodule from './submodule'
 
 export const getLocalCommands = async () => {
   const localCommands: ICommand[] = []
@@ -10,6 +11,7 @@ export const getLocalCommands = async () => {
   await script(localCommands)
   await polyrepo(localCommands)
   await createRepo(localCommands)
+  await submodule(localCommands)
 
   return localCommands
 }

@@ -47,6 +47,14 @@
       "after:bump": "npm run build"
     }
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier --write",
+      "eslint --fix src/",
+      "tslint --fix --project .",
+      "git add"
+    ]
+  },
   "license": "MIT",
   "dependencies": {
     "chalkercli": "^1.6.4",

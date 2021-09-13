@@ -57,7 +57,7 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 스크립트 파일 경로: {scriptPath}`,
 
   commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
-  pleaseSelectSubFolder: '폴리레포를 저장할 서브폴더를 선택해주세요.',
+  pleaseSelectSubFolder: '폴리레포를 저장할 카테고리를 선택해주세요.',
   pleaseEnterRepoUrl: `복제해올 폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `복제해올 폴리레포의 브랜치를 입력해주세요. (예: main)`,
   pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
@@ -73,7 +73,13 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 
   isThisRelatedOfMe: `내 계정에서 접근 권한이 있는 레포인가요? (내 개인레포 및 소속된 그룹 내 레포는 Y)`,
   pleaseEnterRepoAccountName: `레포를 받아올 단체 아이디 또는 깃허브 아이디를 입력해주세요.`,
-  isThisOrganization: `단체 아이디이면 (Y) 를, 개인 아이디면 (N) 를 입력해주세요.`
+  isThisOrganization: `단체 아이디이면 (Y) 를, 개인 아이디면 (N) 를 입력해주세요.`,
+
+  commandAddSubmodule: `서브모듈 추가하기 (add-submodule)`,
+  pleaseSelectCategoryToCreateSubmodule: `서브모듈이 생성될 카테고리를 선택해주세요.`,
+  pleaseSelectProjectToCreateSubmodule: `서브모듈이 생성될 프로젝트를 선택해주세요.`,
+  pleaseEnterDetailSubmodulePathToSave: `서브모듈을 생성할 폴더 내 상세 경로를 입력해주세요. (예: lib/some-module)`,
+  pleaseSelectGitProjectAsSubmodule: `서브모듈로 받아오려는 깃 프로젝트를 선택해주세요.`
 }
 
 export default ko

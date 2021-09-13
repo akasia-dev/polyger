@@ -59,7 +59,7 @@ Open the script file to configure the command.
 Script file path: {scriptPath:string}`,
 
   commandAddPolyRepo: `Add a polyrepo (add-polyrepo)`,
-  pleaseSelectSubFolder: 'Please select a sub-folder to save the polyrepo.',
+  pleaseSelectSubFolder: 'Please select a category to save the polyrepo.',
   pleaseEnterRepoUrl: `Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo that you want to clone. (e.g. main)`,
   pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
@@ -75,7 +75,13 @@ Script file path: {scriptPath:string}`,
 
   isThisRelatedOfMe: `Is it a repo that I have access to on my account? (My personal repo and in-group repo are Y)`,
   pleaseEnterRepoAccountName: `Please enter the GitHub ID or organization ID to download the repo.`,
-  isThisOrganization: `Is it a GitHub organization? (Y) or a personal repo? (N)`
+  isThisOrganization: `Is it a GitHub organization? (Y) or a personal repo? (N)`,
+
+  commandAddSubmodule: `Add a submodule (add-submodule)`,
+  pleaseSelectCategoryToCreateSubmodule: `Please select a category to create a submodule.`,
+  pleaseSelectProjectToCreateSubmodule: `Please select a project to create a submodule.`,
+  pleaseEnterDetailSubmodulePathToSave: `Please enter the detailed path in the folder where the submodule will be created. (e.g. lib/some-module)`,
+  pleaseSelectGitProjectAsSubmodule: `Please select the Git project you want to receive as a submodule.`
 }
 
 export default en

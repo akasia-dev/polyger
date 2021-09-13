@@ -28,9 +28,17 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "typeRoots": [
     "./node_modules/@types"
+  ],
+  "include": [
+    "src/**/*",
+    "locale/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
   ]
 }

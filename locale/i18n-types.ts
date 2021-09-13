@@ -121,7 +121,7 @@ Script file path: {scriptPath}
 	 */
 	'commandAddPolyRepo': string
 	/**
-	 * Please select a sub-folder to save the polyrepo.
+	 * Please select a category to save the polyrepo.
 	 */
 	'pleaseSelectSubFolder': string
 	/**
@@ -180,6 +180,26 @@ Script file path: {scriptPath}
 	 * Is it a GitHub organization? (Y) or a personal repo? (N)
 	 */
 	'isThisOrganization': string
+	/**
+	 * Add a submodule (add-submodule)
+	 */
+	'commandAddSubmodule': string
+	/**
+	 * Please select a category to create a submodule.
+	 */
+	'pleaseSelectCategoryToCreateSubmodule': string
+	/**
+	 * Please select a project to create a submodule.
+	 */
+	'pleaseSelectProjectToCreateSubmodule': string
+	/**
+	 * Please enter the detailed path in the folder where the submodule will be created. (e.g. lib/some-module)
+	 */
+	'pleaseEnterDetailSubmodulePathToSave': string
+	/**
+	 * Please select the Git project you want to receive as a submodule.
+	 */
+	'pleaseSelectGitProjectAsSubmodule': string
 }
 
 export type TranslationFunctions = {
@@ -288,7 +308,7 @@ Script file path: {scriptPath}
 	 */
 	'commandAddPolyRepo': () => LocalizedString
 	/**
-	 * Please select a sub-folder to save the polyrepo.
+	 * Please select a category to save the polyrepo.
 	 */
 	'pleaseSelectSubFolder': () => LocalizedString
 	/**
@@ -347,6 +367,26 @@ Script file path: {scriptPath}
 	 * Is it a GitHub organization? (Y) or a personal repo? (N)
 	 */
 	'isThisOrganization': () => LocalizedString
+	/**
+	 * Add a submodule (add-submodule)
+	 */
+	'commandAddSubmodule': () => LocalizedString
+	/**
+	 * Please select a category to create a submodule.
+	 */
+	'pleaseSelectCategoryToCreateSubmodule': () => LocalizedString
+	/**
+	 * Please select a project to create a submodule.
+	 */
+	'pleaseSelectProjectToCreateSubmodule': () => LocalizedString
+	/**
+	 * Please enter the detailed path in the folder where the submodule will be created. (e.g. lib/some-module)
+	 */
+	'pleaseEnterDetailSubmodulePathToSave': () => LocalizedString
+	/**
+	 * Please select the Git project you want to receive as a submodule.
+	 */
+	'pleaseSelectGitProjectAsSubmodule': () => LocalizedString
 }
 
 export type Formatters = {}
