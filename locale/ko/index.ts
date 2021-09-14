@@ -32,7 +32,7 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   runningCommand: '"{title}" 실행 중...',
 
   shallWeClone: '프로젝트 레포를 받아올까요?',
-  commandPull: '🔖 폴리레포 전체 갱신 (pull)',
+  commandPull: '폴리레포 전체 갱신 (pull)',
   downloadingPolyrepos: '"{packageName}" 폴리레포 받아오는 중...',
 
   detectedNonInteractiveTerminal: `해당 터미널이 상호작용을 지원하지 않는 것으로 보입니다.
@@ -43,7 +43,7 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 2. hyper 설치: https://git.io/JEN7V
 3. hyper 설정: https://bit.ly/hyper-setup`,
 
-  commandAddScript: '🔖 프로젝트 명령어 추가 (add-script)',
+  commandAddScript: '프로젝트 명령어 추가 (add-script)',
 
   pleaseSelectShellScriptFolderName:
     '프로젝트용 스크립트 파일들이 담길 폴더명을 입력해주세요 (기본: sh)',
@@ -56,13 +56,13 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 스크립트 파일을 열어서 해당 명령어를 구성해주세요.
 스크립트 파일 경로: {scriptPath}`,
 
-  commandAddPolyRepo: `🔖 폴리레포 추가하기 (add-polyrepo)`,
+  commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
   pleaseSelectSubFolder: '폴리레포를 저장할 카테고리를 선택해주세요.',
   pleaseEnterRepoUrl: `폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `폴리레포의 브랜치를 입력해주세요. (예: main)`,
   pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
 
-  commandCreatePolyRepo: `🔖 폴리레포 깃허브에 생성하기 (create-polyrepo)`,
+  commandCreatePolyRepo: `폴리레포 깃허브에 생성하기 (create-polyrepo)`,
   pleaseSelectOrganization: `깃허브 내 위치를 선택해주세요.`,
   pleaseInputRepoName: `생성할 레포명을 입력해주세요.`,
   failedGithubApiFetch: `깃허브 API 호출 도중 문제가 발생했습니다. 토큰 권한 및 네트워크 상태를 확인해주세요.`,
@@ -75,23 +75,23 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   pleaseEnterRepoAccountName: `레포를 받아올 단체 아이디 또는 깃허브 아이디를 입력해주세요.`,
   isThisOrganization: `단체 아이디이면 (Y) 를, 개인 아이디면 (N) 를 입력해주세요.`,
 
-  commandAddSubmodule: `🔖 서브모듈 추가하기 (add-submodule)`,
+  commandAddSubmodule: `서브모듈 추가하기 (add-submodule)`,
   pleaseSelectCategoryToCreateSubmodule: `서브모듈이 생성될 카테고리를 선택해주세요.`,
   pleaseSelectProjectToCreateSubmodule: `서브모듈이 생성될 프로젝트를 선택해주세요.`,
   pleaseEnterDetailSubmodulePathToSave: `서브모듈을 생성할 폴더 내 상세 경로를 입력해주세요. (예: lib/some-module)`,
   pleaseSelectGitProjectAsSubmodule: `서브모듈로 받아오려는 깃 프로젝트를 선택해주세요.`,
   polyrepoIsEmptyPleaseAddOne: `해당 카테고리에 추가된 폴리레포가 존재하지 않습니다.\n먼저 폴리레포를 해당 카테고리에 추가해주세요.`,
 
-  commandDeleteSubmodule: `🔖 서브모듈 삭제하기 (delete-submodule)`,
+  commandDeleteSubmodule: `서브모듈 삭제하기 (delete-submodule)`,
   pleaseSelectCategoryOfSubmodule: `서브모듈이 담긴 프로젝트의 카테고리를 선택해주세요.`,
   pleaseSelectProjectOfSubmodule: `서브모듈이 담긴 프로젝트를 선택해주세요.`,
   pleaseEnterDetailSubmodulePath: `서브모듈을 선택해주세요.`,
   submoduleDoesntExist: `해당 프로젝트 내 서브모듈이 존재하지 않습니다.`,
 
-  commandUpdateSubmodule: `🔖 서브모듈 갱신하기 (update-submodule)`,
+  commandUpdateSubmodule: `서브모듈 갱신하기 (update-submodule)`,
   finishedUpdateSubmodule: `{name} 서브모듈 업데이트가 완료되었습니다.`,
 
-  commandDeletePolyRepo: `🔖 폴리레포 삭제하기 (delete-polyrepo)`,
+  commandDeletePolyRepo: `폴리레포 삭제하기 (delete-polyrepo)`,
   pleaseSelectCategoryOfDeleteProject: `삭제할 프로젝트가 담긴 카테고리를 선택해주세요.`,
   pleaseSelectProjectOfDelete: `삭제할 프로젝트를 선택해주세요.`,
   reallySureToDeleteProject: `확인을 위해 삭제하려는 프로젝트 명을 입력해주세요 {name}:`,
