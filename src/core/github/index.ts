@@ -136,6 +136,7 @@ export const submodulePull = async (props: {
       await props.onError(error.message)
       const locale = await getLocale()
       console.log(locale.windowsGitShSetupIssueDetected())
+      console.log(locale.youCanBePullSubmoduleAnytime())
     }
   }
 }
@@ -143,8 +144,7 @@ export const submodulePull = async (props: {
 export const submodule = async (props: ISubmoduleProps) => {
   for (const command of [
     `git submodule add -b ${props.branch} https://${props.url} ${props.path}`,
-    `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`,
-    `git submodule update --init --recursive`
+    `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`
   ]) {
     try {
       const { stdout, stderr } = await promisify(exec)(command, {
@@ -155,6 +155,22 @@ export const submodule = async (props: ISubmoduleProps) => {
     } catch (error) {
       await props.onError(error)
     }
+  }
+
+  try {
+    const { stdout, stderr } = await promisify(exec)(
+      `git submodule update --init --recursive`,
+      {
+        cwd: props.cwd
+      }
+    )
+    await props.onMessage(stdout)
+    await props.onErrorMessage(stderr)
+  } catch (error) {
+    await props.onError(error.message)
+    const locale = await getLocale()
+    console.log(locale.windowsGitShSetupIssueDetected())
+    console.log(locale.youCanBePullSubmoduleAnytime())
   }
 }
 

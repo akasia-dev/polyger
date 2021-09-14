@@ -269,6 +269,12 @@ If you are using windows, please look at the document below and complete the git
 URL: https://stackoverflow.com/a/50833818
 	 */
 	'windowsGitShSetupIssueDetected': string
+	/**
+	 * If you run the "Update the entire local poyrepos from the GitHub (pull)"
+command after client setup fixed, you can automatically
+re-receive all sub-modules that have not been downloaded.
+	 */
+	'youCanBePullSubmoduleAnytime': string
 }
 
 export type TranslationFunctions = {
@@ -522,6 +528,12 @@ If you are using windows, please look at the document below and complete the git
 URL: https://stackoverflow.com/a/50833818
 	 */
 	'windowsGitShSetupIssueDetected': () => LocalizedString
+	/**
+	 * If you run the "Update the entire local poyrepos from the GitHub (pull)"
+command after client setup fixed, you can automatically
+re-receive all sub-modules that have not been downloaded.
+	 */
+	'youCanBePullSubmoduleAnytime': () => LocalizedString
 }
 
 export type Formatters = {}

@@ -105,7 +105,11 @@ Execution of the submodule installation command failed. (git submodule update)
 It is identified as a problem within the Git client installed on the computer.
 If you are using windows, please look at the document below and complete the git path setting.
 
-URL: https://stackoverflow.com/a/50833818`
+URL: https://stackoverflow.com/a/50833818`,
+
+  youCanBePullSubmoduleAnytime: `If you run the "Update the entire local poyrepos from the GitHub (pull)"
+command after client setup fixed, you can automatically
+re-receive all sub-modules that have not been downloaded.`
 }
 
 export default en

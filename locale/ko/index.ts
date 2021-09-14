@@ -102,7 +102,10 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 컴퓨터에 설치된 Git 클라이언트 내 문제로 파악됩니다.
 Windows 를 사용 중이신 경우 아래 문서를 보고 Git PATH 설정을 완료해주세요.
 
-링크: https://stackoverflow.com/a/50833818`
+링크: https://stackoverflow.com/a/50833818`,
+
+  youCanBePullSubmoduleAnytime: `클라이언트 설정 이후 "폴리레포 전체 갱신(pull)" 명령어를 실행하면
+다운받지 못한 모든 서브모듈을 자동으로 다시 받으실 수 있습니다.`
 }
 
 export default ko
