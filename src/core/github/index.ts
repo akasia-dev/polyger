@@ -8,7 +8,7 @@ import { axios } from '../axios'
 import { IOrganization, IRepo } from './interface'
 import { gitModulesPathAndUrlRegex } from '../utils'
 import { existsSync, readFileSync } from 'fs'
-import getLocale from 'locale'
+import getLocale from '../../../locale'
 
 export interface ICloneProps {
   name: string
