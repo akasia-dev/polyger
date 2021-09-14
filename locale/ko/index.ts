@@ -96,7 +96,13 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   pleaseSelectProjectOfDelete: `삭제할 프로젝트를 선택해주세요.`,
   reallySureToDeleteProject: `확인을 위해 삭제하려는 프로젝트 명을 입력해주세요 {name}:`,
   noProjectsInCategory: `해당 카테고리에 프로젝트가 존재하지 않습니다.`,
-  finishedDeletePolyRepo: `{name} 폴리레포 삭제가 완료되었습니다.`
+  finishedDeletePolyRepo: `{name} 폴리레포 삭제가 완료되었습니다.`,
+
+  windowsGitShSetupIssueDetected: `서브모듈 설치 명령 실행이 실패하였습니다. (git submodule update)
+컴퓨터에 설치된 Git 클라이언트 내 문제로 파악됩니다.
+Windows 를 사용 중이신 경우 아래 문서를 보고 Git PATH 설정을 완료해주세요.
+
+링크: https://stackoverflow.com/a/50833818`
 }
 
 export default ko

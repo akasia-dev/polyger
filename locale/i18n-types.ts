@@ -69,7 +69,7 @@ If you select a command, it will be executed.
 	 */
 	'shallWeClone': string
 	/**
-	 * 📮 Update the entire local poyrepos from the GitHub (pull)
+	 * Update the entire local poyrepos from the GitHub (pull)
 	 */
 	'commandPull': string
 	/**
@@ -88,7 +88,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': string
 	/**
-	 * 📮 Add project command (add-script)
+	 * Add project command (add-script)
 	 */
 	'commandAddScript': string
 	/**
@@ -117,7 +117,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
 	/**
-	 * 📮 Add polyrepo (add-polyrepo)
+	 * Add polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': string
 	/**
@@ -137,11 +137,11 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': string
 	/**
-	 * 📮 Create polyrepo in the GitHub (create-polyrepo)
+	 * Create polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': string
 	/**
-	 * Please choose the location in the GitHub where you want to create the repo.
+	 * Please choose the location in the GitHub.
 	 */
 	'pleaseSelectOrganization': string
 	/**
@@ -181,7 +181,7 @@ Script file path: {scriptPath}
 	 */
 	'isThisOrganization': string
 	/**
-	 * 📮 Add a submodule (add-submodule)
+	 * Add a submodule (add-submodule)
 	 */
 	'commandAddSubmodule': string
 	/**
@@ -206,7 +206,7 @@ First, please add the polyrepo to the category.
 	 */
 	'polyrepoIsEmptyPleaseAddOne': string
 	/**
-	 * 📮 Delete submodule (delete-submodule)
+	 * Delete submodule (delete-submodule)
 	 */
 	'commandDeleteSubmodule': string
 	/**
@@ -226,7 +226,7 @@ First, please add the polyrepo to the category.
 	 */
 	'submoduleDoesntExist': string
 	/**
-	 * 📮 Update submodule (update-submodule)
+	 * Update submodule (update-submodule)
 	 */
 	'commandUpdateSubmodule': string
 	/**
@@ -235,7 +235,7 @@ First, please add the polyrepo to the category.
 	 */
 	'finishedUpdateSubmodule': RequiredParams1<'name'>
 	/**
-	 * 📮 Delete polyrepo (delete-polyrepo)
+	 * Delete polyrepo (delete-polyrepo)
 	 */
 	'commandDeletePolyRepo': string
 	/**
@@ -260,6 +260,15 @@ First, please add the polyrepo to the category.
 	 * @param {unknown} name
 	 */
 	'finishedDeletePolyRepo': RequiredParams1<'name'>
+	/**
+	 * 
+Execution of the submodule installation command failed. (git submodule update)
+It is identified as a problem within the Git client installed on the computer.
+If you are using windows, please look at the document below and complete the git path setting.
+
+URL: https://stackoverflow.com/a/50833818
+	 */
+	'windowsGitShSetupIssueDetected': string
 }
 
 export type TranslationFunctions = {
@@ -319,7 +328,7 @@ If you select a command, it will be executed.
 	 */
 	'shallWeClone': () => LocalizedString
 	/**
-	 * 📮 Update the entire local poyrepos from the GitHub (pull)
+	 * Update the entire local poyrepos from the GitHub (pull)
 	 */
 	'commandPull': () => LocalizedString
 	/**
@@ -337,7 +346,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': () => LocalizedString
 	/**
-	 * 📮 Add project command (add-script)
+	 * Add project command (add-script)
 	 */
 	'commandAddScript': () => LocalizedString
 	/**
@@ -364,7 +373,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
 	/**
-	 * 📮 Add polyrepo (add-polyrepo)
+	 * Add polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': () => LocalizedString
 	/**
@@ -384,11 +393,11 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': () => LocalizedString
 	/**
-	 * 📮 Create polyrepo in the GitHub (create-polyrepo)
+	 * Create polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': () => LocalizedString
 	/**
-	 * Please choose the location in the GitHub where you want to create the repo.
+	 * Please choose the location in the GitHub.
 	 */
 	'pleaseSelectOrganization': () => LocalizedString
 	/**
@@ -428,7 +437,7 @@ Script file path: {scriptPath}
 	 */
 	'isThisOrganization': () => LocalizedString
 	/**
-	 * 📮 Add a submodule (add-submodule)
+	 * Add a submodule (add-submodule)
 	 */
 	'commandAddSubmodule': () => LocalizedString
 	/**
@@ -453,7 +462,7 @@ First, please add the polyrepo to the category.
 	 */
 	'polyrepoIsEmptyPleaseAddOne': () => LocalizedString
 	/**
-	 * 📮 Delete submodule (delete-submodule)
+	 * Delete submodule (delete-submodule)
 	 */
 	'commandDeleteSubmodule': () => LocalizedString
 	/**
@@ -473,7 +482,7 @@ First, please add the polyrepo to the category.
 	 */
 	'submoduleDoesntExist': () => LocalizedString
 	/**
-	 * 📮 Update submodule (update-submodule)
+	 * Update submodule (update-submodule)
 	 */
 	'commandUpdateSubmodule': () => LocalizedString
 	/**
@@ -481,7 +490,7 @@ First, please add the polyrepo to the category.
 	 */
 	'finishedUpdateSubmodule': (arg: { name: unknown }) => LocalizedString
 	/**
-	 * 📮 Delete polyrepo (delete-polyrepo)
+	 * Delete polyrepo (delete-polyrepo)
 	 */
 	'commandDeletePolyRepo': () => LocalizedString
 	/**
@@ -504,6 +513,15 @@ First, please add the polyrepo to the category.
 	 * {name} polyrepo deletion is complete.
 	 */
 	'finishedDeletePolyRepo': (arg: { name: unknown }) => LocalizedString
+	/**
+	 * 
+Execution of the submodule installation command failed. (git submodule update)
+It is identified as a problem within the Git client installed on the computer.
+If you are using windows, please look at the document below and complete the git path setting.
+
+URL: https://stackoverflow.com/a/50833818
+	 */
+	'windowsGitShSetupIssueDetected': () => LocalizedString
 }
 
 export type Formatters = {}

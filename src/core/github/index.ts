@@ -8,6 +8,7 @@ import { axios } from '../axios'
 import { IOrganization, IRepo } from './interface'
 import { gitModulesPathAndUrlRegex } from '../utils'
 import { existsSync, readFileSync } from 'fs'
+import getLocale from 'locale'
 
 export interface ICloneProps {
   name: string
@@ -132,7 +133,8 @@ export const submodulePull = async (props: {
       await props.onMessage(stdout)
       await props.onErrorMessage(stderr)
     } catch (error) {
-      await props.onError(error)
+      const locale = await getLocale()
+      console.log(locale.windowsGitShSetupIssueDetected())
     }
   }
 }

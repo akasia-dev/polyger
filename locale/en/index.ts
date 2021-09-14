@@ -98,7 +98,14 @@ Script file path: {scriptPath:string}`,
   pleaseSelectProjectOfDelete: `Please select a project to delete.`,
   reallySureToDeleteProject: `Please enter the project name that you want to delete. {name}:`,
   noProjectsInCategory: `The project does not exist in that category.`,
-  finishedDeletePolyRepo: `{name} polyrepo deletion is complete.`
+  finishedDeletePolyRepo: `{name} polyrepo deletion is complete.`,
+
+  windowsGitShSetupIssueDetected: `
+Execution of the submodule installation command failed. (git submodule update)
+It is identified as a problem within the Git client installed on the computer.
+If you are using windows, please look at the document below and complete the git path setting.
+
+URL: https://stackoverflow.com/a/50833818`
 }
 
 export default en
