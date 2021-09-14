@@ -1,6 +1,5 @@
 import path from 'path'
 import fs from 'fs/promises'
-import { animateText } from './utils'
 import { inquirer } from './inquire'
 import getSetupData from './setup'
 import * as github from './github'
@@ -98,7 +97,7 @@ export const init = async () => {
   }
 
   if (needToInitProjects.length === 0) return
-  await animateText(
+  console.log(
     `${locale.messageOfClone({
       count: needToInitProjects.length,
       list: needToInitProjects.map((e) => `"${e.packageName}"`).join(', ')

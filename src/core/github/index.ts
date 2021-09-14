@@ -133,6 +133,7 @@ export const submodulePull = async (props: {
       await props.onMessage(stdout)
       await props.onErrorMessage(stderr)
     } catch (error) {
+      await props.onError(error.message)
       const locale = await getLocale()
       console.log(locale.windowsGitShSetupIssueDetected())
     }
