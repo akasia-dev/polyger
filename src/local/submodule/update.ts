@@ -12,7 +12,7 @@ import getConfigData, { getConfigPath } from '../../core/setup'
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
   commands.push({
-    title: locale.commandDeleteSubmodule(),
+    title: locale.commandUpdateSubmodule(),
     localFunction
   })
 }
@@ -63,13 +63,15 @@ const localFunction = async () => {
       message: locale.pleaseEnterDetailSubmodulePath()
     })
 
-    await github.submoduleDelete({
+    await github.runCommand({
+      command: `git submodule update --init --recursive ${submodulePath}`,
       cwd: path.resolve(configPath.projectPath, category, 'package', project),
-      path: submodulePath,
       onMessage: (message) => console.log(message),
       onError: (message) => console.log(message),
       onErrorMessage: (message) => console.log(message)
     })
+
+    console.log(locale.finishedUpdateSubmodule({ name: submodulePath }))
   } else {
     console.log(locale.polyrepoIsEmptyPleaseAddOne())
   }

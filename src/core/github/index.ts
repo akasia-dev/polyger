@@ -16,6 +16,14 @@ export interface ICloneProps {
   onError: (error: Error) => void | Promise<void>
 }
 
+export interface IRunCommandProps {
+  command: string
+  cwd: string
+  onMessage: (message: string) => void | Promise<void>
+  onErrorMessage: (errorMessage: string) => void | Promise<void>
+  onError: (error: Error) => void | Promise<void>
+}
+
 export interface ISubmoduleProps {
   path: string
   url: string
@@ -34,6 +42,18 @@ export interface ISubmoduleDeleteProps {
   onMessage: (message: string) => void | Promise<void>
   onErrorMessage: (errorMessage: string) => void | Promise<void>
   onError: (error: Error) => void | Promise<void>
+}
+
+export const runCommand = async (props: IRunCommandProps) => {
+  try {
+    const { stdout, stderr } = await promisify(exec)(props.command, {
+      cwd: props.cwd
+    })
+    await props.onMessage(stdout)
+    await props.onErrorMessage(stderr)
+  } catch (error) {
+    await props.onError(error)
+  }
 }
 
 export const clone = async (props: ICloneProps) => {

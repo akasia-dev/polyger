@@ -5,6 +5,7 @@ import polyrepoCreate from './polyrepo/create'
 import scriptAdd from './script/add'
 import submoduleAdd from './submodule/add'
 import submoduleDelete from './submodule/delete'
+import submoduleUpdate from './submodule/update'
 
 export const getLocalCommands = async () => {
   const localCommands: ICommand[] = []
@@ -17,6 +18,7 @@ export const getLocalCommands = async () => {
 
   await submoduleAdd(localCommands)
   await submoduleDelete(localCommands)
+  await submoduleUpdate(localCommands)
 
   return localCommands
 }
