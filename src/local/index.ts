@@ -1,6 +1,7 @@
 import type { ICommand } from '../interface'
 import polyrepoAdd from './polyrepo/add'
 import polyrepoPull from './polyrepo/pull'
+import polyrepoDelete from './polyrepo/delete'
 import polyrepoCreate from './polyrepo/create'
 import scriptAdd from './script/add'
 import submoduleAdd from './submodule/add'
@@ -13,6 +14,7 @@ export const getLocalCommands = async () => {
   await polyrepoCreate(localCommands)
   await polyrepoAdd(localCommands)
   await polyrepoPull(localCommands)
+  await polyrepoDelete(localCommands)
 
   await scriptAdd(localCommands)
 

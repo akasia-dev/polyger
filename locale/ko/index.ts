@@ -89,7 +89,14 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   submoduleDoesntExist: `해당 프로젝트 내 서브모듈이 존재하지 않습니다.`,
 
   commandUpdateSubmodule: `📮 서브모듈 갱신하기 (update-submodule)`,
-  finishedUpdateSubmodule: `{name} 서브모듈 업데이트가 완료되었습니다.`
+  finishedUpdateSubmodule: `{name} 서브모듈 업데이트가 완료되었습니다.`,
+
+  commandDeletePolyRepo: `📮 폴리레포 삭제하기 (delete-polyrepo)`,
+  pleaseSelectCategoryOfDeleteProject: `삭제할 프로젝트가 담긴 카테고리를 선택해주세요.`,
+  pleaseSelectProjectOfDelete: `삭제할 프로젝트를 선택해주세요.`,
+  reallySureToDeleteProject: `확인을 위해 삭제하려는 프로젝트 명을 입력해주세요 {name}:`,
+  noProjectsInCategory: `해당 카테고리에 프로젝트가 존재하지 않습니다.`,
+  finishedDeletePolyRepo: `{name} 폴리레포 삭제가 완료되었습니다.`
 }
 
 export default ko

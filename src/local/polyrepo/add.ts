@@ -43,7 +43,6 @@ const localFunction = async () => {
     let selectedOrganization = undefined as string | undefined
     let targetGithubName = undefined as string | undefined
 
-    // TODO 단체 목록 선택
     if (isRelatedOfMe) {
       const answer = await selectOrganization({
         githubToken: githubToken!,

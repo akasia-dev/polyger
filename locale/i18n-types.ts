@@ -88,7 +88,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': string
 	/**
-	 * 📮 Add Project Command (add-script)
+	 * 📮 Add project command (add-script)
 	 */
 	'commandAddScript': string
 	/**
@@ -117,7 +117,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
 	/**
-	 * 📮 Add a polyrepo (add-polyrepo)
+	 * 📮 Add polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': string
 	/**
@@ -137,7 +137,7 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': string
 	/**
-	 * 📮 Create a polyrepo in the GitHub (create-polyrepo)
+	 * 📮 Create polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': string
 	/**
@@ -234,6 +234,32 @@ First, please add the polyrepo to the category.
 	 * @param {unknown} name
 	 */
 	'finishedUpdateSubmodule': RequiredParams1<'name'>
+	/**
+	 * 📮 Delete polyrepo (delete-polyrepo)
+	 */
+	'commandDeletePolyRepo': string
+	/**
+	 * Please select a category containing the project you want to delete.
+	 */
+	'pleaseSelectCategoryOfDeleteProject': string
+	/**
+	 * Please select a project to delete.
+	 */
+	'pleaseSelectProjectOfDelete': string
+	/**
+	 * Please enter the project name that you want to delete. {name}:
+	 * @param {unknown} name
+	 */
+	'reallySureToDeleteProject': RequiredParams1<'name'>
+	/**
+	 * The project does not exist in that category.
+	 */
+	'noProjectsInCategory': string
+	/**
+	 * {name} polyrepo deletion is complete.
+	 * @param {unknown} name
+	 */
+	'finishedDeletePolyRepo': RequiredParams1<'name'>
 }
 
 export type TranslationFunctions = {
@@ -311,7 +337,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': () => LocalizedString
 	/**
-	 * 📮 Add Project Command (add-script)
+	 * 📮 Add project command (add-script)
 	 */
 	'commandAddScript': () => LocalizedString
 	/**
@@ -338,7 +364,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
 	/**
-	 * 📮 Add a polyrepo (add-polyrepo)
+	 * 📮 Add polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': () => LocalizedString
 	/**
@@ -358,7 +384,7 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': () => LocalizedString
 	/**
-	 * 📮 Create a polyrepo in the GitHub (create-polyrepo)
+	 * 📮 Create polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': () => LocalizedString
 	/**
@@ -454,6 +480,30 @@ First, please add the polyrepo to the category.
 	 * {name} submodule update is complete.
 	 */
 	'finishedUpdateSubmodule': (arg: { name: unknown }) => LocalizedString
+	/**
+	 * 📮 Delete polyrepo (delete-polyrepo)
+	 */
+	'commandDeletePolyRepo': () => LocalizedString
+	/**
+	 * Please select a category containing the project you want to delete.
+	 */
+	'pleaseSelectCategoryOfDeleteProject': () => LocalizedString
+	/**
+	 * Please select a project to delete.
+	 */
+	'pleaseSelectProjectOfDelete': () => LocalizedString
+	/**
+	 * Please enter the project name that you want to delete. {name}:
+	 */
+	'reallySureToDeleteProject': (arg: { name: unknown }) => LocalizedString
+	/**
+	 * The project does not exist in that category.
+	 */
+	'noProjectsInCategory': () => LocalizedString
+	/**
+	 * {name} polyrepo deletion is complete.
+	 */
+	'finishedDeletePolyRepo': (arg: { name: unknown }) => LocalizedString
 }
 
 export type Formatters = {}
