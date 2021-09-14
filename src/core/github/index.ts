@@ -70,24 +70,11 @@ export const clone = async (props: ICloneProps) => {
 }
 
 export const submodule = async (props: ISubmoduleProps) => {
-  const command = `git submodule add -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.path}`
-  try {
-    const { stdout, stderr } = await promisify(exec)(command, {
-      cwd: props.cwd
-    })
-    await props.onMessage(stdout)
-    await props.onErrorMessage(stderr)
-  } catch (error) {
-    await props.onError(error)
-  }
-}
-
-export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
   for (const command of [
-    `git submodule deinit -f ${props.path}`,
-    `rm -rf .git/modules/${props.path}`,
-    `git rm -f ${props.path}`
-  ])
+    `git submodule add -b ${props.branch} https://${props.url} ${props.path}`,
+    `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`,
+    `git submodule update --init --recursive`
+  ]) {
     try {
       const { stdout, stderr } = await promisify(exec)(command, {
         cwd: props.cwd
@@ -97,6 +84,25 @@ export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
     } catch (error) {
       await props.onError(error)
     }
+  }
+}
+
+export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
+  for (const command of [
+    `git submodule deinit -f ${props.path}`,
+    `rm -rf .git/modules/${props.path}`,
+    `git rm -f ${props.path}`
+  ]) {
+    try {
+      const { stdout, stderr } = await promisify(exec)(command, {
+        cwd: props.cwd
+      })
+      await props.onMessage(stdout)
+      await props.onErrorMessage(stderr)
+    } catch (error) {
+      await props.onError(error)
+    }
+  }
 }
 
 export const pull = async (props: {

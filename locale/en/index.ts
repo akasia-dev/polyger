@@ -65,7 +65,7 @@ Script file path: {scriptPath:string}`,
   pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
 
   commandCreatePolyRepo: `📮 Create polyrepo in the GitHub (create-polyrepo)`,
-  pleaseSelectOrganization: `Please choose the location in the GitHub where you want to create the repo.`,
+  pleaseSelectOrganization: `Please choose the location in the GitHub.`,
   pleaseInputRepoName: `Please enter the name of the reformer you want to create.`,
   isItPrivateRepo: `Do you want to create as a private repo?`,
   failedGithubApiFetch: `A problem occurred during the GitHub API call. Please check the token permission and network status.`,

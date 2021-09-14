@@ -63,7 +63,7 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
 
   commandCreatePolyRepo: `📮 폴리레포 깃허브에 생성하기 (create-polyrepo)`,
-  pleaseSelectOrganization: `레포를 생성할 깃허브 내 위치를 선택해주세요.`,
+  pleaseSelectOrganization: `깃허브 내 위치를 선택해주세요.`,
   pleaseInputRepoName: `생성할 레포명을 입력해주세요.`,
   failedGithubApiFetch: `깃허브 API 호출 도중 문제가 발생했습니다. 토큰 권한 및 네트워크 상태를 확인해주세요.`,
   itAlreadyExistRepositoryCouldYouCloneIt: `이미 존재하는 레포입니다. 해당 레포를 그대로 클론해올까요? 아니면 중단할까요?`,
