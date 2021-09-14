@@ -6,7 +6,7 @@ import type { ICommand } from '../../interface'
 import * as github from '../../core/github'
 import { getRepos } from '../../core/polyrepo'
 import getLocale from '../../../locale/index'
-import { choice } from '../../core/utils'
+import { choice, gitModulesPathRegex } from '../../core/utils'
 import getConfigData, { getConfigPath } from '../../core/setup'
 
 export default async (commands: ICommand[]) => {
@@ -51,7 +51,7 @@ const localFunction = async () => {
 
     const gitModulesContent = String(readFileSync(gitModulesFilePath))
     const { data, positions } = patternGrab({
-      regex: /path.*=.*(\S+)/gm,
+      regex: gitModulesPathRegex,
       string: gitModulesContent
     })
     const submodulePaths = data

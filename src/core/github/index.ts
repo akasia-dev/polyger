@@ -1,8 +1,13 @@
 /* eslint-disable no-console */
 import { exec } from 'child_process'
+import path from 'path'
 import { promisify } from 'util'
+import patternGrab from 'pattern-grab'
+
 import { axios } from '../axios'
 import { IOrganization, IRepo } from './interface'
+import { gitModulesPathAndUrlRegex } from '../utils'
+import { existsSync, readFileSync } from 'fs'
 
 export interface ICloneProps {
   name: string
@@ -57,7 +62,7 @@ export const runCommand = async (props: IRunCommandProps) => {
 }
 
 export const clone = async (props: ICloneProps) => {
-  const command = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}  --recursive`
+  const command = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}`
   try {
     const { stdout, stderr } = await promisify(exec)(command, {
       cwd: props.cwd
@@ -66,6 +71,69 @@ export const clone = async (props: ICloneProps) => {
     await props.onErrorMessage(stderr)
   } catch (error) {
     await props.onError(error)
+  }
+
+  await submodulePull({
+    cwd: props.cwd,
+    githubUserName: props.githubUserName,
+    githubToken: props.githubToken,
+    onMessage: props.onMessage,
+    onErrorMessage: props.onErrorMessage,
+    onError: props.onError
+  })
+}
+
+export const submodulePull = async (props: {
+  cwd: string
+  githubUserName: string
+  githubToken: string
+  onMessage: (message: string) => void | Promise<void>
+  onErrorMessage: (errorMessage: string) => void | Promise<void>
+  onError: (error: Error) => void | Promise<void>
+}) => {
+  const gitModulesPath = path.resolve(props.cwd, '.gitmodules')
+  if (existsSync(gitModulesPath)) {
+    const gitModulesContent = String(readFileSync(gitModulesPath))
+
+    const { data, positions } = patternGrab({
+      regex: gitModulesPathAndUrlRegex,
+      string: gitModulesContent
+    })
+
+    const submodulePaths = data
+      .filter((_, index) => positions.includes(index))
+      .map((item: string) =>
+        item.split('\n').map((item) => item.split('=')[1].trim())
+      )
+
+    for (const [submodulePath, fullUrl] of submodulePaths) {
+      const submoduleUrl = fullUrl.split('://')[1]
+      try {
+        const { stdout, stderr } = await promisify(exec)(
+          `git config submodule.${submodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
+          {
+            cwd: props.cwd
+          }
+        )
+        await props.onMessage(stdout)
+        await props.onErrorMessage(stderr)
+      } catch (error) {
+        await props.onError(error)
+      }
+    }
+
+    try {
+      const { stdout, stderr } = await promisify(exec)(
+        `git submodule update --init --recursive`,
+        {
+          cwd: props.cwd
+        }
+      )
+      await props.onMessage(stdout)
+      await props.onErrorMessage(stderr)
+    } catch (error) {
+      await props.onError(error)
+    }
   }
 }
 
@@ -106,7 +174,10 @@ export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
 }
 
 export const pull = async (props: {
+  name: string
   cwd: string
+  githubUserName: string
+  githubToken: string
   onMessage: (message: string) => void | Promise<void>
   onErrorMessage: (errorMessage: string) => void | Promise<void>
   onError: (error: Error) => void | Promise<void>
@@ -120,6 +191,15 @@ export const pull = async (props: {
   } catch (error) {
     await props.onError(error)
   }
+
+  await submodulePull({
+    cwd: props.cwd,
+    githubUserName: props.githubUserName,
+    githubToken: props.githubToken,
+    onMessage: props.onMessage,
+    onErrorMessage: props.onErrorMessage,
+    onError: props.onError
+  })
 }
 
 export const fetchOrganization = async (githubToken: string) => {

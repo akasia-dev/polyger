@@ -48,3 +48,5 @@ export const animateText = async (text: string, delayMs = 1000) => {
 
 export const polygerShellFileTitleRegex = /# polyger title:\s?(.*)$/m
 export const polygerShellFileEntryRegex = /# polyger entrypoint:\s?(.*)$/m
+export const gitModulesPathRegex = /path.*=.*(\S+)/gm
+export const gitModulesPathAndUrlRegex = /path.*=.*(\S+)\n.*url =.*/gm
