@@ -60,8 +60,8 @@ Script file path: {scriptPath:string}`,
 
   commandAddPolyRepo: `Add a polyrepo (add-polyrepo)`,
   pleaseSelectSubFolder: 'Please select a category to save the polyrepo.',
-  pleaseEnterRepoUrl: `Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)`,
-  pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo that you want to clone. (e.g. main)`,
+  pleaseEnterRepoUrl: `Please enter the URL of the polyrepo. (e.g. github.com/akasia-dev/polyger.git)`,
+  pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo. (e.g. main)`,
   pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
 
   commandCreatePolyRepo: `Create a polyrepo in the GitHub (create-polyrepo)`,
@@ -81,7 +81,8 @@ Script file path: {scriptPath:string}`,
   pleaseSelectCategoryToCreateSubmodule: `Please select a category to create a submodule.`,
   pleaseSelectProjectToCreateSubmodule: `Please select a project to create a submodule.`,
   pleaseEnterDetailSubmodulePathToSave: `Please enter the detailed path in the folder where the submodule will be created. (e.g. lib/some-module)`,
-  pleaseSelectGitProjectAsSubmodule: `Please select the Git project you want to receive as a submodule.`
+  pleaseSelectGitProjectAsSubmodule: `Please select the Git project you want to receive as a submodule.`,
+  polyrepoIsEmptyPleaseAddOne: `No polyrepo added to the category exists.\nFirst, please add the polyrepo to the category.`
 }
 
 export default en

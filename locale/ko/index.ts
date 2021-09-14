@@ -58,8 +58,8 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 
   commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
   pleaseSelectSubFolder: '폴리레포를 저장할 카테고리를 선택해주세요.',
-  pleaseEnterRepoUrl: `복제해올 폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
-  pleaseEnterRepoBranch: `복제해올 폴리레포의 브랜치를 입력해주세요. (예: main)`,
+  pleaseEnterRepoUrl: `폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
+  pleaseEnterRepoBranch: `폴리레포의 브랜치를 입력해주세요. (예: main)`,
   pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
 
   commandCreatePolyRepo: `폴리레포 깃허브에 생성하기 (create-polyrepo)`,
@@ -79,7 +79,8 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   pleaseSelectCategoryToCreateSubmodule: `서브모듈이 생성될 카테고리를 선택해주세요.`,
   pleaseSelectProjectToCreateSubmodule: `서브모듈이 생성될 프로젝트를 선택해주세요.`,
   pleaseEnterDetailSubmodulePathToSave: `서브모듈을 생성할 폴더 내 상세 경로를 입력해주세요. (예: lib/some-module)`,
-  pleaseSelectGitProjectAsSubmodule: `서브모듈로 받아오려는 깃 프로젝트를 선택해주세요.`
+  pleaseSelectGitProjectAsSubmodule: `서브모듈로 받아오려는 깃 프로젝트를 선택해주세요.`,
+  polyrepoIsEmptyPleaseAddOne: `해당 카테고리에 추가된 폴리레포가 존재하지 않습니다.\n먼저 폴리레포를 해당 카테고리에 추가해주세요.`
 }
 
 export default ko

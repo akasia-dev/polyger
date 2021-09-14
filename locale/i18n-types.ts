@@ -125,11 +125,11 @@ Script file path: {scriptPath}
 	 */
 	'pleaseSelectSubFolder': string
 	/**
-	 * Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)
+	 * Please enter the URL of the polyrepo. (e.g. github.com/akasia-dev/polyger.git)
 	 */
 	'pleaseEnterRepoUrl': string
 	/**
-	 * Please enter the branch name of the polyrepo that you want to clone. (e.g. main)
+	 * Please enter the branch name of the polyrepo. (e.g. main)
 	 */
 	'pleaseEnterRepoBranch': string
 	/**
@@ -200,6 +200,11 @@ Script file path: {scriptPath}
 	 * Please select the Git project you want to receive as a submodule.
 	 */
 	'pleaseSelectGitProjectAsSubmodule': string
+	/**
+	 * No polyrepo added to the category exists.
+First, please add the polyrepo to the category.
+	 */
+	'polyrepoIsEmptyPleaseAddOne': string
 }
 
 export type TranslationFunctions = {
@@ -312,11 +317,11 @@ Script file path: {scriptPath}
 	 */
 	'pleaseSelectSubFolder': () => LocalizedString
 	/**
-	 * Please enter the URL of the polyrepo to replicate. (e.g. github.com/akasia-dev/polyger.git)
+	 * Please enter the URL of the polyrepo. (e.g. github.com/akasia-dev/polyger.git)
 	 */
 	'pleaseEnterRepoUrl': () => LocalizedString
 	/**
-	 * Please enter the branch name of the polyrepo that you want to clone. (e.g. main)
+	 * Please enter the branch name of the polyrepo. (e.g. main)
 	 */
 	'pleaseEnterRepoBranch': () => LocalizedString
 	/**
@@ -387,6 +392,11 @@ Script file path: {scriptPath}
 	 * Please select the Git project you want to receive as a submodule.
 	 */
 	'pleaseSelectGitProjectAsSubmodule': () => LocalizedString
+	/**
+	 * No polyrepo added to the category exists.
+First, please add the polyrepo to the category.
+	 */
+	'polyrepoIsEmptyPleaseAddOne': () => LocalizedString
 }
 
 export type Formatters = {}

@@ -16,10 +16,35 @@ export interface ICloneProps {
   onError: (error: Error) => void | Promise<void>
 }
 
+export interface ISubmoduleProps {
+  path: string
+  url: string
+  githubUserName: string
+  githubToken: string
+  cwd: string
+  branch: string
+  onMessage: (message: string) => void | Promise<void>
+  onErrorMessage: (errorMessage: string) => void | Promise<void>
+  onError: (error: Error) => void | Promise<void>
+}
+
 export const clone = async (props: ICloneProps) => {
-  const cloneCommand = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}`
+  const command = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}  --recursive`
   try {
-    const { stdout, stderr } = await promisify(exec)(cloneCommand, {
+    const { stdout, stderr } = await promisify(exec)(command, {
+      cwd: props.cwd
+    })
+    await props.onMessage(stdout)
+    await props.onErrorMessage(stderr)
+  } catch (error) {
+    await props.onError(error)
+  }
+}
+
+export const submodule = async (props: ISubmoduleProps) => {
+  const command = `git submodule add -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.path}`
+  try {
+    const { stdout, stderr } = await promisify(exec)(command, {
       cwd: props.cwd
     })
     await props.onMessage(stdout)
