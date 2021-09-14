@@ -1,6 +1,6 @@
 {
   "name": "polyger",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
     "start": "npm run build && mkdir -p test-e2e && cd test-e2e && node ../bin/polyger --dev",
