@@ -28,6 +28,14 @@ export interface ISubmoduleProps {
   onError: (error: Error) => void | Promise<void>
 }
 
+export interface ISubmoduleDeleteProps {
+  path: string
+  cwd: string
+  onMessage: (message: string) => void | Promise<void>
+  onErrorMessage: (errorMessage: string) => void | Promise<void>
+  onError: (error: Error) => void | Promise<void>
+}
+
 export const clone = async (props: ICloneProps) => {
   const command = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}  --recursive`
   try {
@@ -52,6 +60,23 @@ export const submodule = async (props: ISubmoduleProps) => {
   } catch (error) {
     await props.onError(error)
   }
+}
+
+export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
+  for (const command of [
+    `git submodule deinit -f ${props.path}`,
+    `rm -rf .git/modules/${props.path}`,
+    `git rm -f ${props.path}`
+  ])
+    try {
+      const { stdout, stderr } = await promisify(exec)(command, {
+        cwd: props.cwd
+      })
+      await props.onMessage(stdout)
+      await props.onErrorMessage(stderr)
+    } catch (error) {
+      await props.onError(error)
+    }
 }
 
 export const pull = async (props: {

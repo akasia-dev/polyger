@@ -64,6 +64,7 @@
     "is-interactive": "^1.0.0",
     "isomorphic-unfetch": "^3.1.0",
     "os-locale": "^5.0.0",
+    "pattern-grab": "^1.0.1",
     "redaxios": "^0.4.1",
     "supports-color": "^5.5.0",
     "typesafe-i18n": "^2.37.4",

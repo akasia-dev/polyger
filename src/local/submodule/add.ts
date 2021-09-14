@@ -22,8 +22,6 @@ const localFunction = async () => {
   const { githubToken, githubUserName } = secretData
   const configPath = getConfigPath()
 
-  console.log(locale.pleaseSelectCategoryToCreateSubmodule())
-
   const category = await choice({
     items: configData.subFolders!,
     message: locale.pleaseSelectCategoryToCreateSubmodule()
