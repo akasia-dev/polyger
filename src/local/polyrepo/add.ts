@@ -1,15 +1,15 @@
 import path from 'path'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 
-import getLocale from '../../locale'
-import * as github from '../core/github'
+import getLocale from '../../../locale'
+import * as github from '../../core/github'
 
-import { choice } from '../core/utils'
-import { inquirer } from '../core/inquire'
-import { getConfigPath, getConfigData } from '../core/setup'
+import { choice } from '../../core/utils'
+import { inquirer } from '../../core/inquire'
+import { getConfigPath, getConfigData } from '../../core/setup'
 
-import type { ICommand } from '../interface'
-import { getRepoList, selectOrganization } from './utils'
+import type { ICommand } from '../../interface'
+import { getRepoList, selectOrganization } from '../utils'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
@@ -31,15 +31,6 @@ const localFunction = async () => {
       items: configData.subFolders!,
       message: locale.pleaseSelectSubFolder()
     })
-
-    // const { repoUrl } = await inquirer.prompt({
-    //   type: 'input',
-    //   name: 'repoUrl',
-    //   message: locale.pleaseEnterRepoUrl(),
-    //   validate: (inputText: string) => {
-    //     return inputText.includes('github.com')
-    //   }
-    // })
 
     const { isRelatedOfMe } = await inquirer.prompt({
       type: 'confirm',

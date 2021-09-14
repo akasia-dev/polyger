@@ -1,12 +1,12 @@
-import type { ICommand } from '../interface'
-import getLocale from '../../locale/index'
-import getConfigData, { getConfigPath } from '../core/setup'
-import { choice } from '../core/utils'
-import { getRepos } from '../core/polyrepo'
-import { inquirer } from '../core/inquire'
 import path from 'path'
-import { getRepoList, selectOrganization } from './utils'
-import { submodule } from '../core/github'
+import type { ICommand } from '../../interface'
+import getLocale from '../../../locale/index'
+import getConfigData, { getConfigPath } from '../../core/setup'
+import { choice } from '../../core/utils'
+import { getRepos } from '../../core/polyrepo'
+import { inquirer } from '../../core/inquire'
+import { getRepoList, selectOrganization } from '../utils'
+import { submodule } from '../../core/github'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

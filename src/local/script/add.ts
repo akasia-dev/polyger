@@ -1,10 +1,10 @@
 import path from 'path'
 import { existsSync, writeFileSync } from 'fs'
 
-import type { ICommand } from '../interface'
-import { getConfigPath, getConfigData } from '../core/setup'
-import { inquirer } from '../core/inquire'
-import getLocale from '../../locale/index'
+import type { ICommand } from '../../interface'
+import { getConfigPath, getConfigData } from '../../core/setup'
+import { inquirer } from '../../core/inquire'
+import getLocale from '../../../locale/index'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

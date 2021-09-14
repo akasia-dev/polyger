@@ -34,7 +34,8 @@ Please enter "npm start" to run the polyrepo manager.`,
   runningCommand: 'Running... "{title:string}"',
 
   shallWeClone: 'Do you want to clone the project?',
-  commandPull: 'Update the entire local repos from the GitHub (pull)',
+  commandPull:
+    '[polyger] Update the entire local poyrepos from the GitHub (pull)',
   downloadingPolyrepos: '"{packageName:string}" Downloading polyrepos...',
 
   detectedNonInteractiveTerminal: `The terminal does not appear to support interaction.
@@ -45,7 +46,7 @@ For Windows, the recommended installation methods are as follows:
 2. hyper install: https://git.io/JEN7V
 3. hyper setup: https://bit.ly/hyper-setup`,
 
-  commandAddScript: 'Add Project Command (add-script)',
+  commandAddScript: '[polyger] Add Project Command (add-script)',
   pleaseSelectShellScriptFolderName: `Enter the name of the folder where the shellscript files
 for the project will be contained (default: sh)`,
   pleaseEnterScriptFileName:
@@ -58,13 +59,13 @@ for the project will be contained (default: sh)`,
 Open the script file to configure the command.
 Script file path: {scriptPath:string}`,
 
-  commandAddPolyRepo: `Add a polyrepo (add-polyrepo)`,
+  commandAddPolyRepo: `[polyger] Add a polyrepo (add-polyrepo)`,
   pleaseSelectSubFolder: 'Please select a category to save the polyrepo.',
   pleaseEnterRepoUrl: `Please enter the URL of the polyrepo. (e.g. github.com/akasia-dev/polyger.git)`,
   pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo. (e.g. main)`,
   pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
 
-  commandCreatePolyRepo: `Create a polyrepo in the GitHub (create-polyrepo)`,
+  commandCreatePolyRepo: `[polyger] Create a polyrepo in the GitHub (create-polyrepo)`,
   pleaseSelectOrganization: `Please choose the location in the GitHub where you want to create the repo.`,
   pleaseInputRepoName: `Please enter the name of the reformer you want to create.`,
   isItPrivateRepo: `Do you want to create as a private repo?`,
@@ -77,12 +78,18 @@ Script file path: {scriptPath:string}`,
   pleaseEnterRepoAccountName: `Please enter the GitHub ID or organization ID to download the repo.`,
   isThisOrganization: `Is it a GitHub organization? (Y) or a personal repo? (N)`,
 
-  commandAddSubmodule: `Add a submodule (add-submodule)`,
+  commandAddSubmodule: `[polyger] Add a submodule (add-submodule)`,
   pleaseSelectCategoryToCreateSubmodule: `Please select a category to create a submodule.`,
   pleaseSelectProjectToCreateSubmodule: `Please select a project to create a submodule.`,
   pleaseEnterDetailSubmodulePathToSave: `Please enter the detailed path in the folder where the submodule will be created. (e.g. lib/some-module)`,
   pleaseSelectGitProjectAsSubmodule: `Please select the Git project you want to receive as a submodule.`,
-  polyrepoIsEmptyPleaseAddOne: `No polyrepo added to the category exists.\nFirst, please add the polyrepo to the category.`
+  polyrepoIsEmptyPleaseAddOne: `No polyrepo added to the category exists.\nFirst, please add the polyrepo to the category.`,
+
+  commandDeleteSubmodule: `[polyger] Delete submodule (delete-submodule)`,
+  pleaseSelectCategoryToDeleteSubmodule: `Please select the category of the project containing the submodule you want to delete.`,
+  pleaseSelectProjectToDeleteSubmodule: `Please select a project containing the submodule you want to delete.`,
+  pleaseEnterDetailSubmodulePathToDelete: `Please select the submodule you want to delete.`,
+  submoduleDoesntExist: `Submodules do not exist in the project.`
 }
 
 export default en

@@ -1,20 +1,20 @@
 import path from 'path'
 import { existsSync, readFileSync, writeFileSync } from 'fs'
 
-import getLocale from '../../locale/index'
-import * as github from '../core/github'
+import getLocale from '../../../locale/index'
+import * as github from '../../core/github'
 
-import { choice } from '../core/utils'
-import { inquirer } from '../core/inquire'
-import { getConfigPath, getConfigData } from '../core/setup'
+import { choice } from '../../core/utils'
+import { inquirer } from '../../core/inquire'
+import { getConfigPath, getConfigData } from '../../core/setup'
 
-import type { ICommand } from '../interface'
+import type { ICommand } from '../../interface'
 import {
   createOrganizationRepo,
   createUserRepo,
   getRepoList,
   selectOrganization
-} from './utils'
+} from '../utils'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()

@@ -69,7 +69,7 @@ If you select a command, it will be executed.
 	 */
 	'shallWeClone': string
 	/**
-	 * Update the entire local repos from the GitHub (pull)
+	 * [polyger] Update the entire local poyrepos from the GitHub (pull)
 	 */
 	'commandPull': string
 	/**
@@ -88,7 +88,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': string
 	/**
-	 * Add Project Command (add-script)
+	 * [polyger] Add Project Command (add-script)
 	 */
 	'commandAddScript': string
 	/**
@@ -117,7 +117,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
 	/**
-	 * Add a polyrepo (add-polyrepo)
+	 * [polyger] Add a polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': string
 	/**
@@ -137,7 +137,7 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': string
 	/**
-	 * Create a polyrepo in the GitHub (create-polyrepo)
+	 * [polyger] Create a polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': string
 	/**
@@ -181,7 +181,7 @@ Script file path: {scriptPath}
 	 */
 	'isThisOrganization': string
 	/**
-	 * Add a submodule (add-submodule)
+	 * [polyger] Add a submodule (add-submodule)
 	 */
 	'commandAddSubmodule': string
 	/**
@@ -205,6 +205,26 @@ Script file path: {scriptPath}
 First, please add the polyrepo to the category.
 	 */
 	'polyrepoIsEmptyPleaseAddOne': string
+	/**
+	 * [polyger] Delete submodule (delete-submodule)
+	 */
+	'commandDeleteSubmodule': string
+	/**
+	 * Please select the category of the project containing the submodule you want to delete.
+	 */
+	'pleaseSelectCategoryToDeleteSubmodule': string
+	/**
+	 * Please select a project containing the submodule you want to delete.
+	 */
+	'pleaseSelectProjectToDeleteSubmodule': string
+	/**
+	 * Please select the submodule you want to delete.
+	 */
+	'pleaseEnterDetailSubmodulePathToDelete': string
+	/**
+	 * Submodules do not exist in the project.
+	 */
+	'submoduleDoesntExist': string
 }
 
 export type TranslationFunctions = {
@@ -264,7 +284,7 @@ If you select a command, it will be executed.
 	 */
 	'shallWeClone': () => LocalizedString
 	/**
-	 * Update the entire local repos from the GitHub (pull)
+	 * [polyger] Update the entire local poyrepos from the GitHub (pull)
 	 */
 	'commandPull': () => LocalizedString
 	/**
@@ -282,7 +302,7 @@ For Windows, the recommended installation methods are as follows:
 	 */
 	'detectedNonInteractiveTerminal': () => LocalizedString
 	/**
-	 * Add Project Command (add-script)
+	 * [polyger] Add Project Command (add-script)
 	 */
 	'commandAddScript': () => LocalizedString
 	/**
@@ -309,7 +329,7 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
 	/**
-	 * Add a polyrepo (add-polyrepo)
+	 * [polyger] Add a polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': () => LocalizedString
 	/**
@@ -329,7 +349,7 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoFolderName': () => LocalizedString
 	/**
-	 * Create a polyrepo in the GitHub (create-polyrepo)
+	 * [polyger] Create a polyrepo in the GitHub (create-polyrepo)
 	 */
 	'commandCreatePolyRepo': () => LocalizedString
 	/**
@@ -373,7 +393,7 @@ Script file path: {scriptPath}
 	 */
 	'isThisOrganization': () => LocalizedString
 	/**
-	 * Add a submodule (add-submodule)
+	 * [polyger] Add a submodule (add-submodule)
 	 */
 	'commandAddSubmodule': () => LocalizedString
 	/**
@@ -397,6 +417,26 @@ Script file path: {scriptPath}
 First, please add the polyrepo to the category.
 	 */
 	'polyrepoIsEmptyPleaseAddOne': () => LocalizedString
+	/**
+	 * [polyger] Delete submodule (delete-submodule)
+	 */
+	'commandDeleteSubmodule': () => LocalizedString
+	/**
+	 * Please select the category of the project containing the submodule you want to delete.
+	 */
+	'pleaseSelectCategoryToDeleteSubmodule': () => LocalizedString
+	/**
+	 * Please select a project containing the submodule you want to delete.
+	 */
+	'pleaseSelectProjectToDeleteSubmodule': () => LocalizedString
+	/**
+	 * Please select the submodule you want to delete.
+	 */
+	'pleaseEnterDetailSubmodulePathToDelete': () => LocalizedString
+	/**
+	 * Submodules do not exist in the project.
+	 */
+	'submoduleDoesntExist': () => LocalizedString
 }
 
 export type Formatters = {}
