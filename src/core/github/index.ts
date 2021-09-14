@@ -74,7 +74,7 @@ export const clone = async (props: ICloneProps) => {
   }
 
   await submodulePull({
-    cwd: props.cwd,
+    cwd: path.resolve(props.cwd, props.name),
     githubUserName: props.githubUserName,
     githubToken: props.githubToken,
     onMessage: props.onMessage,
