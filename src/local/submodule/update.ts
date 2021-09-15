@@ -64,7 +64,7 @@ const localFunction = async () => {
     })
 
     await github.runCommand({
-      command: `git submodule update --init --recursive ${submodulePath}`,
+      command: `git submodule update --init --recursive --remote ${submodulePath}`,
       cwd: path.resolve(configPath.projectPath, category, 'package', project),
       onMessage: (message) => console.log(message),
       onError: (message) => console.log(message),
