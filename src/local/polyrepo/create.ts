@@ -119,13 +119,18 @@ const localFunction = async () => {
         return inputText && inputText.length > 0
       }
     })
-    const { repoBranch } = await inquirer.prompt({
-      type: 'input',
-      name: 'repoBranch',
-      message: locale.pleaseEnterRepoBranch(),
-      validate: (inputText: string) => {
-        return inputText && inputText.length > 0
-      }
+
+    const branches = (
+      await github.fetchBranchList({
+        githubToken: githubToken!,
+        ownerName: isOrganization ? selectedOrganization! : githubUserName!,
+        repoName
+      })
+    ).map((branch) => branch.name)
+
+    const repoBranch = await choice({
+      items: branches,
+      message: locale.pleaseEnterRepoBranch()
     })
 
     const targetPolygerPackagePath = path.resolve(

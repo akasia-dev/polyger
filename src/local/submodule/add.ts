@@ -6,7 +6,7 @@ import { choice } from '../../core/utils'
 import { getRepos } from '../../core/polyrepo'
 import { inquirer } from '../../core/inquire'
 import { getRepoList, selectOrganization } from '../utils'
-import { submodule } from '../../core/github'
+import { fetchBranchList, submodule } from '../../core/github'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
@@ -66,13 +66,18 @@ const localFunction = async () => {
         message: locale.pleaseSelectGitProjectAsSubmodule()
       })
 
-      const { branch } = await inquirer.prompt({
-        type: 'input',
-        name: 'branch',
-        message: locale.pleaseEnterRepoBranch(),
-        validate: (input: string) => input && input.length > 0
-      })
+      const branches = (
+        await fetchBranchList({
+          githubToken: githubToken!,
+          ownerName: isOrganization ? selectedOrganization! : githubUserName!,
+          repoName: gitProject
+        })
+      ).map((branch) => branch.name)
 
+      const branch = await choice({
+        items: branches,
+        message: locale.pleaseEnterRepoBranch()
+      })
       const targetPath = path.resolve(
         configPath.projectPath,
         category,
