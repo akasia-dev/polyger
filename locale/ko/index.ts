@@ -59,7 +59,7 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
   pleaseSelectSubFolder: '폴리레포를 저장할 카테고리를 선택해주세요.',
   pleaseEnterRepoUrl: `폴리레포의 URL을 입력해주세요. (예: github.com/akasia-dev/polyger.git)`,
-  pleaseEnterRepoBranch: `폴리레포의 브랜치를 입력해주세요. (예: main)`,
+  pleaseEnterRepoBranch: `폴리레포의 브랜치를 선택해주세요.`,
   pleaseEnterRepoFolderName: `폴리레포가 저장될 폴더명을 입력해주세요.(예: polyger-main)`,
 
   commandCreatePolyRepo: `폴리레포 깃허브에 생성하기 (create-polyrepo)`,

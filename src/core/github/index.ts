@@ -1,11 +1,10 @@
 /* eslint-disable no-console */
 import { exec } from 'child_process'
 import path from 'path'
-import { promisify } from 'util'
 import patternGrab from 'pattern-grab'
 
 import { axios } from '../axios'
-import { IOrganization, IRepo } from './interface'
+import { IBranch, IOrganization, IRepo } from './interface'
 import { gitModulesPathAndUrlRegex } from '../utils'
 import { existsSync, readFileSync } from 'fs'
 import getLocale from '../../../locale'
@@ -50,29 +49,29 @@ export interface ISubmoduleDeleteProps {
   onError: (error: Error) => void | Promise<void>
 }
 
-export const runCommand = async (props: IRunCommandProps) => {
-  try {
-    const { stdout, stderr } = await promisify(exec)(props.command, {
+export const runCommand = (props: IRunCommandProps) => {
+  return new Promise<boolean>((resolve) => {
+    const child = exec(props.command, {
       cwd: props.cwd
     })
-    await props.onMessage(stdout)
-    await props.onErrorMessage(stderr)
-  } catch (error) {
-    await props.onError(error)
-  }
+    child.stdout?.on('data', (data) => props.onMessage(data))
+    child.stderr?.on('data', (data) => props.onErrorMessage(data))
+    child.on('exit', () => resolve(true))
+    child.on('error', () => resolve(false))
+  })
 }
 
 export const clone = async (props: ICloneProps) => {
   const command = `git clone -b ${props.branch} https://${props.githubUserName}:${props.githubToken}@${props.url} ${props.name}`
-  try {
-    const { stdout, stderr } = await promisify(exec)(command, {
-      cwd: props.cwd
-    })
-    await props.onMessage(stdout)
-    await props.onErrorMessage(stderr)
-  } catch (error) {
-    await props.onError(error)
-  }
+  const isSuccess = await runCommand({
+    command,
+    cwd: props.cwd,
+    onError: props.onError,
+    onErrorMessage: props.onErrorMessage,
+    onMessage: props.onMessage
+  })
+
+  if (!isSuccess) return false
 
   await submodulePull({
     cwd: path.resolve(props.cwd, props.name),
@@ -82,6 +81,8 @@ export const clone = async (props: ICloneProps) => {
     onErrorMessage: props.onErrorMessage,
     onError: props.onError
   })
+
+  return true
 }
 
 export const submodulePull = async (props: {
@@ -109,31 +110,23 @@ export const submodulePull = async (props: {
 
     for (const [submodulePath, fullUrl] of submodulePaths) {
       const submoduleUrl = fullUrl.split('://')[1]
-      try {
-        const { stdout, stderr } = await promisify(exec)(
-          `git config submodule.${submodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
-          {
-            cwd: props.cwd
-          }
-        )
-        await props.onMessage(stdout)
-        await props.onErrorMessage(stderr)
-      } catch (error) {
-        await props.onError(error)
-      }
+      await runCommand({
+        command: `git config submodule.${submodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
+        cwd: props.cwd,
+        onError: props.onError,
+        onErrorMessage: props.onErrorMessage,
+        onMessage: props.onMessage
+      })
     }
 
-    try {
-      const { stdout, stderr } = await promisify(exec)(
-        `git submodule update --init --recursive`,
-        {
-          cwd: props.cwd
-        }
-      )
-      await props.onMessage(stdout)
-      await props.onErrorMessage(stderr)
-    } catch (error) {
-      await props.onError(error.message)
+    const isSuccess = await runCommand({
+      command: `git submodule update --init --recursive`,
+      cwd: props.cwd,
+      onError: props.onError,
+      onErrorMessage: props.onErrorMessage,
+      onMessage: props.onMessage
+    })
+    if (!isSuccess) {
       const locale = await getLocale()
       console.log(locale.windowsGitShSetupIssueDetected())
       console.log(locale.youCanBePullSubmoduleAnytime())
@@ -146,28 +139,24 @@ export const submodule = async (props: ISubmoduleProps) => {
     `git submodule add -b ${props.branch} https://${props.url} ${props.path}`,
     `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`
   ]) {
-    try {
-      const { stdout, stderr } = await promisify(exec)(command, {
-        cwd: props.cwd
-      })
-      await props.onMessage(stdout)
-      await props.onErrorMessage(stderr)
-    } catch (error) {
-      await props.onError(error)
-    }
+    await runCommand({
+      command,
+      cwd: props.cwd,
+      onError: props.onError,
+      onErrorMessage: props.onErrorMessage,
+      onMessage: props.onMessage
+    })
   }
 
-  try {
-    const { stdout, stderr } = await promisify(exec)(
-      `git submodule update --init --recursive`,
-      {
-        cwd: props.cwd
-      }
-    )
-    await props.onMessage(stdout)
-    await props.onErrorMessage(stderr)
-  } catch (error) {
-    await props.onError(error.message)
+  const isSuccess = await runCommand({
+    command: `git submodule update --init --recursive`,
+    cwd: props.cwd,
+    onError: props.onError,
+    onErrorMessage: props.onErrorMessage,
+    onMessage: props.onMessage
+  })
+
+  if (!isSuccess) {
     const locale = await getLocale()
     console.log(locale.windowsGitShSetupIssueDetected())
     console.log(locale.youCanBePullSubmoduleAnytime())
@@ -180,15 +169,13 @@ export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
     `rm -rf .git/modules/${props.path}`,
     `git rm -f ${props.path}`
   ]) {
-    try {
-      const { stdout, stderr } = await promisify(exec)(command, {
-        cwd: props.cwd
-      })
-      await props.onMessage(stdout)
-      await props.onErrorMessage(stderr)
-    } catch (error) {
-      await props.onError(error)
-    }
+    await runCommand({
+      command,
+      cwd: props.cwd,
+      onError: props.onError,
+      onErrorMessage: props.onErrorMessage,
+      onMessage: props.onMessage
+    })
   }
 }
 
@@ -201,15 +188,13 @@ export const pull = async (props: {
   onErrorMessage: (errorMessage: string) => void | Promise<void>
   onError: (error: Error) => void | Promise<void>
 }) => {
-  try {
-    const { stdout, stderr } = await promisify(exec)(`git pull --ff-only`, {
-      cwd: props.cwd
-    })
-    await props.onMessage(stdout)
-    await props.onErrorMessage(stderr)
-  } catch (error) {
-    await props.onError(error)
-  }
+  await runCommand({
+    command: `git pull --ff-only`,
+    cwd: props.cwd,
+    onError: props.onError,
+    onErrorMessage: props.onErrorMessage,
+    onMessage: props.onMessage
+  })
 
   await submodulePull({
     cwd: props.cwd,
@@ -333,6 +318,30 @@ export const fetchCreateUserRepo = async ({
       description,
       auto_init: true
     },
+    {
+      headers: {
+        Authorization: `Bearer ${githubToken}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+
+  if (!data) throw new Error('No response data')
+  return data
+}
+
+export const fetchBranchList = async ({
+  githubToken,
+  ownerName,
+  repoName
+}: {
+  githubToken: string
+  ownerName: string
+  repoName: string
+}) => {
+  const { data } = await axios.get<IBranch[]>(
+    `https://api.github.com/repos/${ownerName}/${repoName}/branches`,
     {
       headers: {
         Authorization: `Bearer ${githubToken}`,

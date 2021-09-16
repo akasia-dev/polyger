@@ -61,7 +61,7 @@ Script file path: {scriptPath:string}`,
   commandAddPolyRepo: `Add polyrepo (add-polyrepo)`,
   pleaseSelectSubFolder: 'Please select a category to save the polyrepo.',
   pleaseEnterRepoUrl: `Please enter the URL of the polyrepo. (e.g. github.com/akasia-dev/polyger.git)`,
-  pleaseEnterRepoBranch: `Please enter the branch name of the polyrepo. (e.g. main)`,
+  pleaseEnterRepoBranch: `Please select the branch name of the polyrepo.`,
   pleaseEnterRepoFolderName: `Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))`,
 
   commandCreatePolyRepo: `Create polyrepo in the GitHub (create-polyrepo)`,

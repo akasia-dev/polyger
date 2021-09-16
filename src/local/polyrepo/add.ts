@@ -93,7 +93,7 @@ const localFunction = async () => {
     })
 
     const repoUrl = `github.com/${
-      targetGithubName ? targetGithubName : selectedOrganization
+      isOrganization ? selectedOrganization : targetGithubName
     }/${repoName}.git`
 
     const { repoFolderName } = await inquirer.prompt({
@@ -105,13 +105,17 @@ const localFunction = async () => {
       }
     })
 
-    const { repoBranch } = await inquirer.prompt({
-      type: 'input',
-      name: 'repoBranch',
-      message: locale.pleaseEnterRepoBranch(),
-      validate: (inputText: string) => {
-        return inputText && inputText.length > 0
-      }
+    const branches = (
+      await github.fetchBranchList({
+        githubToken: githubToken!,
+        ownerName: isOrganization ? selectedOrganization! : targetGithubName!,
+        repoName
+      })
+    ).map((branch) => branch.name)
+
+    const repoBranch = await choice({
+      items: branches,
+      message: locale.pleaseEnterRepoBranch()
     })
 
     const targetPolygerPackagePath = path.resolve(
@@ -141,23 +145,28 @@ const localFunction = async () => {
       branch: repoBranch
     }
 
-    writeFileSync(
-      targetPolygerListPath,
-      JSON.stringify(targetPolygerList, null, 2)
-    )
-
-    await github.clone({
-      cwd: targetPolygerPackagePath,
-      githubToken: githubToken!,
-      githubUserName: githubUserName!,
-      name: repoFolderName,
-      branch: repoBranch,
-      url: repoUrl,
-      onMessage: (message) => console.log(message),
-      onError: (message) => console.log(message),
-      onErrorMessage: (message) => console.log(message)
-    })
-  } catch (error) {}
+    if (
+      await github.clone({
+        cwd: targetPolygerPackagePath,
+        githubToken: githubToken!,
+        githubUserName: githubUserName!,
+        name: repoFolderName,
+        branch: repoBranch,
+        url: repoUrl,
+        onMessage: (message) => console.log(message),
+        onError: (message) => console.log(message),
+        onErrorMessage: (message) => console.log(message)
+      })
+    ) {
+      writeFileSync(
+        targetPolygerListPath,
+        JSON.stringify(targetPolygerList, null, 2)
+      )
+    }
+  } catch (error) {
+    console.log(error)
+    console.log(locale.failedGithubApiFetch())
+  }
 }
 
 if (process.argv?.[1] === __filename) localFunction()
