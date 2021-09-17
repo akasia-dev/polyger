@@ -129,13 +129,14 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoUrl': string
 	/**
-	 * Please enter the branch name of the polyrepo. (e.g. main)
+	 * Please select the branch name of the polyrepo.
 	 */
 	'pleaseEnterRepoBranch': string
 	/**
-	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
+	 * Please enter the name of the folder where the polyrepo will be stored (default: {name})
+	 * @param {unknown} name
 	 */
-	'pleaseEnterRepoFolderName': string
+	'pleaseEnterRepoFolderName': RequiredParams1<'name'>
 	/**
 	 * Create polyrepo in the GitHub (create-polyrepo)
 	 */
@@ -391,13 +392,13 @@ Script file path: {scriptPath}
 	 */
 	'pleaseEnterRepoUrl': () => LocalizedString
 	/**
-	 * Please enter the branch name of the polyrepo. (e.g. main)
+	 * Please select the branch name of the polyrepo.
 	 */
 	'pleaseEnterRepoBranch': () => LocalizedString
 	/**
-	 * Please enter the name of the folder where the polyrepo will be stored (e.g., polyger-main))
+	 * Please enter the name of the folder where the polyrepo will be stored (default: {name})
 	 */
-	'pleaseEnterRepoFolderName': () => LocalizedString
+	'pleaseEnterRepoFolderName': (arg: { name: unknown }) => LocalizedString
 	/**
 	 * Create polyrepo in the GitHub (create-polyrepo)
 	 */

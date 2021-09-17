@@ -114,9 +114,11 @@ const localFunction = async () => {
     const { repoFolderName } = await inquirer.prompt({
       type: 'input',
       name: 'repoFolderName',
-      message: locale.pleaseEnterRepoFolderName(),
-      validate: (inputText: string) => {
-        return inputText && inputText.length > 0
+      message: locale.pleaseEnterRepoFolderName({
+        name: repoName
+      }),
+      transformer: (inputText: string) => {
+        return inputText && inputText.length > 0 ? inputText : repoName
       }
     })
 

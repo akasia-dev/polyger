@@ -56,20 +56,29 @@ export const selectCommand = () => {
           type: 'search-list',
           message: locale.selectCommandWantToExecute(),
           name: 'selected',
-          choices: commands.map((command, index) => ({
+          choices: commands.map((command) => ({
             name: command.title,
-            value: index
+            value: command.title
           })),
           validate: (_answer) => true
         }
       ])
       .then((command) => {
+        let index = 0
+        commands.some((item, i) => {
+          if (item.title === command.selected) {
+            index = i
+            return true
+          }
+          return false
+        })
+
         console.log(
           `${locale.runningCommand({
-            title: commands[command.selected].title
+            title: commands[index].title
           })}\n`
         )
-        resolve(commands[command.selected])
+        resolve(commands[index])
       })
   })
 }

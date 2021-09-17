@@ -22,13 +22,21 @@ export const choice = (props: { message: string; items: string[] }) => {
           name: 'selected',
           choices: props.items.map((command, index) => ({
             name: command,
-            value: index
+            value: command
           })),
           validate: (_answer) => true
         }
       ])
       .then((command) => {
-        resolve(props.items[command.selected])
+        let index = 0
+        props.items.some((item, i) => {
+          if (item === command.selected) {
+            index = i
+            return true
+          }
+          return false
+        })
+        resolve(props.items[index])
       })
   })
 }

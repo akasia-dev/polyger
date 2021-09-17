@@ -118,7 +118,10 @@ export const getConfigData = async () => {
     const { shellScriptFolderName } = await inquirer.prompt({
       type: 'input',
       name: 'shellScriptFolderName',
-      message: locale.pleaseSelectShellScriptFolderName()
+      message: locale.pleaseSelectShellScriptFolderName(),
+      transformer: (inputText: string) => {
+        return inputText && inputText.length > 0 ? inputText : 'sh'
+      }
     })
     if (shellScriptFolderName.length === 0) {
       configData.shellScriptFolderName = 'sh'
