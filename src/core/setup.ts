@@ -84,11 +84,7 @@ export const getConfigData = async () => {
       name: 'subFolders',
       message: locale.messageOfSubFolders()
     })
-    configData.subFolders = (subFolders as string)
-      .split(' ')
-      .join('')
-      .split(',')
-
+    configData.subFolders = (subFolders as string).replace(/,/g, '').split(' ')
     isNewestUpdateExist = true
   }
 
@@ -99,10 +95,8 @@ export const getConfigData = async () => {
       subFolderPath,
       '.polyger.list.json'
     )
-    const subFolderPackageFolderPath = path.resolve(subFolderPath, 'package')
     if (!fs.existsSync(subFolderIndexFilePath)) {
       fs.mkdirSync(subFolderPath, { recursive: true })
-      fs.mkdirSync(subFolderPackageFolderPath, { recursive: true })
       fs.writeFileSync(
         subFolderIndexFilePath,
         JSON.stringify({ package: {} }, null, 2)
@@ -142,7 +136,9 @@ export const getConfigData = async () => {
 
   // * githubToken
   if (!secretData.githubToken || secretData.githubToken.length === 0) {
+    console.log('\n')
     await animateText(locale.messageOfNeedToken())
+    console.log('\n')
 
     const { githubToken } = await inquirer.prompt({
       type: 'password',
@@ -176,8 +172,8 @@ export const getConfigData = async () => {
     let gitIgnoreFullText =
       `# Polyger Files\n` + '.polyger.secret.json\nnode_modules\n'
     for (const subFolder of configData.subFolders) {
-      gitIgnoreFullText += `${subFolder}/package/*\n`
-      gitIgnoreFullText += `!${subFolder}/package/README.md\n`
+      gitIgnoreFullText += `${subFolder}/*\n`
+      gitIgnoreFullText += `!${subFolder}/README.md\n`
     }
 
     if (fs.existsSync(gitIgnoreFilePath)) {

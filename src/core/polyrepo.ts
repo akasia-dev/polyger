@@ -15,10 +15,8 @@ export const getRepos = async (categoryPath: string) => {
       String(await fs.readFile(path.join(categoryPath, '.polyger.list.json')))
     )
     const packageList = Object.keys(listJSON.package)
-
-    const packagePath = path.join(categoryPath, 'package')
     const packageFolders = (
-      await fs.readdir(packagePath, {
+      await fs.readdir(categoryPath, {
         withFileTypes: true
       })
     )
@@ -29,7 +27,7 @@ export const getRepos = async (categoryPath: string) => {
       package: listJSON.package,
       packageList,
       packageFolders,
-      packagePath
+      packagePath: categoryPath
     }
   } catch (e) {}
 
@@ -59,7 +57,7 @@ export const getPackages = async () => {
       if (repos.packageFolders.includes(packageName)) {
         packages.push({
           packageName,
-          packagePath: path.resolve(targetProjectPath, 'package', packageName),
+          packagePath: path.resolve(targetProjectPath, packageName),
           url: repos.package[packageName].url
         })
       }
@@ -116,16 +114,31 @@ export const init = async () => {
   const { githubToken, githubUserName } = secretData
 
   for (const { packageName, packagePath, url, branch } of needToInitProjects) {
-    await github.clone({
-      cwd: packagePath,
+    // await github.clone({
+    //   cwd: packagePath,
+    //   githubToken: githubToken!,
+    //   githubUserName: githubUserName!,
+    //   name: packageName,
+    //   branch,
+    //   url,
+    //   onMessage: (message) => console.log(message),
+    //   onErrorMessage: (message) => console.log(message)
+    // })
+
+    const selectedSubFolder = packagePath
+      .split(process.cwd())[1]
+      .replace(/^\//, '')
+
+    console.log(`${selectedSubFolder}/${packageName}`)
+    await github.submodule({
+      url,
+      branch,
+      cwd: process.cwd(),
       githubToken: githubToken!,
       githubUserName: githubUserName!,
-      name: packageName,
-      branch,
-      url,
+      onErrorMessage: (message) => console.log(message),
       onMessage: (message) => console.log(message),
-      onError: (message) => console.log(message),
-      onErrorMessage: (message) => console.log(message)
+      path: `${selectedSubFolder}/${packageName}`
     })
   }
 }

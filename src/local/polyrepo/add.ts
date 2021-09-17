@@ -96,7 +96,7 @@ const localFunction = async () => {
       isOrganization ? selectedOrganization : targetGithubName
     }/${repoName}.git`
 
-    const { repoFolderName } = await inquirer.prompt({
+    let { repoFolderName } = await inquirer.prompt({
       type: 'input',
       name: 'repoFolderName',
       message: locale.pleaseEnterRepoFolderName({
@@ -106,6 +106,7 @@ const localFunction = async () => {
         return inputText && inputText.length > 0 ? inputText : repoName
       }
     })
+    repoFolderName = repoFolderName.length > 0 ? repoFolderName : repoName
 
     const branches = (
       await github.fetchBranchList({
@@ -122,8 +123,7 @@ const localFunction = async () => {
 
     const targetPolygerPackagePath = path.resolve(
       configPath.projectPath,
-      selectedSubFolder,
-      'package'
+      selectedSubFolder
     )
     const targetPolygerListPath = path.resolve(
       configPath.projectPath,
@@ -148,16 +148,15 @@ const localFunction = async () => {
     }
 
     if (
-      await github.clone({
-        cwd: targetPolygerPackagePath,
+      await github.submodule({
+        url: repoUrl,
+        branch: repoBranch,
+        cwd: process.cwd(),
         githubToken: githubToken!,
         githubUserName: githubUserName!,
-        name: repoFolderName,
-        branch: repoBranch,
-        url: repoUrl,
+        onErrorMessage: (message) => console.log(message),
         onMessage: (message) => console.log(message),
-        onError: (message) => console.log(message),
-        onErrorMessage: (message) => console.log(message)
+        path: `${selectedSubFolder}/${repoName}`
       })
     ) {
       writeFileSync(

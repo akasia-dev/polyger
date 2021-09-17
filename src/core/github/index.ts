@@ -18,15 +18,13 @@ export interface ICloneProps {
   branch: string
   onMessage: (message: string) => void | Promise<void>
   onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
 }
 
 export interface IRunCommandProps {
   command: string
   cwd: string
-  onMessage: (message: string) => void | Promise<void>
-  onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
 }
 
 export interface ISubmoduleProps {
@@ -36,17 +34,15 @@ export interface ISubmoduleProps {
   githubToken: string
   cwd: string
   branch: string
-  onMessage: (message: string) => void | Promise<void>
-  onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
 }
 
 export interface ISubmoduleDeleteProps {
   path: string
   cwd: string
-  onMessage: (message: string) => void | Promise<void>
-  onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
 }
 
 export const runCommand = (props: IRunCommandProps) => {
@@ -54,8 +50,17 @@ export const runCommand = (props: IRunCommandProps) => {
     const child = exec(props.command, {
       cwd: props.cwd
     })
-    child.stdout?.on('data', (data) => props.onMessage(data))
-    child.stderr?.on('data', (data) => props.onErrorMessage(data))
+
+    child.stdout?.on(
+      'data',
+      (data) => typeof props.onMessage === 'function' && props.onMessage(data)
+    )
+    child.stderr?.on(
+      'data',
+      (data) =>
+        typeof props.onErrorMessage === 'function' && props.onErrorMessage(data)
+    )
+
     child.on('exit', () => resolve(true))
     child.on('error', () => resolve(false))
   })
@@ -66,7 +71,6 @@ export const clone = async (props: ICloneProps) => {
   const isSuccess = await runCommand({
     command,
     cwd: props.cwd,
-    onError: props.onError,
     onErrorMessage: props.onErrorMessage,
     onMessage: props.onMessage
   })
@@ -78,8 +82,7 @@ export const clone = async (props: ICloneProps) => {
     githubUserName: props.githubUserName,
     githubToken: props.githubToken,
     onMessage: props.onMessage,
-    onErrorMessage: props.onErrorMessage,
-    onError: props.onError
+    onErrorMessage: props.onErrorMessage
   })
 
   return true
@@ -89,9 +92,8 @@ export const submodulePull = async (props: {
   cwd: string
   githubUserName: string
   githubToken: string
-  onMessage: (message: string) => void | Promise<void>
-  onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
 }) => {
   const gitModulesPath = path.resolve(props.cwd, '.gitmodules')
   if (existsSync(gitModulesPath)) {
@@ -113,7 +115,6 @@ export const submodulePull = async (props: {
       await runCommand({
         command: `git config submodule.${submodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
         cwd: props.cwd,
-        onError: props.onError,
         onErrorMessage: props.onErrorMessage,
         onMessage: props.onMessage
       })
@@ -122,7 +123,6 @@ export const submodulePull = async (props: {
     const isSuccess = await runCommand({
       command: `git submodule update --init --recursive`,
       cwd: props.cwd,
-      onError: props.onError,
       onErrorMessage: props.onErrorMessage,
       onMessage: props.onMessage
     })
@@ -135,6 +135,11 @@ export const submodulePull = async (props: {
 }
 
 export const submodule = async (props: ISubmoduleProps) => {
+  await submoduleDelete({
+    cwd: props.cwd,
+    path: props.path
+  })
+
   for (const command of [
     `git submodule add -b ${props.branch} https://${props.url} ${props.path}`,
     `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`
@@ -142,7 +147,6 @@ export const submodule = async (props: ISubmoduleProps) => {
     await runCommand({
       command,
       cwd: props.cwd,
-      onError: props.onError,
       onErrorMessage: props.onErrorMessage,
       onMessage: props.onMessage
     })
@@ -151,7 +155,6 @@ export const submodule = async (props: ISubmoduleProps) => {
   const isSuccess = await runCommand({
     command: `git submodule update --init --recursive`,
     cwd: props.cwd,
-    onError: props.onError,
     onErrorMessage: props.onErrorMessage,
     onMessage: props.onMessage
   })
@@ -160,23 +163,28 @@ export const submodule = async (props: ISubmoduleProps) => {
     const locale = await getLocale()
     console.log(locale.windowsGitShSetupIssueDetected())
     console.log(locale.youCanBePullSubmoduleAnytime())
+    return false
   }
+
+  return true
 }
 
 export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
   for (const command of [
+    `git rm -f ${props.path}`,
     `git submodule deinit -f ${props.path}`,
-    `rm -rf .git/modules/${props.path}`,
-    `git rm -f ${props.path}`
+    `rm -rf .git/modules/${props.path}`
   ]) {
-    await runCommand({
+    const isSuccess = await runCommand({
       command,
       cwd: props.cwd,
-      onError: props.onError,
       onErrorMessage: props.onErrorMessage,
       onMessage: props.onMessage
     })
+
+    if (!isSuccess) return false
   }
+  return true
 }
 
 export const pull = async (props: {
@@ -191,7 +199,6 @@ export const pull = async (props: {
   await runCommand({
     command: `git pull --ff-only`,
     cwd: props.cwd,
-    onError: props.onError,
     onErrorMessage: props.onErrorMessage,
     onMessage: props.onMessage
   })
@@ -201,8 +208,7 @@ export const pull = async (props: {
     githubUserName: props.githubUserName,
     githubToken: props.githubToken,
     onMessage: props.onMessage,
-    onErrorMessage: props.onErrorMessage,
-    onError: props.onError
+    onErrorMessage: props.onErrorMessage
   })
 }
 

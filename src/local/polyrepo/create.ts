@@ -111,7 +111,7 @@ const localFunction = async () => {
       items: configData.subFolders!,
       message: locale.pleaseSelectSubFolder()
     })
-    const { repoFolderName } = await inquirer.prompt({
+    let { repoFolderName } = await inquirer.prompt({
       type: 'input',
       name: 'repoFolderName',
       message: locale.pleaseEnterRepoFolderName({
@@ -121,6 +121,7 @@ const localFunction = async () => {
         return inputText && inputText.length > 0 ? inputText : repoName
       }
     })
+    repoFolderName = repoFolderName.length > 0 ? repoFolderName : repoName
 
     const branches = (
       await github.fetchBranchList({
@@ -137,8 +138,7 @@ const localFunction = async () => {
 
     const targetPolygerPackagePath = path.resolve(
       configPath.projectPath,
-      selectedSubFolder,
-      'package'
+      selectedSubFolder
     )
     const targetPolygerListPath = path.resolve(
       configPath.projectPath,
@@ -174,7 +174,6 @@ const localFunction = async () => {
       branch: repoBranch,
       url: repoUrl,
       onMessage: (message) => console.log(message),
-      onError: (message) => console.log(message),
       onErrorMessage: (message) => console.log(message)
     })
   } catch (e) {}

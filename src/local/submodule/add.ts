@@ -78,12 +78,7 @@ const localFunction = async () => {
         items: branches,
         message: locale.pleaseEnterRepoBranch()
       })
-      const targetPath = path.resolve(
-        configPath.projectPath,
-        category,
-        'package',
-        project
-      )
+      const targetPath = path.resolve(configPath.projectPath, category, project)
 
       await submodule({
         path: submodulePath,
@@ -95,8 +90,7 @@ const localFunction = async () => {
         cwd: targetPath,
         branch,
         onMessage: (message) => console.log(message),
-        onErrorMessage: (message) => console.log(message),
-        onError: (message) => console.log(message)
+        onErrorMessage: (message) => console.log(message)
       })
     } catch (e) {}
   } else {

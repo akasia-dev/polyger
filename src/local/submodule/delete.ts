@@ -39,7 +39,6 @@ const localFunction = async () => {
     const gitModulesFilePath = path.resolve(
       configPath.projectPath,
       category,
-      'package',
       project,
       '.gitmodules'
     )
@@ -64,10 +63,9 @@ const localFunction = async () => {
     })
 
     await github.submoduleDelete({
-      cwd: path.resolve(configPath.projectPath, category, 'package', project),
+      cwd: path.resolve(configPath.projectPath, category, project),
       path: submodulePath,
       onMessage: (message) => console.log(message),
-      onError: (message) => console.log(message),
       onErrorMessage: (message) => console.log(message)
     })
   } else {

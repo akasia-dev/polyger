@@ -6,6 +6,7 @@ import { getRepos } from '../../core/polyrepo'
 import { inquirer } from '../../core/inquire'
 import path from 'path'
 import { existsSync, readFileSync, rmdirSync, writeFileSync } from 'fs'
+import { submoduleDelete } from '../../core/github'
 
 export default async (commands: ICommand[]) => {
   const locale = await getLocale()
@@ -45,9 +46,19 @@ const localFunction = async () => {
     const targetProjectFolderPath = path.resolve(
       configPath.projectPath,
       category,
-      'package',
       project
     )
+
+    const targetPath = `${category}/${project}`
+    const isSubmoduleDeletionSuccess = await submoduleDelete({
+      cwd: process.cwd(),
+      path: targetPath,
+      onMessage: (message) => console.log(message),
+      onErrorMessage: (message) => console.log(message)
+    })
+
+    if (!isSubmoduleDeletionSuccess) return
+
     if (existsSync(targetProjectFolderPath))
       rmdirSync(targetProjectFolderPath, { recursive: true })
 
