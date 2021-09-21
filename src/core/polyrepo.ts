@@ -114,17 +114,6 @@ export const init = async () => {
   const { githubToken, githubUserName } = secretData
 
   for (const { packageName, packagePath, url, branch } of needToInitProjects) {
-    // await github.clone({
-    //   cwd: packagePath,
-    //   githubToken: githubToken!,
-    //   githubUserName: githubUserName!,
-    //   name: packageName,
-    //   branch,
-    //   url,
-    //   onMessage: (message) => console.log(message),
-    //   onErrorMessage: (message) => console.log(message)
-    // })
-
     const selectedSubFolder = packagePath
       .split(process.cwd())[1]
       .replace(/^\//, '')

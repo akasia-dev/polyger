@@ -52,9 +52,7 @@ const localFunction = async () => {
     const targetPath = `${category}/${project}`
     const isSubmoduleDeletionSuccess = await submoduleDelete({
       cwd: process.cwd(),
-      path: targetPath,
-      onMessage: (message) => console.log(message),
-      onErrorMessage: (message) => console.log(message)
+      path: targetPath
     })
 
     if (!isSubmoduleDeletionSuccess) return

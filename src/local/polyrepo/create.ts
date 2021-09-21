@@ -166,15 +166,26 @@ const localFunction = async () => {
       JSON.stringify(targetPolygerList, null, 2)
     )
 
-    await github.clone({
-      cwd: targetPolygerPackagePath,
+    // await github.clone({
+    //   cwd: targetPolygerPackagePath,
+    //   githubToken: githubToken!,
+    //   githubUserName: githubUserName!,
+    //   name: repoFolderName,
+    //   branch: repoBranch,
+    //   url: repoUrl,
+    //   onMessage: (message) => console.log(message),
+    //   onErrorMessage: (message) => console.log(message)
+    // })
+
+    await github.submodule({
+      url: repoUrl,
+      branch: repoBranch,
+      cwd: process.cwd(),
       githubToken: githubToken!,
       githubUserName: githubUserName!,
-      name: repoFolderName,
-      branch: repoBranch,
-      url: repoUrl,
+      onErrorMessage: (message) => console.log(message),
       onMessage: (message) => console.log(message),
-      onErrorMessage: (message) => console.log(message)
+      path: `${selectedSubFolder}/${repoFolderName}`
     })
   } catch (e) {}
 }

@@ -63,7 +63,6 @@ const localFunction = async () => {
         }
       })
 
-      // 그룹명 받아온 후 처리
       const { _isOrganization } = await inquirer.prompt({
         type: 'confirm',
         name: '_isOrganization',
@@ -73,9 +72,9 @@ const localFunction = async () => {
 
       isOrganization = _isOrganization
       if (isOrganization) {
-        targetGithubName = someName
-      } else {
         selectedOrganization = someName
+      } else {
+        targetGithubName = someName
       }
     }
 
@@ -121,10 +120,6 @@ const localFunction = async () => {
       message: locale.pleaseEnterRepoBranch()
     })
 
-    const targetPolygerPackagePath = path.resolve(
-      configPath.projectPath,
-      selectedSubFolder
-    )
     const targetPolygerListPath = path.resolve(
       configPath.projectPath,
       selectedSubFolder,

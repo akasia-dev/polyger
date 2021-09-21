@@ -171,10 +171,6 @@ export const getConfigData = async () => {
     const gitIgnoreFilePath = path.resolve(projectPath, '.gitignore')
     let gitIgnoreFullText =
       `# Polyger Files\n` + '.polyger.secret.json\nnode_modules\n'
-    for (const subFolder of configData.subFolders) {
-      gitIgnoreFullText += `${subFolder}/*\n`
-      gitIgnoreFullText += `!${subFolder}/README.md\n`
-    }
 
     if (fs.existsSync(gitIgnoreFilePath)) {
       const beforeText = String(fs.readFileSync(gitIgnoreFilePath))
