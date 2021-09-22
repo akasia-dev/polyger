@@ -5,7 +5,7 @@ import getLocale from '../../../locale'
 import * as github from '../../core/github'
 
 import { choice } from '../../core/utils'
-import { inquirer } from '../../core/inquire'
+import { inquirer } from '../../core/inquirer'
 import { getConfigPath, getConfigData } from '../../core/setup'
 
 import type { ICommand } from '../../interface'

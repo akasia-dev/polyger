@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs/promises'
-import { inquirer } from './inquire'
+import { inquirer } from './inquirer'
 import getSetupData from './setup'
 import * as github from './github'
 import getLocale from '../../locale/index'

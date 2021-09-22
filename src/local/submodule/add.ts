@@ -4,7 +4,7 @@ import getLocale from '../../../locale/index'
 import getConfigData, { getConfigPath } from '../../core/setup'
 import { choice } from '../../core/utils'
 import { getRepos } from '../../core/polyrepo'
-import { inquirer } from '../../core/inquire'
+import { inquirer } from '../../core/inquirer'
 import { getRepoList, selectOrganization } from '../utils'
 import { fetchBranchList, submodule } from '../../core/github'
 
@@ -92,7 +92,10 @@ const localFunction = async () => {
         onMessage: (message) => console.log(message),
         onErrorMessage: (message) => console.log(message)
       })
-    } catch (e) {}
+    } catch (error) {
+      console.log(error)
+      console.log(locale.failedGithubApiFetch())
+    }
   } else {
     console.log(locale.polyrepoIsEmptyPleaseAddOne())
   }

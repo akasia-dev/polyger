@@ -1,6 +1,15 @@
 import type { BaseTranslation } from 'typesafe-i18n'
 
 const en: BaseTranslation = {
+  polygerIntro: `Polyger is polyrepo and monorepo manager.`,
+  currentPathIsNotDetectedAnyPolygerProject: `The polyger project is not detected on the currently executed path.
+The path where the current poliger is executed: {currentPath}`,
+  shoudWeCreateNewPolygerProject: `Do you want to create a new polyger project?`,
+  polygerRequiredGitProjectRepo: `The polyger project can only work inside the Git repo folder.`,
+  pleaseSelectGitRepoInitializeSolution: `Please select the Git project creation method from the following.`,
+  gitRepoInitializeOnLocal: `Create a Git empty project only on the current local path (git init)`,
+  gitRepoInitializeGithub: `Create a repo on Github and clone it.`,
+
   messageOfNeedToken: `Access token is required for GitHub repo clone.
 How to get a GitHub Access Token: (URL)
 https://git.io/JsPkj`,
@@ -12,7 +21,7 @@ The total number of polyrepos to clone is {count:number}.
 New incoming polyrepo list: {list:string}`,
 
   messageOfSubFolders: `Please enter at least one polyrepo category.
-e.g.: frontend, backend, release
+e.g.: {example}
 
 Each category folder is created at the top,
 and you can add a polyrepo to the sub-path.
@@ -27,6 +36,7 @@ Polyrepo category:
 
   afterFirstInitWelcome: `Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
+
 Please enter "npm start" to run the polyrepo manager.`,
 
   selectCommandWantToExecute:

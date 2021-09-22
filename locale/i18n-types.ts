@@ -11,6 +11,36 @@ export type Locales =
 
 export type Translation = {
 	/**
+	 * Polyger is polyrepo and monorepo manager.
+	 */
+	'polygerIntro': string
+	/**
+	 * The polyger project is not detected on the currently executed path.
+The path where the current poliger is executed: {currentPath}
+	 * @param {unknown} currentPath
+	 */
+	'currentPathIsNotDetectedAnyPolygerProject': RequiredParams1<'currentPath'>
+	/**
+	 * Do you want to create a new polyger project?
+	 */
+	'shoudWeCreateNewPolygerProject': string
+	/**
+	 * The polyger project can only work inside the Git repo folder.
+	 */
+	'polygerRequiredGitProjectRepo': string
+	/**
+	 * Please select the Git project creation method from the following.
+	 */
+	'pleaseSelectGitRepoInitializeSolution': string
+	/**
+	 * Create a Git empty project only on the current local path (git init)
+	 */
+	'gitRepoInitializeOnLocal': string
+	/**
+	 * Create a repo on Github and clone it.
+	 */
+	'gitRepoInitializeGithub': string
+	/**
 	 * Access token is required for GitHub repo clone.
 How to get a GitHub Access Token: (URL)
 https://git.io/JsPkj
@@ -28,7 +58,7 @@ New incoming polyrepo list: {list}
 	'messageOfClone': RequiredParams2<'count', 'list'>
 	/**
 	 * Please enter at least one polyrepo category.
-e.g.: frontend, backend, release
+e.g.: {example}
 
 Each category folder is created at the top,
 and you can add a polyrepo to the sub-path.
@@ -37,8 +67,9 @@ You can type multiple folders by separating them with ","
 
 Polyrepo category:
 
+	 * @param {unknown} example
 	 */
-	'messageOfSubFolders': string
+	'messageOfSubFolders': RequiredParams1<'example'>
 	/**
 	 * Please enter the GitHub CLI token.
 	 */
@@ -50,6 +81,7 @@ Polyrepo category:
 	/**
 	 * Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
+
 Please enter "npm start" to run the polyrepo manager.
 	 */
 	'afterFirstInitWelcome': string
@@ -280,6 +312,35 @@ re-receive all sub-modules that have not been downloaded.
 
 export type TranslationFunctions = {
 	/**
+	 * Polyger is polyrepo and monorepo manager.
+	 */
+	'polygerIntro': () => LocalizedString
+	/**
+	 * The polyger project is not detected on the currently executed path.
+The path where the current poliger is executed: {currentPath}
+	 */
+	'currentPathIsNotDetectedAnyPolygerProject': (arg: { currentPath: unknown }) => LocalizedString
+	/**
+	 * Do you want to create a new polyger project?
+	 */
+	'shoudWeCreateNewPolygerProject': () => LocalizedString
+	/**
+	 * The polyger project can only work inside the Git repo folder.
+	 */
+	'polygerRequiredGitProjectRepo': () => LocalizedString
+	/**
+	 * Please select the Git project creation method from the following.
+	 */
+	'pleaseSelectGitRepoInitializeSolution': () => LocalizedString
+	/**
+	 * Create a Git empty project only on the current local path (git init)
+	 */
+	'gitRepoInitializeOnLocal': () => LocalizedString
+	/**
+	 * Create a repo on Github and clone it.
+	 */
+	'gitRepoInitializeGithub': () => LocalizedString
+	/**
 	 * Access token is required for GitHub repo clone.
 How to get a GitHub Access Token: (URL)
 https://git.io/JsPkj
@@ -295,7 +356,7 @@ New incoming polyrepo list: {list}
 	'messageOfClone': (arg: { count: number, list: string }) => LocalizedString
 	/**
 	 * Please enter at least one polyrepo category.
-e.g.: frontend, backend, release
+e.g.: {example}
 
 Each category folder is created at the top,
 and you can add a polyrepo to the sub-path.
@@ -305,7 +366,7 @@ You can type multiple folders by separating them with ","
 Polyrepo category:
 
 	 */
-	'messageOfSubFolders': () => LocalizedString
+	'messageOfSubFolders': (arg: { example: unknown }) => LocalizedString
 	/**
 	 * Please enter the GitHub CLI token.
 	 */
@@ -317,6 +378,7 @@ Polyrepo category:
 	/**
 	 * Polyrepo initial setup and structure creation are complete.
 You can add polyrepo and add or excute project commands.
+
 Please enter "npm start" to run the polyrepo manager.
 	 */
 	'afterFirstInitWelcome': () => LocalizedString

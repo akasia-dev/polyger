@@ -192,9 +192,8 @@ export const pull = async (props: {
   cwd: string
   githubUserName: string
   githubToken: string
-  onMessage: (message: string) => void | Promise<void>
-  onErrorMessage: (errorMessage: string) => void | Promise<void>
-  onError: (error: Error) => void | Promise<void>
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
 }) => {
   await runCommand({
     command: `git pull --ff-only`,
@@ -209,6 +208,19 @@ export const pull = async (props: {
     githubToken: props.githubToken,
     onMessage: props.onMessage,
     onErrorMessage: props.onErrorMessage
+  })
+}
+
+export const init = async (props: {
+  cwd: string
+  onMessage?: (message: string) => void | Promise<void>
+  onErrorMessage?: (errorMessage: string) => void | Promise<void>
+}) => {
+  await runCommand({
+    command: `git init`,
+    cwd: props.cwd,
+    onErrorMessage: props.onErrorMessage,
+    onMessage: props.onMessage
   })
 }
 

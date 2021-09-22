@@ -5,7 +5,7 @@ import getLocale from '../../../locale/index'
 import * as github from '../../core/github'
 
 import { choice } from '../../core/utils'
-import { inquirer } from '../../core/inquire'
+import { inquirer } from '../../core/inquirer'
 import { getConfigPath, getConfigData } from '../../core/setup'
 
 import type { ICommand } from '../../interface'
@@ -61,20 +61,18 @@ const localFunction = async () => {
       validate: (inputText: string) => inputText && inputText.length > 0
     })
 
-    let shouldClontIt = true
     const repoUrl = `github.com/${
       isOrganization ? selectedOrganization : githubUserName
     }/${repoName}.git`
 
     if (repoList.includes(repoName)) {
-      const { _shouldClontIt } = await inquirer.prompt({
+      const { shouldClontIt } = await inquirer.prompt({
         type: 'confirm',
-        name: '_shouldClontIt',
+        name: 'shouldClontIt',
         message: locale.itAlreadyExistRepositoryCouldYouCloneIt(),
         validate: (inputText: string) => inputText && inputText.length > 0
       })
-
-      shouldClontIt = _shouldClontIt
+      if (!shouldClontIt) return
     } else {
       const { description } = await inquirer.prompt({
         type: 'input',
@@ -136,10 +134,6 @@ const localFunction = async () => {
       message: locale.pleaseEnterRepoBranch()
     })
 
-    const targetPolygerPackagePath = path.resolve(
-      configPath.projectPath,
-      selectedSubFolder
-    )
     const targetPolygerListPath = path.resolve(
       configPath.projectPath,
       selectedSubFolder,
@@ -166,17 +160,6 @@ const localFunction = async () => {
       JSON.stringify(targetPolygerList, null, 2)
     )
 
-    // await github.clone({
-    //   cwd: targetPolygerPackagePath,
-    //   githubToken: githubToken!,
-    //   githubUserName: githubUserName!,
-    //   name: repoFolderName,
-    //   branch: repoBranch,
-    //   url: repoUrl,
-    //   onMessage: (message) => console.log(message),
-    //   onErrorMessage: (message) => console.log(message)
-    // })
-
     await github.submodule({
       url: repoUrl,
       branch: repoBranch,
@@ -187,7 +170,10 @@ const localFunction = async () => {
       onMessage: (message) => console.log(message),
       path: `${selectedSubFolder}/${repoFolderName}`
     })
-  } catch (e) {}
+  } catch (error) {
+    console.log(error)
+    console.log(locale.failedGithubApiFetch())
+  }
 }
 
 if (process.argv?.[1] === __filename) localFunction()

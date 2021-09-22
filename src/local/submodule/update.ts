@@ -62,12 +62,17 @@ const localFunction = async () => {
       message: locale.pleaseEnterDetailSubmodulePath()
     })
 
-    await github.runCommand({
-      command: `git submodule update --init --recursive --remote ${submodulePath}`,
-      cwd: path.resolve(configPath.projectPath, category, project),
-      onMessage: (message) => console.log(message),
-      onErrorMessage: (message) => console.log(message)
-    })
+    try {
+      await github.runCommand({
+        command: `git submodule update --init --recursive --remote ${submodulePath}`,
+        cwd: path.resolve(configPath.projectPath, category, project),
+        onMessage: (message) => console.log(message),
+        onErrorMessage: (message) => console.log(message)
+      })
+    } catch (error) {
+      console.log(error)
+      console.log(locale.failedGithubApiFetch())
+    }
 
     console.log(locale.finishedUpdateSubmodule({ name: submodulePath }))
   } else {

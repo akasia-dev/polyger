@@ -1,12 +1,16 @@
+import notify from './core/notifier'
+import environment from './core/environment'
 import setup from './core/setup'
 import polyrepo from './core/polyrepo'
-import command from './core/command'
 import entrypoint from './core/entrypoint'
-import notify from './core/notifier'
+import command from './core/command'
 
 const main = async () => {
   // Notifies if updates are available.
   await notify()
+
+  // Sets up the environment.
+  await environment()
 
   // Check the setup file and create a setup file if it does not exist.
   const { isFirstRunning } = await setup()

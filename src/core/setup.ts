@@ -1,12 +1,13 @@
 import path from 'path'
 import fs from 'fs'
+import { promisify } from 'util'
+import { exec } from 'child_process'
+import chalk from 'chalk'
 
-import { inquirer } from './inquire'
+import { inquirer } from './inquirer'
 import { animateText, loadJSONFile } from './utils'
 import type { IConfigData, ISecretData } from '../interface'
 import getLocale from '../../locale/index'
-import { promisify } from 'util'
-import { exec } from 'child_process'
 
 export const getConfigPath = () => {
   const projectPath = path.resolve(process.cwd())
@@ -82,7 +83,9 @@ export const getConfigData = async () => {
     const { subFolders } = await inquirer.prompt({
       type: 'input',
       name: 'subFolders',
-      message: locale.messageOfSubFolders()
+      message: locale.messageOfSubFolders({
+        example: chalk.magentaBright(`frontend, backend, release`)
+      })
     })
     configData.subFolders = (subFolders as string).replace(/,/g, '').split(' ')
     isNewestUpdateExist = true
@@ -181,7 +184,8 @@ export const getConfigData = async () => {
   }
 
   // * welcome
-  if (isFirstRunning) console.log('\n\n' + locale.afterFirstInitWelcome())
+  if (isFirstRunning)
+    console.log('\n\n' + chalk.magentaBright(locale.afterFirstInitWelcome()))
 
   return {
     configData,

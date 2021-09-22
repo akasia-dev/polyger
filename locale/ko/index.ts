@@ -1,6 +1,15 @@
 import { Translation } from '../i18n-types'
 
 const ko: Translation = {
+  polygerIntro: `폴리거는 폴리레포 및 모노레포 매니저입니다.`,
+  currentPathIsNotDetectedAnyPolygerProject: `현재 실행된 경로 상에는 폴리거 프로젝트가 감지되지 않습니다.
+현재 폴리거가 실행된 경로: {currentPath}`,
+  shoudWeCreateNewPolygerProject: `새로운 폴리거 프로젝트를 생성하시겠습니까?`,
+  polygerRequiredGitProjectRepo: `폴리거 프로젝트는 Git 레포 폴더 안에서만 작동이 가능합니다.`,
+  pleaseSelectGitRepoInitializeSolution: `다음 중 Git 프로젝트 생성 방법을 선택해주세요.`,
+  gitRepoInitializeOnLocal: `현재 로컬 경로 상에만 Git 빈 프로젝트를 생성하기 (git init)`,
+  gitRepoInitializeGithub: `Github 에 레포를 생성한 후 클론해오기`,
+
   messageOfNeedToken: `GitHub 레포 클론을 위한 엑세스 토큰이 필요합니다.
 GitHub 엑세스 토큰 발급 방법: (URL)
 https://git.io/JsPkj`,
@@ -12,7 +21,7 @@ https://git.io/JsPkj`,
 새로 받아오는 폴리레포 목록: {list}`,
 
   messageOfSubFolders: `폴리레포 카테고리를 한 개 이상 입력해주세요.
-입력 예시: frontend, backend, release
+입력 예시: {example}
 
 각 카테고리 폴더가 최상단에 생성되며, 하위에 폴리레포가 추가할 수 있습니다.
 입력 시엔 , 로 구분지으면 여러 폴더를 입력할 수 있습니다.
@@ -25,6 +34,7 @@ https://git.io/JsPkj`,
 
   afterFirstInitWelcome: `폴리레포 최초 설정 및 구조 생성이 완료되었습니다.
 폴리레포 추가 및 프로젝트 명령어 추가 또는 실행이 가능합니다.
+
 npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
 
   selectCommandWantToExecute:

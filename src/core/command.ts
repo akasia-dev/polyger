@@ -5,7 +5,7 @@ import { promisify } from 'util'
 import { exec } from 'child_process'
 import isInteractive from 'is-interactive'
 
-import { inquirer } from './inquire'
+import { inquirer } from './inquirer'
 import getLocale from '../../locale/index'
 import getSetupData from './setup'
 import { getLocalCommands } from '../local/index'

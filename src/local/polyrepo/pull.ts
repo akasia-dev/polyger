@@ -17,19 +17,23 @@ const localFunction = async () => {
   const locale = await getLocale()
   const { secretData } = await getConfigData()
 
-  for (const packageItem of packages) {
-    console.log(
-      locale.downloadingPolyrepos({ packageName: packageItem.packageName })
-    )
-    await github.pull({
-      name: packageItem.packageName,
-      cwd: packageItem.packagePath,
-      githubToken: secretData.githubToken!,
-      githubUserName: secretData.githubUserName!,
-      onError: (error) => console.error(error),
-      onErrorMessage: (error) => console.error(error),
-      onMessage: (message) => console.log(message)
-    })
+  try {
+    for (const packageItem of packages) {
+      console.log(
+        locale.downloadingPolyrepos({ packageName: packageItem.packageName })
+      )
+      await github.pull({
+        name: packageItem.packageName,
+        cwd: packageItem.packagePath,
+        githubToken: secretData.githubToken!,
+        githubUserName: secretData.githubUserName!,
+        onErrorMessage: (error) => console.error(error),
+        onMessage: (message) => console.log(message)
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    console.log(locale.failedGithubApiFetch())
   }
 }
 

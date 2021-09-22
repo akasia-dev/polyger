@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import chalkAnimation from 'chalkercli'
-import { inquirer } from './inquire'
+import { inquirer } from './inquirer'
 import isInteractive from 'is-interactive'
 import supportColor from 'supports-color'
 
