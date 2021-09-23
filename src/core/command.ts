@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import glob from 'fast-glob'
-import { promisify } from 'util'
-import { exec } from 'child_process'
 import isInteractive from 'is-interactive'
 
 import { inquirer } from './inquirer'
@@ -11,6 +9,7 @@ import getSetupData from './setup'
 import { getLocalCommands } from '../local/index'
 import { polygerShellFileTitleRegex } from './utils'
 import type { ICommand } from '../interface'
+import { runCommand } from './github'
 
 export const getCommand = async () => {
   const { configData } = await getSetupData()
@@ -99,9 +98,12 @@ export default async () => {
     commandObject.command.length > 0
   ) {
     try {
-      const { stdout, stderr } = await promisify(exec)(commandObject.command)
-      console.log(stdout)
-      console.log(stderr)
+      await runCommand({
+        command: commandObject.command,
+        cwd: process.cwd(),
+        onErrorMessage: (error) => console.log(error),
+        onMessage: (message) => console.log(message)
+      })
       return true
     } catch (error) {
       console.log(error)
