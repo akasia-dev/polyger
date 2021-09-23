@@ -1,5 +1,5 @@
 import path from 'path'
-import fs from 'fs/promises'
+import fs from 'fs'
 import { inquirer } from './inquirer'
 import getSetupData from './setup'
 import * as github from './github'
@@ -12,15 +12,19 @@ export const getRepos = async (categoryPath: string) => {
     const listJSON: {
       package: Record<string, any>
     } = JSON.parse(
-      String(await fs.readFile(path.join(categoryPath, '.polyger.list.json')))
+      String(fs.readFileSync(path.join(categoryPath, '.polyger.list.json')))
     )
     const packageList = Object.keys(listJSON.package)
-    const packageFolders = (
-      await fs.readdir(categoryPath, {
+    const packageFolders = fs
+      .readdirSync(categoryPath, {
         withFileTypes: true
       })
-    )
-      .filter((e) => e.isDirectory())
+      .filter((e) => {
+        if (!e.isDirectory()) return false
+        if (!fs.existsSync(path.resolve(categoryPath, e.name, '.git')))
+          return false
+        return true
+      })
       .map((e) => e.name)
 
     return {
