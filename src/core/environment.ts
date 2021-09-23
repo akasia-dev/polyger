@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs, { existsSync } from 'fs'
 import path from 'path'
 import chalk from 'chalk'
 import { inquirer } from './inquirer'
@@ -17,6 +17,10 @@ import {
 const initializeEnvironment = async () => {
   const locale = await getLocale()
   const projectPath = path.resolve(process.cwd())
+  const polygerConfigJsonPath = path.resolve(
+    projectPath,
+    '.polyger.config.json'
+  )
   const polygerSecretJsonPath = path.resolve(
     projectPath,
     '.polyger.secret.json'
@@ -26,7 +30,8 @@ const initializeEnvironment = async () => {
   }
 
   let isNewestUpdateExist = false
-  if (!secretData.githubToken || secretData.githubToken.length === 0) {
+
+  if (!existsSync(polygerConfigJsonPath)) {
     console.log(chalk.magentaBright(locale.polygerIntro()) + '\n\n')
     console.log(
       locale.currentPathIsNotDetectedAnyPolygerProject({
@@ -41,7 +46,9 @@ const initializeEnvironment = async () => {
     })
 
     if (!isProceed) process.exit(0)
+  }
 
+  if (!secretData.githubToken || secretData.githubToken.length === 0) {
     await animateText('\n' + locale.messageOfNeedToken())
     console.log('\n')
 
