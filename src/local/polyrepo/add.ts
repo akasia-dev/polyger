@@ -151,7 +151,7 @@ const localFunction = async () => {
         githubUserName: githubUserName!,
         onErrorMessage: (message) => console.log(message),
         onMessage: (message) => console.log(message),
-        path: `${selectedSubFolder}/${repoName}`
+        path: `${selectedSubFolder}/${repoFolderName}`
       })
     ) {
       writeFileSync(
