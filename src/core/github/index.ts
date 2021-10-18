@@ -118,18 +118,18 @@ export const submodulePull = async (props: {
         onErrorMessage: props.onErrorMessage,
         onMessage: props.onMessage
       })
-    }
 
-    const isSuccess = await runCommand({
-      command: `git submodule update --init --recursive`,
-      cwd: props.cwd,
-      onErrorMessage: props.onErrorMessage,
-      onMessage: props.onMessage
-    })
-    if (!isSuccess) {
-      const locale = await getLocale()
-      console.log(locale.windowsGitShSetupIssueDetected())
-      console.log(locale.youCanBePullSubmoduleAnytime())
+      const isSuccess = await runCommand({
+        command: `git submodule update --init --recursive`,
+        cwd: path.resolve(props.cwd, submodulePath),
+        onErrorMessage: props.onErrorMessage,
+        onMessage: props.onMessage
+      })
+      if (!isSuccess) {
+        const locale = await getLocale()
+        console.log(locale.windowsGitShSetupIssueDetected())
+        console.log(locale.youCanBePullSubmoduleAnytime())
+      }
     }
   }
 }
@@ -154,7 +154,7 @@ export const submodule = async (props: ISubmoduleProps) => {
 
   const isSuccess = await runCommand({
     command: `git submodule update --init --recursive`,
-    cwd: props.cwd,
+    cwd: path.resolve(props.cwd, props.path),
     onErrorMessage: props.onErrorMessage,
     onMessage: props.onMessage
   })
