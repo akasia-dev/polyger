@@ -117,11 +117,11 @@ export const getConfigData = async () => {
       name: 'shellScriptFolderName',
       message: locale.pleaseSelectShellScriptFolderName(),
       transformer: (inputText: string) => {
-        return inputText && inputText.length > 0 ? inputText : 'sh'
+        return inputText && inputText.length > 0 ? inputText : 'script'
       }
     })
     if (shellScriptFolderName.length === 0) {
-      configData.shellScriptFolderName = 'sh'
+      configData.shellScriptFolderName = 'script'
     } else {
       configData.shellScriptFolderName = shellScriptFolderName
     }
@@ -131,7 +131,7 @@ export const getConfigData = async () => {
 
   const shellScriptFolderPath = path.resolve(
     projectPath,
-    configData.shellScriptFolderName || 'sh'
+    configData.shellScriptFolderName || 'script'
   )
 
   if (!fs.existsSync(shellScriptFolderPath))

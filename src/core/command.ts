@@ -15,7 +15,7 @@ export const getCommand = async () => {
   const { configData } = await getSetupData()
   const commandFolderPath = path.join(
     process.cwd(),
-    configData.shellScriptFolderName ?? 'sh'
+    configData.shellScriptFolderName ?? 'script'
   )
   const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
   const projectCommands: ICommand[] = []

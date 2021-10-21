@@ -45,7 +45,7 @@ const localFunction = async () => {
   const { configData } = await getConfigData()
   const scriptFolderPath = path.resolve(
     projectPath,
-    configData.shellScriptFolderName || 'sh'
+    configData.shellScriptFolderName || 'script'
   )
   const scriptPath = path.resolve(scriptFolderPath, `${scriptFileName}.sh`)
 
