@@ -72,5 +72,13 @@
     "typesafe-i18n": "^2.37.4",
     "update-notifier": "^5.1.0",
     "zx": "^4.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akasia-dev/polyger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akasia-dev/polyger/issues"
+  },
+  "author": "akasia-dev"
 }
