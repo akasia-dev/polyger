@@ -4,7 +4,12 @@ import glob from 'fast-glob'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 
-import { polygerShellFileEntryRegex, polygerShellFileTitleRegex } from './utils'
+import {
+  polygerShellFileEntryRegex,
+  polygerShellFileTitleRegex,
+  polygerTypescriptFileEntryRegex,
+  polygerTypescriptFileTitleRegex
+} from './utils'
 import type { ICommand } from '../interface'
 import getSetupData, { getConfigPath } from './setup'
 import getLocale from '../../locale/index'
@@ -16,17 +21,23 @@ export const getEntrypoint = async () => {
     process.cwd(),
     configData.shellScriptFolderName ?? 'script'
   )
-  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
+  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.{sh,ts}`])
   const projectCommands: ICommand[] = []
 
   const entryPatchedLogs = secretData.entryPatchedLogs ?? {}
 
   for (const shellScriptPath of shellScriptPaths) {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
+    const isShellScript = /.sh$/gm.test(shellScriptPath)
+    const titleRegex = isShellScript
+      ? polygerShellFileTitleRegex
+      : polygerTypescriptFileTitleRegex
+    const entryRegex = isShellScript
+      ? polygerShellFileEntryRegex
+      : polygerTypescriptFileEntryRegex
 
-    polygerShellFileTitleRegex.lastIndex = 0
-    const polygerShellFileTitleParse =
-      polygerShellFileTitleRegex.exec(shellScriptText)
+    titleRegex.lastIndex = 0
+    const polygerShellFileTitleParse = titleRegex.exec(shellScriptText)
 
     if (
       polygerShellFileTitleParse &&
@@ -34,9 +45,8 @@ export const getEntrypoint = async () => {
     ) {
       const [, polygerShellFileTitle] = polygerShellFileTitleParse
 
-      polygerShellFileEntryRegex.lastIndex = 0
-      const polygerShellFileEntryParse =
-        polygerShellFileEntryRegex.exec(shellScriptText)!
+      entryRegex.lastIndex = 0
+      const polygerShellFileEntryParse = entryRegex.exec(shellScriptText)!
 
       if (
         polygerShellFileEntryParse &&
@@ -48,7 +58,9 @@ export const getEntrypoint = async () => {
           if (beforePatchedVersion !== polygerShellEntryVersion) {
             projectCommands.push({
               title: polygerShellFileTitle,
-              command: `sh "${shellScriptPath}"`
+              command: `${
+                isShellScript ? 'sh' : 'ts-node'
+              } "${shellScriptPath}"`
             })
 
             entryPatchedLogs[polygerShellFileTitle] = polygerShellEntryVersion

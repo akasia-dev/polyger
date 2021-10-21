@@ -41,29 +41,63 @@ const localFunction = async () => {
     message: locale.isItEntryScript()
   })
 
+  const { isItShellScriptOrTypeScript } = await inquirer.prompt({
+    type: 'confirm',
+    name: 'isItShellScriptOrTypeScript',
+    message: locale.isItShellScriptOrTypeScript()
+  })
+
   const { projectPath } = await getConfigPath()
   const { configData } = await getConfigData()
   const scriptFolderPath = path.resolve(
     projectPath,
     configData.shellScriptFolderName || 'script'
   )
-  const scriptPath = path.resolve(scriptFolderPath, `${scriptFileName}.sh`)
 
-  if (!existsSync(scriptPath)) {
-    let scriptFileCode = `# polyger title: ${title}\n`
-    if (isEntrypoint === true) scriptFileCode += `# polyger entrypoint: v1\n`
-    scriptFileCode += `# Please fill out the command you want below.\n\n`
+  if (isItShellScriptOrTypeScript) {
+    // Shellscript
+    const scriptPath = path.resolve(scriptFolderPath, `${scriptFileName}.sh`)
 
-    writeFileSync(scriptPath, scriptFileCode)
+    if (!existsSync(scriptPath)) {
+      let scriptFileCode = `# polyger title: ${title}\n`
+      if (isEntrypoint === true) scriptFileCode += `# polyger entrypoint: v1\n`
+      scriptFileCode += `# Please fill out the command you want below.\n\n`
+
+      writeFileSync(scriptPath, scriptFileCode)
+    }
+
+    console.log(
+      `\n` +
+        locale.scriptFileCreated({
+          scriptPath,
+          title
+        })
+    )
+  } else {
+    // Typescript
+    const scriptPath = path.resolve(scriptFolderPath, `${scriptFileName}.ts`)
+
+    if (!existsSync(scriptPath)) {
+      let scriptFileCode = `// polyger title: ${title}\n`
+      if (isEntrypoint === true) scriptFileCode += `// polyger entrypoint: v1\n`
+      scriptFileCode += `// Please fill out the command you want below.\n\n`
+
+      scriptFileCode += `import { $ as shell } from 'zx'\n
+void (async () => {
+  // You can use the shell script in the type script as follows.
+  await shell\`echo 'hi?'\`
+})()`
+      writeFileSync(scriptPath, scriptFileCode)
+    }
+
+    console.log(
+      `\n` +
+        locale.scriptFileCreated({
+          scriptPath,
+          title
+        })
+    )
   }
-
-  console.log(
-    `\n` +
-      locale.scriptFileCreated({
-        scriptPath,
-        title
-      })
-  )
 }
 
 if (process.argv?.[1] === __filename) localFunction()

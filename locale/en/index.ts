@@ -67,6 +67,8 @@ for the project will be contained (default: sh)`,
   scriptFileCreated: `"{title:string}" Command added successfully.
 Open the script file to configure the command.
 Script file path: {scriptPath:string}`,
+  isItShellScriptOrTypeScript:
+    'Which language do you want to write command?\nShellScript (Yes) or TypeScript (No)',
 
   commandAddPolyRepo: `Add polyrepo (add-polyrepo)`,
   pleaseSelectSubFolder: 'Please select a category to save the polyrepo.',

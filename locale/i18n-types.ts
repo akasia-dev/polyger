@@ -149,6 +149,11 @@ Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': RequiredParams2<'scriptPath', 'title'>
 	/**
+	 * Which language do you want to write command?
+ShellScript (Yes) or TypeScript (No)
+	 */
+	'isItShellScriptOrTypeScript': string
+	/**
 	 * Add polyrepo (add-polyrepo)
 	 */
 	'commandAddPolyRepo': string
@@ -441,6 +446,11 @@ Open the script file to configure the command.
 Script file path: {scriptPath}
 	 */
 	'scriptFileCreated': (arg: { scriptPath: string, title: string }) => LocalizedString
+	/**
+	 * Which language do you want to write command?
+ShellScript (Yes) or TypeScript (No)
+	 */
+	'isItShellScriptOrTypeScript': () => LocalizedString
 	/**
 	 * Add polyrepo (add-polyrepo)
 	 */

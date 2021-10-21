@@ -65,6 +65,8 @@ npm start 를 입력해서 폴리레포 매니저를 실행시켜주세요.`,
   scriptFileCreated: `"{title}" 명령어가 추가되었습니다.
 스크립트 파일을 열어서 해당 명령어를 구성해주세요.
 스크립트 파일 경로: {scriptPath}`,
+  isItShellScriptOrTypeScript:
+    '쉘스크립트(Yes) 와 타입스크립트(No) 중\n어느 것으로 명령어를 구성하시겠습니까?',
 
   commandAddPolyRepo: `폴리레포 추가하기 (add-polyrepo)`,
   pleaseSelectSubFolder: '폴리레포를 저장할 카테고리를 선택해주세요.',

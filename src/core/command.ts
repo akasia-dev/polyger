@@ -7,7 +7,10 @@ import { inquirer } from './inquirer'
 import getLocale from '../../locale/index'
 import getSetupData from './setup'
 import { getLocalCommands } from '../local/index'
-import { polygerShellFileTitleRegex } from './utils'
+import {
+  polygerShellFileTitleRegex,
+  polygerTypescriptFileTitleRegex
+} from './utils'
 import type { ICommand } from '../interface'
 import { runCommand } from './github'
 
@@ -17,8 +20,11 @@ export const getCommand = async () => {
     process.cwd(),
     configData.shellScriptFolderName ?? 'script'
   )
-  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
+
   const projectCommands: ICommand[] = []
+
+  // * Find shellscript commands
+  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
 
   for (const shellScriptPath of shellScriptPaths) {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
@@ -37,6 +43,29 @@ export const getCommand = async () => {
       projectCommands.push({
         title: polygerShellFileTitle,
         command: `sh "${shellScriptPath}"`
+      })
+    }
+  }
+
+  // * Find typescript commands
+  const typescriptPaths = glob.sync([`${commandFolderPath}/**/*.ts`])
+  for (const typescriptPath of typescriptPaths) {
+    const typescriptText = String(fs.readFileSync(typescriptPath))
+
+    polygerTypescriptFileTitleRegex.lastIndex = 0
+
+    const polygerTypescriptFileTitleParse =
+      polygerTypescriptFileTitleRegex.exec(typescriptText)!
+
+    if (
+      polygerTypescriptFileTitleParse &&
+      typeof polygerTypescriptFileTitleParse[1] !== 'undefined'
+    ) {
+      const [, polygerShellFileTitle] = polygerTypescriptFileTitleParse
+
+      projectCommands.push({
+        title: polygerShellFileTitle,
+        command: `ts-node "${typescriptPath}"`
       })
     }
   }
