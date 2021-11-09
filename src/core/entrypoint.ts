@@ -21,7 +21,9 @@ export const getEntrypoint = async () => {
     process.cwd(),
     configData.shellScriptFolderName ?? 'script'
   )
-  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.{sh,ts}`])
+  const shellScriptPaths = glob.sync([
+    path.resolve(commandFolderPath, '**', '*.{sh,ts}').replace(/\\/g, '/')
+  ])
   const projectCommands: ICommand[] = []
 
   const entryPatchedLogs = secretData.entryPatchedLogs ?? {}

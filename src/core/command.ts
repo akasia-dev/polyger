@@ -25,7 +25,7 @@ export const getCommand = async () => {
 
   // * Find shellscript commands
   const shellScriptPaths = glob.sync([
-    path.resolve(commandFolderPath, '**', '*.sh')
+    path.resolve(commandFolderPath, '**', '*.sh').replace(/\\/g, '/')
   ])
 
   for (const shellScriptPath of shellScriptPaths) {
@@ -51,7 +51,7 @@ export const getCommand = async () => {
 
   // * Find typescript commands
   const typescriptPaths = glob.sync([
-    path.resolve(commandFolderPath, '**', '*.ts')
+    path.resolve(commandFolderPath, '**', '*.ts').replace(/\\/g, '/')
   ])
   for (const typescriptPath of typescriptPaths) {
     const typescriptText = String(fs.readFileSync(typescriptPath))
