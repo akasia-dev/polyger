@@ -24,7 +24,9 @@ export const getCommand = async () => {
   const projectCommands: ICommand[] = []
 
   // * Find shellscript commands
-  const shellScriptPaths = glob.sync([`${commandFolderPath}/**/*.sh`])
+  const shellScriptPaths = glob.sync([
+    path.resolve(commandFolderPath, '**', '*.sh')
+  ])
 
   for (const shellScriptPath of shellScriptPaths) {
     const shellScriptText = String(fs.readFileSync(shellScriptPath))
@@ -48,7 +50,9 @@ export const getCommand = async () => {
   }
 
   // * Find typescript commands
-  const typescriptPaths = glob.sync([`${commandFolderPath}/**/*.ts`])
+  const typescriptPaths = glob.sync([
+    path.resolve(commandFolderPath, '**', '*.ts')
+  ])
   for (const typescriptPath of typescriptPaths) {
     const typescriptText = String(fs.readFileSync(typescriptPath))
 
