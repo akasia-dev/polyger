@@ -111,9 +111,10 @@ export const submodulePull = async (props: {
       )
 
     for (const [submodulePath, fullUrl] of submodulePaths) {
+      const safeSubmodulePath = submodulePath.replace('\\', '')
       const submoduleUrl = fullUrl.split('://')[1]
       await runCommand({
-        command: `git config submodule.${submodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
+        command: `git config submodule.${safeSubmodulePath}.url https://${props.githubUserName}:${props.githubToken}@${submoduleUrl}`,
         cwd: props.cwd,
         onErrorMessage: props.onErrorMessage,
         onMessage: props.onMessage
@@ -121,7 +122,7 @@ export const submodulePull = async (props: {
 
       const isSuccess = await runCommand({
         command: `git submodule update --init --recursive`,
-        cwd: path.resolve(props.cwd, submodulePath),
+        cwd: path.resolve(props.cwd, safeSubmodulePath),
         onErrorMessage: props.onErrorMessage,
         onMessage: props.onMessage
       })
@@ -135,14 +136,15 @@ export const submodulePull = async (props: {
 }
 
 export const submodule = async (props: ISubmoduleProps) => {
+  const safePath = props.path.replace('\\', '')
   await submoduleDelete({
     cwd: props.cwd,
-    path: props.path
+    path: safePath
   })
 
   for (const command of [
-    `git submodule add -b ${props.branch} https://${props.url} ${props.path}`,
-    `git config submodule.${props.path}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`
+    `git submodule add -b ${props.branch} https://${props.url} ${safePath}`,
+    `git config submodule.${safePath}.url https://${props.githubUserName}:${props.githubToken}@${props.url}`
   ]) {
     await runCommand({
       command,
@@ -154,7 +156,7 @@ export const submodule = async (props: ISubmoduleProps) => {
 
   const isSuccess = await runCommand({
     command: `git submodule update --init --recursive`,
-    cwd: path.resolve(props.cwd, props.path),
+    cwd: path.resolve(props.cwd, safePath),
     onErrorMessage: props.onErrorMessage,
     onMessage: props.onMessage
   })
@@ -170,10 +172,12 @@ export const submodule = async (props: ISubmoduleProps) => {
 }
 
 export const submoduleDelete = async (props: ISubmoduleDeleteProps) => {
+  const safePath = props.path.replace('\\', '')
+
   for (const command of [
-    `git rm -f ${props.path}`,
-    `git submodule deinit -f ${props.path}`,
-    `rm -rf .git/modules/${props.path}`
+    `git rm -f ${safePath}`,
+    `git submodule deinit -f ${safePath}`,
+    `rm -rf .git/modules/${safePath}`
   ]) {
     const isSuccess = await runCommand({
       command,
