@@ -1,6 +1,6 @@
 {
   "name": "polyger",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "🌸 Polyger is polyrepo management system. (for github projects, Similar to git submodules)",
   "scripts": {
     "start": "npm run build && ([ -d test-e2e ] || mkdir test-e2e) && cd test-e2e && node ../bin/polyger --dev",
@@ -31,9 +31,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.1",
     "prettier": "^2.3.2",
-    "release-it": "^14.11.5",
-    "ts-node": "^10.3.0",
-    "typescript": "^4.3.5"
+    "release-it": "^14.11.5"
   },
   "husky": {
     "hooks": {
@@ -69,7 +67,9 @@
     "pattern-grab": "^1.0.1",
     "redaxios": "^0.4.1",
     "supports-color": "^5.5.0",
+    "ts-node": "^10.4.0",
     "typesafe-i18n": "^2.37.4",
+    "typescript": "^4.4.4",
     "update-notifier": "^5.1.0",
     "zx": "^4.2.0"
   },
