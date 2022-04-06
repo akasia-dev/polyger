@@ -229,18 +229,26 @@ export const init = async (props: {
 }
 
 export const fetchOrganization = async (githubToken: string) => {
-  const { data } = await axios.get<IOrganization[]>(
-    'https://api.github.com/user/orgs',
-    {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        'Content-Type': 'application/json'
-      }
-    }
-  )
+  const collectedOrganizations: IOrganization[] = []
 
-  if (!data) throw new Error('No response data')
-  return data
+  let page = 1
+  while (true) {
+    const { data } = await axios.get<IOrganization[]>(
+      `https://api.github.com/user/orgs?per_page=100&page=${page++}`,
+      {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    if (!data) throw new Error('No response data')
+    collectedOrganizations.push(...data)
+    if (data.length === 0) break
+  }
+
+  return collectedOrganizations
 }
 
 export const fetchOrganizationRepos = async ({
@@ -250,19 +258,27 @@ export const fetchOrganizationRepos = async ({
   githubToken: string
   organizationName: string
 }) => {
-  const { data } = await axios.get<IRepo[]>(
-    `https://api.github.com/orgs/${organizationName}/repos`,
-    {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: 'application/vnd.github.inertia-preview+json',
-        'Content-Type': 'application/json'
-      }
-    }
-  )
+  const collectedRepos: IRepo[] = []
 
-  if (!data) throw new Error('No response data')
-  return data
+  let page = 1
+  while (true) {
+    const { data } = await axios.get<IRepo[]>(
+      `https://api.github.com/orgs/${organizationName}/repos?per_page=100&page=${page++}`,
+      {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: 'application/vnd.github.inertia-preview+json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    if (!data) throw new Error('No response data')
+    collectedRepos.push(...data)
+    if (data.length === 0) break
+  }
+
+  return collectedRepos
 }
 
 export const fetchUserRepos = async ({
@@ -272,19 +288,27 @@ export const fetchUserRepos = async ({
   githubToken: string
   githubUserName: string
 }) => {
-  const { data } = await axios.get<IRepo[]>(
-    `https://api.github.com/users/${githubUserName}/repos`,
-    {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: 'application/vnd.github.inertia-preview+json',
-        'Content-Type': 'application/json'
-      }
-    }
-  )
+  const collectedRepos: IRepo[] = []
 
-  if (!data) throw new Error('No response data')
-  return data
+  let page = 1
+  while (true) {
+    const { data } = await axios.get<IRepo[]>(
+      `https://api.github.com/users/${githubUserName}/repos?per_page=100&page=${page++}`,
+      {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: 'application/vnd.github.inertia-preview+json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    if (!data) throw new Error('No response data')
+    collectedRepos.push(...data)
+    if (data.length === 0) break
+  }
+
+  return collectedRepos
 }
 
 export const fetchCreateOrganizationRepo = async ({
@@ -362,17 +386,25 @@ export const fetchBranchList = async ({
   ownerName: string
   repoName: string
 }) => {
-  const { data } = await axios.get<IBranch[]>(
-    `https://api.github.com/repos/${ownerName}/${repoName}/branches`,
-    {
-      headers: {
-        Authorization: `Bearer ${githubToken}`,
-        Accept: 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      }
-    }
-  )
+  const collectedBranches: IBranch[] = []
 
-  if (!data) throw new Error('No response data')
-  return data
+  let page = 1
+  while (true) {
+    const { data } = await axios.get<IBranch[]>(
+      `https://api.github.com/repos/${ownerName}/${repoName}/branches?per_page=100&page=${page++}`,
+      {
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    if (!data) throw new Error('No response data')
+    collectedBranches.push(...data)
+    if (data.length === 0) break
+  }
+
+  return collectedBranches
 }
